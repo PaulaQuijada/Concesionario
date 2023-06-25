@@ -22,6 +22,28 @@ public class Coche {
         this.reparaciones = reparaciones;
     }
 
+    public Coche(String marca, String modelo, String tipo, String estado, String matricula, float precioVenta, float precioCompra, ArrayList<Exposicion> exposiciones, ArrayList<Reparacion> reparaciones) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.tipo = tipo;
+        this.estado = estado;
+        this.matricula = matricula;
+        this.precioVenta = precioVenta;
+        this.precioCompra = precioCompra;
+        this.exposiciones = exposiciones;
+        this.reparaciones = reparaciones;
+    }
+
+    public Coche(String marca, String modelo, String tipo, String estado, String matricula, float precioVenta, float precioCompra) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.tipo = tipo;
+        this.estado = estado;
+        this.matricula = matricula;
+        this.precioVenta = precioVenta;
+        this.precioCompra = precioCompra;
+    }
+
     public String getTipo() {
         return tipo;
     }
@@ -81,9 +103,9 @@ public class Coche {
     public void setReparaciones(ArrayList<Reparacion> reparaciones) {
         this.reparaciones = reparaciones;
     }
-    public boolean comprar(){}
-    public boolean reservar(){}
-    public boolean cambiarExposicion(){}
+    public void comprar(){}
+    public void reservar(){}
+    public void cambiarExposicion(){}
 
 
 }

@@ -12,6 +12,6 @@ public class Exposicion {
     }
 
 
-    public int añadirCoche(Coche coche){}
-    public int borrarCoche(Coche coche){}
+    public void añadirCoche(Coche coche){}
+    public void borrarCoche(Coche coche){}
 }

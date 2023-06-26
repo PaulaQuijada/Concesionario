@@ -9,5 +9,6 @@ public class VendedorAComision extends Persona{
 
     public void agregarCocheVendido(Coche coche){
 
+
     }
 }

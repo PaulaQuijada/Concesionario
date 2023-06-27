@@ -1,23 +1,26 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Concesionario {
-    private ArrayList<Cliente> clientes;
+    private HashMap<String, Cliente> clientes;
     private ArrayList<VendedorAComision> vendedores;
     private ArrayList<Coche> coches;
     private ArrayList<Exposicion> exposiciones;
 
-    public Concesionario(ArrayList<Cliente> clientes, ArrayList<VendedorAComision> vendedores, ArrayList<Coche> coches, ArrayList<Exposicion> exposiciones) {
+    public Concesionario(HashMap<String,Cliente> clientes, ArrayList<VendedorAComision> vendedores, ArrayList<Coche> coches, ArrayList<Exposicion> exposiciones) {
         this.clientes = clientes;
         this.vendedores = vendedores;
         this.coches = coches;
         this.exposiciones = exposiciones;
 
     }
-    public ArrayList<Cliente> getClientes() {
+    public HashMap<String,Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(ArrayList<Cliente> clientes) {
+    public void setClientes(HashMap<String,Cliente> clientes) {
         this.clientes = clientes;
     }
 
@@ -44,21 +47,52 @@ public class Concesionario {
     public void setExposiciones(ArrayList<Exposicion> exposiciones) {
         this.exposiciones = exposiciones;
     }
-    public ArrayList<Cliente> clientes (){ //Aquí agrego clientes base
+    public void clientes (){ //Aquí agrego clientes base
 
-        clientes.add(new Cliente("Pepe", "C/Sevilla", "36354641G", 634657584));
-        clientes.add(new Cliente("Lucía", "C/Málaga", "26539704W", 624378512));
-        return clientes;
+        clientes.put("36354641G", new Cliente("Pepe", "C/Sevilla", "36354641G", 634657584));
+        clientes.put("26539704W", new Cliente("Lucía", "C/Málaga", "26539704W", 624378512));
+
     }
-    public void agregarCliente(Cliente cliente) { //Este servirá para agregar un cliente por scanner
-        clientes.add(cliente);
+    public void agregarCliente() { //Este servirá para agregar un cliente por scanner
+        Scanner añadirCliente = new Scanner(System.in);
+        System.out.println("Introduzca los datos del cliente: ");
+        System.out.println("Introduzca su nombre: ");
+        String nombre = añadirCliente.nextLine();
+        System.out.println("Introduzca su dirección: ");
+        String direccion = añadirCliente.nextLine();
+        System.out.println("Introduzca su DNI: ");
+        String dni = añadirCliente.nextLine();
+        System.out.println("Introduzca su número de teléfono: ");
+        int telefono = añadirCliente.nextInt();
+        // if(nuevoTeléfono < 99999999 && nuevoTeléfono > 999999999) throw new Exception("El nuevo teléfono no puede ser menor ni mayor a 9 cifras");
+
+        clientes.put(dni, new Cliente(nombre,direccion,dni,telefono));
     }
-    public void removeCliente(Cliente cliente) { //Este servirá para eliminar un cliente por scanner
-        clientes.remove(cliente);
+    public void removeCliente() { //Este servirá para eliminar un cliente por scanner
+        Scanner removeCliente = new Scanner(System.in);
+        System.out.println("Introduce el DNI del cliente a dar de baja: ");
+        String dni = removeCliente.nextLine();
+        clientes.remove(dni);
+    }
+    public void imprimirDatosCliente() {
+        for (Map.Entry<String, Cliente> altaClientes : clientes.entrySet()) {
+            Cliente cliente = altaClientes.getValue();
+            System.out.println("Nombre del cliente: " + cliente.getNombre());
+            System.out.println("Dirección del cliente: " + cliente.getDireccion());
+            System.out.println("DNI del cliente: " + cliente.getDNI());
+            System.out.println("Teléfono del cliente: " + cliente.getTelefono());
+            System.out.println("------------------------");
+        }
     }
     public ArrayList<VendedorAComision> vendedores(){ //Aquí agrego vendedores base
         vendedores.add(new VendedorAComision("David","Avd. Las Flores", "07317266F", 671365975));
         return vendedores;
+    }
+    public void agregarVendedor(VendedorAComision vendedor) { //Este servirá para agregar un cliente por scanner
+        vendedores.add(vendedor);
+    }
+    public void removeVendedor(VendedorAComision vendedor) { //Este servirá para eliminar un cliente por scanner
+        vendedores.remove(vendedores);
     }
     public void queCliente(){}
     public void queCoches(){}

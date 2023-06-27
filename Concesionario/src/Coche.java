@@ -9,8 +9,9 @@ public class Coche {
     private String matricula;
     private float precioVenta;
     private float precioCompra;
-    private ArrayList<Exposicion> exposiciones;
+    private Exposicion exposicion;
     private ArrayList<Reparacion> reparaciones;
+
 
     public Coche(String marca, String modelo, String color, String tipo, String estado, String matricula, float precioVenta, float precioCompra, ArrayList<Reparacion> reparaciones) {
         this.marca = marca;
@@ -24,7 +25,7 @@ public class Coche {
         this.reparaciones = reparaciones;
     }
 
-    public Coche(String marca, String modelo, String color, String tipo, String estado, String matricula, float precioVenta, float precioCompra, ArrayList<Exposicion> exposiciones, ArrayList<Reparacion> reparaciones) {
+    public Coche(String marca, String modelo, String color, String tipo, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion, ArrayList<Reparacion> reparaciones) {
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
@@ -33,7 +34,7 @@ public class Coche {
         this.matricula = matricula;
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
-        this.exposiciones = exposiciones;
+        this.exposicion = exposicion;
         this.reparaciones = reparaciones;
     }
 
@@ -46,6 +47,18 @@ public class Coche {
         this.matricula = matricula;
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
+    }
+
+    public Coche(String marca, String modelo, String color, String tipo, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+        this.tipo = tipo;
+        this.estado = estado;
+        this.matricula = matricula;
+        this.precioVenta = precioVenta;
+        this.precioCompra = precioCompra;
+        this.exposicion = exposicion;
     }
 
     public String getMarca() {
@@ -112,12 +125,12 @@ public class Coche {
         this.precioCompra = precioCompra;
     }
 
-    public ArrayList<Exposicion> getExposiciones() {
-        return exposiciones;
+    public Exposicion getExposiciones() {
+        return exposicion;
     }
 
-    public void setExposiciones(ArrayList<Exposicion> exposiciones) {
-        this.exposiciones = exposiciones;
+    public void setExposiciones(Exposicion exposicion) {
+        this.exposicion = exposicion;
     }
 
     public ArrayList<Reparacion> getReparaciones() {

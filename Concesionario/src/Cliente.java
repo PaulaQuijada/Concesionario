@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Cliente extends Persona {
+
     private ArrayList<Coche> cochesComprados;
     private ArrayList<Coche> cochesReservados;
 
@@ -52,5 +55,28 @@ public class Cliente extends Persona {
                 System.out.println();
             }
         }
+    }
+    public void modificarCliente(){
+        Scanner cliente = new Scanner(System.in);
+        System.out.println("Introduzca los nuevos datos para el cliente con DNI " + getDNI() + ": ");
+        System.out.println("Introduzca su nuevo nombre: ");
+        String nuevoNombre = cliente.nextLine();
+        setNombre(nuevoNombre);
+        System.out.println("Introduzca su nueva dirección: ");
+        String nuevaDireccion = cliente.nextLine();
+        setDireccion(nuevaDireccion);
+        System.out.println("Introduzca su nuevo teléfono: ");
+        int nuevoTeléfono = cliente.nextInt();
+        // if(nuevoTeléfono < 99999999 && nuevoTeléfono > 999999999) throw new Exception("El nuevo teléfono no puede ser menor ni mayor a 9 cifras");
+        setTelefono(nuevoTeléfono);
+
+
+    }
+    public void imprimirDatosCliente(){
+        System.out.println("Nombre del cliente: " + getNombre());
+        System.out.println("Dirección del cliente: " + getDireccion());
+        System.out.println("DNI del cliente: " + getDNI());
+        System.out.println("Teléfono del cliente: " + getTelefono());
+        System.out.println("------------------------");
     }
 }

@@ -82,20 +82,22 @@ public class Concesionario {
     public void imprimirDatosCliente() {
         for (Map.Entry<String, Cliente> altaClientes : clientes.entrySet()) {
             Cliente cliente = altaClientes.getValue();
-            System.out.println("Nombre del cliente: " + cliente.getNombre());
-            System.out.println("Dirección del cliente: " + cliente.getDireccion());
-            System.out.println("DNI del cliente: " + cliente.getDNI());
-            System.out.println("Teléfono del cliente: " + cliente.getTelefono());
+            System.out.println("Datos del cliente: ");
+            System.out.println("Nombre: " + cliente.getNombre());
+            System.out.println("Dirección: " + cliente.getDireccion());
+            System.out.println("DNI: " + cliente.getDNI());
+            System.out.println("Teléfono: " + cliente.getTelefono());
             System.out.println("------------------------");
         }
     }
 
     public void vendedores() { //Aquí agrego vendedores base
         vendedores.put("07317266F", new VendedorAComision("Mariano", "Avd. Las Flores", "07317266F", 671365975));
+        vendedores.put("53187645H", new VendedorAComision("Carlota", "C/Mayor", "53187645H", 654059348));
 
     }
 
-    public void agregarVendedor(VendedorAComision vendedor) { //Este servirá para agregar un vendedor por scanner
+    public void agregarVendedor() { //Este servirá para agregar un vendedor por scanner
         Scanner añadirVendedor = new Scanner(System.in);
         System.out.println("Introduzca los datos del cliente: ");
         System.out.println("Introduzca su nombre: ");
@@ -111,14 +113,25 @@ public class Concesionario {
         vendedores.put(dni, new VendedorAComision(nombre, direccion, dni, telefono));
     }
 
-    public void removeVendedor(VendedorAComision vendedor) { //Este servirá para eliminar un vendedor por scanner
+    public void removeVendedor() { //Este servirá para eliminar un vendedor por scanner
         Scanner removeVendedor = new Scanner(System.in);
-        System.out.println("Introduce el DNI del cliente a dar de baja: ");
+        System.out.println("Introduce el DNI del vendedor a dar de baja: ");
         String dni = removeVendedor.nextLine();
         vendedores.remove(dni);
     }
+    public void imprimirDatosVendedor() {
+        for (Map.Entry<String, VendedorAComision> altaVendedor : vendedores.entrySet()) {
+            VendedorAComision vendedores = altaVendedor.getValue();
+            System.out.println("Datos del vendedor: ");
+            System.out.println("Nombre: " + vendedores.getNombre());
+            System.out.println("Dirección: " + vendedores.getDireccion());
+            System.out.println("DNI: " + vendedores.getDNI());
+            System.out.println("Teléfono: " + vendedores.getTelefono());
+            System.out.println("------------------------");
+        }
+    }
 
-    public void agregarCoche(Coche coche) { //Este servirá para agregar un coche por scanner
+    public void agregarCoche() { //Este servirá para agregar un coche por scanner
         Scanner añadirCoche = new Scanner(System.in);
         System.out.println("Introduzca los datos del coche a añadir: ");
         System.out.println("Marca: ");
@@ -141,9 +154,9 @@ public class Concesionario {
         coches.put(matricula, new Coche(marca, modelo, color, tipo, estado, matricula, precioCompra, precioVenta));
     }
 
-    public void removeCoche(Coche coche) { //Este servirá para eliminar un coche por scanner
+    public void removeCoche() { //Este servirá para eliminar un coche por scanner
         Scanner removeCoche = new Scanner(System.in);
-        System.out.println("Introduce ela matrícula del coche a eliminar: ");
+        System.out.println("Introduce la matrícula del coche a eliminar: ");
         String matricula = removeCoche.nextLine();
         coches.remove(matricula);
     }
@@ -208,5 +221,7 @@ public class Concesionario {
     public void cambiarExposicion(Coche coche, Exposicion exposicion) {
     }
 
+public void consola(){
 
+}
 }

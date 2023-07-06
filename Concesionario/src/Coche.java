@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class Coche {
+public abstract class Coche {
+    private String tipo;
     private String marca;
     private String modelo;
     private String color; //he añadido este atributo
-    private String tipo;
     private String estado;
     private String matricula;
     private float precioVenta;
@@ -13,11 +13,11 @@ public class Coche {
     private ArrayList<Reparacion> reparaciones;
 
 
-    public Coche(String marca, String modelo, String color, String tipo, String estado, String matricula, float precioVenta, float precioCompra, ArrayList<Reparacion> reparaciones) {
+    public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, ArrayList<Reparacion> reparaciones) {
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
-        this.tipo = tipo;
         this.estado = estado;
         this.matricula = matricula;
         this.precioVenta = precioVenta;
@@ -25,11 +25,11 @@ public class Coche {
         this.reparaciones = reparaciones;
     }
 
-    public Coche(String marca, String modelo, String color, String tipo, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion, ArrayList<Reparacion> reparaciones) {
+    public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion, ArrayList<Reparacion> reparaciones) {
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
-        this.tipo = tipo;
         this.estado = estado;
         this.matricula = matricula;
         this.precioVenta = precioVenta;
@@ -38,27 +38,35 @@ public class Coche {
         this.reparaciones = reparaciones;
     }
 
-    public Coche(String marca, String modelo, String color, String tipo, String estado, String matricula, float precioVenta, float precioCompra) {
+    public Coche(String tipo,String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
+        this.tipo= tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
-        this.tipo = tipo;
         this.estado = estado;
         this.matricula = matricula;
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
     }
 
-    public Coche(String marca, String modelo, String color, String tipo, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion) {
+    public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion) {
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
-        this.tipo = tipo;
         this.estado = estado;
         this.matricula = matricula;
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
         this.exposicion = exposicion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getMarca() {
@@ -83,14 +91,6 @@ public class Coche {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public String getEstado() {

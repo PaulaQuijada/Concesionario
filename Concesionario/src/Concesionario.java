@@ -7,6 +7,7 @@ public class Concesionario {
     private HashMap<String, Cliente> clientes;
     private HashMap<String, VendedorAComision> vendedores;
     private HashMap<String, Coche> coches;
+    private HashMap<Coche, Cliente> ventas;
     private ArrayList<Exposicion> exposiciones;
 
     public Concesionario(HashMap<String, Cliente> clientes, HashMap<String, VendedorAComision> vendedores, HashMap<String, Coche> coches, ArrayList<Exposicion> exposiciones) {
@@ -39,6 +40,14 @@ public class Concesionario {
 
     public void setCoches(HashMap<String, Coche> coches) {
         this.coches = coches;
+    }
+
+    public HashMap<Coche, Cliente> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(HashMap<Coche, Cliente> ventas) {
+        this.ventas = ventas;
     }
 
     public ArrayList<Exposicion> getExposiciones() {
@@ -119,6 +128,7 @@ public class Concesionario {
         String dni = removeVendedor.nextLine();
         vendedores.remove(dni);
     }
+
     public void imprimirDatosVendedor() {
         for (Map.Entry<String, VendedorAComision> altaVendedor : vendedores.entrySet()) {
             VendedorAComision vendedores = altaVendedor.getValue();
@@ -131,8 +141,15 @@ public class Concesionario {
         }
     }
 
-    public void agregarCoche() { //Este servirá para agregar un coche por scanner
+    public void agregarCoche(){ //Este servirá para agregar un coche por scanner
         Scanner añadirCoche = new Scanner(System.in);
+        String tipo = "kk";
+        System.out.println("Introduce el tipo de coche a añadir: ");
+        int num = añadirCoche.nextInt();
+        añadirCoche.nextLine();
+        if(num == 1) tipo = "Turismo";
+        if(num == 2) tipo = "Industrial";
+        if(num == 3) tipo = "Todoterreno";
         System.out.println("Introduzca los datos del coche a añadir: ");
         System.out.println("Marca: ");
         String marca = añadirCoche.nextLine();
@@ -140,8 +157,6 @@ public class Concesionario {
         String modelo = añadirCoche.nextLine();
         System.out.println("Color: ");
         String color = añadirCoche.nextLine();
-        System.out.println("Tipo: ");
-        String tipo = añadirCoche.nextLine();
         System.out.println("Estado: ");
         String estado = añadirCoche.nextLine();
         System.out.println("Matrícula: ");
@@ -151,7 +166,9 @@ public class Concesionario {
         System.out.println("Precio de venta: ");
         float precioVenta = añadirCoche.nextFloat();
 
-        coches.put(matricula, new Coche(marca, modelo, color, tipo, estado, matricula, precioCompra, precioVenta));
+        if(num == 1) coches.put(matricula, new Turismo(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
+        if(num == 2) coches.put(matricula, new Industrial(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
+        if(num == 3) coches.put(matricula, new Todoterreno(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
     }
 
     public void removeCoche() { //Este servirá para eliminar un coche por scanner
@@ -161,15 +178,20 @@ public class Concesionario {
         coches.remove(matricula);
     }
 
-    public void queCliente() {
+    public void registrarVenta(Coche coche, Cliente cliente) {
+        ventas.put(coche, cliente);
+    }
+
+    public void queCliente(Coche coche) {
+
     }
 
     public void queCoches() {
     }
 
     public HashMap<String, Coche> cochesStock() {
-        Coche coche1 = new Coche("Seat", "Ibiza", "blanco", "turismo", "en venta", "2452GVW", 15000f, 6000f);
-        Coche coche2 = new Coche("Audi", "Q8", "negro", "turismo", "en venta", "1648TBD", 85.000f, 38.000f);
+        Turismo coche1 = new Turismo("turismo", "Seat", "Ibiza", "blanco", "en venta", "2452GVW", 15000f, 6000f);
+        Turismo coche2 = new Turismo("turismo","Audi", "Q8", "negro", "en venta", "1648TBD", 85000f, 38000f);
 
         coches.put("2452GVW", coche1);
         coches.put("1648TBD", coche2);
@@ -182,6 +204,7 @@ public class Concesionario {
         } else {
             for (Coche stock : cochesStock.values()) {
                 System.out.println("Coches en venta: ");
+                System.out.println("Tipo: " + stock.getTipo());
                 System.out.println("Marca: " + stock.getMarca());
                 System.out.println("Modelo: " + stock.getModelo());
                 System.out.println("Color: " + stock.getColor());
@@ -221,7 +244,9 @@ public class Concesionario {
     public void cambiarExposicion(Coche coche, Exposicion exposicion) {
     }
 
-public void consola(){
+    public void consola() {
 
-}
+    }
+
+
 }

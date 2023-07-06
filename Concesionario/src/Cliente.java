@@ -13,6 +13,22 @@ public class Cliente extends Persona {
         cochesReservados = new ArrayList<>();
     }
 
+    public ArrayList<Coche> getCochesComprados() {
+        return cochesComprados;
+    }
+
+    public void setCochesComprados(ArrayList<Coche> cochesComprados) {
+        this.cochesComprados = cochesComprados;
+    }
+
+    public ArrayList<Coche> getCochesReservados() {
+        return cochesReservados;
+    }
+
+    public void setCochesReservados(ArrayList<Coche> cochesReservados) {
+        this.cochesReservados = cochesReservados;
+    }
+
     public void agregarCocheComprado(Coche coche) {
         cochesComprados.add(coche);
         coche.setEstado("comprado");

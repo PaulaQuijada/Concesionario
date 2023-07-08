@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Cliente extends Persona {
 
     private ArrayList<Coche> cochesComprados;
     private ArrayList<Coche> cochesReservados;
+
+    private Concesionario concesionario;
 
     public Cliente(String nombre, String direccion, String DNI, int telefono) { // lo que pido para crear un cliente
         super(nombre, direccion, DNI, telefono);
@@ -33,6 +36,7 @@ public class Cliente extends Persona {
         cochesComprados.add(coche);
         coche.setEstado("comprado");
     }
+
 
     public void agregarCocheReservado(Coche coche) {
         cochesReservados.add(coche);

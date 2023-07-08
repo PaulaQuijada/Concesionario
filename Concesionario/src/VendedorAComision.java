@@ -26,13 +26,6 @@ public class VendedorAComision extends Persona {
     public void setCochesVendidos(HashMap<String, Coche> cochesVendidos) {
         this.cochesVendidos = cochesVendidos;
     }
-
-    public void agregarCocheVendido(String matricula, Coche coche) {
-        cochesVendidos.put(matricula, coche);
-    }
-    public int sueldoAComision(){
-        return sueldo = cochesVendidos.size() * 200;
-    }
     public void modificarVendedor(){
         Scanner vendedor = new Scanner(System.in);
         System.out.println("Introduzca los nuevos datos para el cliente con DNI " + getDNI() + ": ");
@@ -44,7 +37,7 @@ public class VendedorAComision extends Persona {
         setDireccion(nuevaDireccion);
         System.out.println("Introduzca su nuevo teléfono: ");
         int nuevoTeléfono = vendedor.nextInt();
-       // if(nuevoTeléfono < 99999999 && nuevoTeléfono > 999999999) throw new Exception("El nuevo teléfono no puede ser menor ni mayor a 9 cifras");
+        // if(nuevoTeléfono < 99999999 && nuevoTeléfono > 999999999) throw new Exception("El nuevo teléfono no puede ser menor ni mayor a 9 cifras");
         setTelefono(nuevoTeléfono);
 
 
@@ -56,4 +49,11 @@ public class VendedorAComision extends Persona {
         System.out.println("Teléfono del vendedor: " + getTelefono());
         System.out.println("------------------------");
     }
+    public void agregarCocheVendido(String matricula, Coche coche) {
+        cochesVendidos.put(matricula, coche);
+    }
+    public int sueldoAComision(){
+        return sueldo = cochesVendidos.size() * 200;
+    }
+
 }

@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,13 +9,14 @@ public class Concesionario {
     private HashMap<String, Cliente> clientes;
     private HashMap<String, VendedorAComision> vendedores;
     private HashMap<String, Coche> coches;
-    private HashMap<Coche, Cliente> ventas;
+    private HashMap<Coche, Cliente> compras;
     private ArrayList<Exposicion> exposiciones;
 
-    public Concesionario(HashMap<String, Cliente> clientes, HashMap<String, VendedorAComision> vendedores, HashMap<String, Coche> coches, ArrayList<Exposicion> exposiciones) {
+    public Concesionario(HashMap<String, Cliente> clientes, HashMap<String, VendedorAComision> vendedores, HashMap<String, Coche> coches, HashMap<Coche, Cliente> compras, ArrayList<Exposicion> exposiciones) {
         this.clientes = clientes;
         this.vendedores = vendedores;
         this.coches = coches;
+        this.compras = compras;
         this.exposiciones = exposiciones;
 
     }
@@ -42,12 +45,12 @@ public class Concesionario {
         this.coches = coches;
     }
 
-    public HashMap<Coche, Cliente> getVentas() {
-        return ventas;
+    public HashMap<Coche, Cliente> getCompras() {
+        return compras;
     }
 
-    public void setVentas(HashMap<Coche, Cliente> ventas) {
-        this.ventas = ventas;
+    public void setCompras(HashMap<Coche, Cliente> compras) {
+        this.compras = compras;
     }
 
     public ArrayList<Exposicion> getExposiciones() {
@@ -87,6 +90,21 @@ public class Concesionario {
         String dni = removeCliente.nextLine();
         clientes.remove(dni);
     }
+    private Cliente obtenerCliente() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce el DNI del cliente: ");
+        String dni = scanner.nextLine();
+
+        if (getClientes().containsKey(dni)) {
+            return getClientes().get(dni);
+        } else {
+            System.out.println("El cliente con DNI " + dni + " no existe en el concesionario.");
+            System.out.println("Si quiere darse de alta como cliente introduce 1: ");
+
+            return obtenerCliente();
+        }
+    }
+
 
     public void imprimirDatosCliente() {
         for (Map.Entry<String, Cliente> altaClientes : clientes.entrySet()) {
@@ -141,15 +159,15 @@ public class Concesionario {
         }
     }
 
-    public void agregarCoche(){ //Este servirá para agregar un coche por scanner
+    public void agregarCoche() { //Este servirá para agregar un coche por scanner
         Scanner añadirCoche = new Scanner(System.in);
-        String tipo = "kk";
-        System.out.println("Introduce el tipo de coche a añadir: ");
+        String tipo = "x";
+        System.out.println("Introduce el tipo de coche a añadir siendo 1-Turismo, 2-Industrial o 3-Todoterreno: ");
         int num = añadirCoche.nextInt();
         añadirCoche.nextLine();
-        if(num == 1) tipo = "Turismo";
-        if(num == 2) tipo = "Industrial";
-        if(num == 3) tipo = "Todoterreno";
+        if (num == 1) tipo = "Turismo";
+        if (num == 2) tipo = "Industrial";
+        if (num == 3) tipo = "Todoterreno";
         System.out.println("Introduzca los datos del coche a añadir: ");
         System.out.println("Marca: ");
         String marca = añadirCoche.nextLine();
@@ -157,8 +175,7 @@ public class Concesionario {
         String modelo = añadirCoche.nextLine();
         System.out.println("Color: ");
         String color = añadirCoche.nextLine();
-        System.out.println("Estado: ");
-        String estado = añadirCoche.nextLine();
+        String estado = "en venta";
         System.out.println("Matrícula: ");
         String matricula = añadirCoche.nextLine();
         System.out.println("Precio de compra: ");
@@ -166,9 +183,12 @@ public class Concesionario {
         System.out.println("Precio de venta: ");
         float precioVenta = añadirCoche.nextFloat();
 
-        if(num == 1) coches.put(matricula, new Turismo(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
-        if(num == 2) coches.put(matricula, new Industrial(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
-        if(num == 3) coches.put(matricula, new Todoterreno(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
+        if (num == 1)
+            coches.put(matricula, new Turismo(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
+        if (num == 2)
+            coches.put(matricula, new Industrial(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
+        if (num == 3)
+            coches.put(matricula, new Todoterreno(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta));
     }
 
     public void removeCoche() { //Este servirá para eliminar un coche por scanner
@@ -179,11 +199,11 @@ public class Concesionario {
     }
 
     public void registrarVenta(Coche coche, Cliente cliente) {
-        ventas.put(coche, cliente);
+        compras.put(coche, cliente);
     }
 
-    public void queCliente(Coche coche) {
-
+    public HashMap<Coche, Cliente> clientesCompradores() {
+        return compras;
     }
 
     public void queCoches() {
@@ -191,7 +211,7 @@ public class Concesionario {
 
     public HashMap<String, Coche> cochesStock() {
         Turismo coche1 = new Turismo("turismo", "Seat", "Ibiza", "blanco", "en venta", "2452GVW", 15000f, 6000f);
-        Turismo coche2 = new Turismo("turismo","Audi", "Q8", "negro", "en venta", "1648TBD", 85000f, 38000f);
+        Turismo coche2 = new Turismo("turismo", "Audi", "Q8", "negro", "en venta", "1648TBD", 85000f, 38000f);
 
         coches.put("2452GVW", coche1);
         coches.put("1648TBD", coche2);
@@ -217,18 +237,23 @@ public class Concesionario {
         }
     }
 
-    public void venderCoche(Coche coche, Cliente cliente) {
-        if (coches.containsKey(coche)) { //Comprueba si el coche está en ArrayList cochesStock
+    public void venderCoche() {
+        Scanner venta = new Scanner(System.in);
+        System.out.println("Introduce la matrícula del coche a vender: ");
+        String matricula = venta.nextLine();
 
-            cliente.agregarCocheComprado(coche); // el coche que se compra se agrega al método agregarCocheComprado de la clase Cliente
-            coches.remove(coche); //y aquí se elimina el coche del arraylist cochesStock
+        if (getCoches().containsKey(matricula)) { // Comprueba si el coche está en el HashMap de coches del concesionario
+            Coche coche = getCoches().get(matricula); // Obtiene el coche del HashMap de coches
 
+            Cliente cliente = obtenerCliente(); // Obtén el cliente de alguna manera, por ejemplo, a través de la entrada del usuario o consultando el concesionario
+
+            cliente.agregarCocheComprado(coche); // Agrega el coche al método agregarCocheComprado de la clase Cliente
+            getCoches().remove(matricula); // Elimina el coche del HashMap de coches del concesionario
             System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido vendido al cliente: " + cliente.getNombre());
         } else {
             System.out.println("El coche no está disponible en el stock del concesionario.");
         }
     }
-
     public void reservarCoche(Coche coche, Cliente cliente) {
         if (coches.containsKey(coche)) { //Comprueba si el coche está en mi arraylist cochesStock
 

@@ -1,5 +1,4 @@
-import org.w3c.dom.ls.LSOutput;
-
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,14 +11,17 @@ public class Concesionario {
     private HashMap<Coche, Cliente> compras;
     private ArrayList<Exposicion> exposiciones;
 
-    public Concesionario(HashMap<String, Cliente> clientes, HashMap<String, VendedorAComision> vendedores, HashMap<String, Coche> coches, HashMap<Coche, Cliente> compras, ArrayList<Exposicion> exposiciones) {
-        this.clientes = clientes;
-        this.vendedores = vendedores;
-        this.coches = coches;
-        this.compras = compras;
-        this.exposiciones = exposiciones;
-
+    public Concesionario() { // Creo los hashmap vacíos y llamando a los métodos se agregan de base
+        clientes = new HashMap<>();
+        clientes();
+        vendedores = new HashMap<>();
+        vendedores();
+        coches = new HashMap<>();
+        cochesStock();
+        compras = new HashMap<>();
+        exposiciones = new ArrayList<>();
     }
+
 
     public HashMap<String, Cliente> getClientes() {
         return clientes;
@@ -90,7 +92,8 @@ public class Concesionario {
         String dni = removeCliente.nextLine();
         clientes.remove(dni);
     }
-    private Cliente obtenerCliente() {
+
+    public Cliente obtenerCliente() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el DNI del cliente: ");
         String dni = scanner.nextLine();
@@ -104,7 +107,6 @@ public class Concesionario {
             return obtenerCliente();
         }
     }
-
 
     public void imprimirDatosCliente() {
         for (Map.Entry<String, Cliente> altaClientes : clientes.entrySet()) {
@@ -145,6 +147,21 @@ public class Concesionario {
         System.out.println("Introduce el DNI del vendedor a dar de baja: ");
         String dni = removeVendedor.nextLine();
         vendedores.remove(dni);
+    }
+
+    public VendedorAComision obtenerVendedor() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce el DNI del vendedor: ");
+        String dni = scanner.nextLine();
+
+        if (getVendedores().containsKey(dni)) {
+            return getVendedores().get(dni);
+        } else {
+            System.out.println("El vendedor con DNI " + dni + " no existe en el concesionario.");
+            System.out.println("Si quiere darse de alta como vendedor introduce 1: ");
+
+            return obtenerVendedor();
+        }
     }
 
     public void imprimirDatosVendedor() {
@@ -207,6 +224,18 @@ public class Concesionario {
     }
 
     public void queCoches() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduce un dni para consultar datos de los coches: ");
+        String dni = scanner.nextLine();
+        if (clientes.containsKey(dni)) {
+            Cliente cliente = clientes.get(dni);
+            cliente.imprimirCochesComprados();
+            cliente.imprimirCochesReservados();
+        }
+        if (vendedores.containsKey(dni)) {
+            VendedorAComision vendedor = vendedores.get(dni);
+            vendedor.imprimirCochesVendidos();
+        }
     }
 
     public HashMap<String, Coche> cochesStock() {
@@ -242,11 +271,13 @@ public class Concesionario {
         System.out.println("Introduce la matrícula del coche a vender: ");
         String matricula = venta.nextLine();
 
-        if (getCoches().containsKey(matricula)) { // Comprueba si el coche está en el HashMap de coches del concesionario
+        if (coches.containsKey(matricula)) { // Comprueba si el coche está en el HashMap de coches del concesionario
             Coche coche = getCoches().get(matricula); // Obtiene el coche del HashMap de coches
 
             Cliente cliente = obtenerCliente(); // Obtén el cliente de alguna manera, por ejemplo, a través de la entrada del usuario o consultando el concesionario
+            VendedorAComision vendedor = obtenerVendedor();
 
+            vendedor.agregarCocheVendido(coche);
             cliente.agregarCocheComprado(coche); // Agrega el coche al método agregarCocheComprado de la clase Cliente
             getCoches().remove(matricula); // Elimina el coche del HashMap de coches del concesionario
             System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido vendido al cliente: " + cliente.getNombre());
@@ -254,13 +285,21 @@ public class Concesionario {
             System.out.println("El coche no está disponible en el stock del concesionario.");
         }
     }
-    public void reservarCoche(Coche coche, Cliente cliente) {
-        if (coches.containsKey(coche)) { //Comprueba si el coche está en mi arraylist cochesStock
 
-            cliente.agregarCocheReservado(coche); //el coche reservado se agrega al método agregarCocheReservado de la clase Cliente
+    public void reservarCoche() {
+        Scanner reserva = new Scanner(System.in);
+        System.out.println("Introduce la matrícula del coche a reservar: ");
+        String matricula = reserva.nextLine();
 
+        if (getCoches().containsKey(matricula)) { // Comprueba si el coche está en el HashMap de coches del concesionario
+            Coche coche = getCoches().get(matricula); // Obtiene el coche del HashMap de coches
 
-            System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido reservado al cliente: " + cliente.getNombre());
+            Cliente cliente = obtenerCliente(); // Obtén el cliente de alguna manera, por ejemplo, a través de la entrada del usuario o consultando el concesionario
+
+            cliente.agregarCocheReservado(coche); // Agrega el coche al método agregarCocheComprado de la clase Cliente
+            getCoches().remove(matricula); // Elimina el coche del HashMap de coches del concesionario
+            System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido reservado por el cliente: " + cliente.getNombre());
+            cliente.imprimirCochesReservados();
         } else {
             System.out.println("El coche no está disponible en el stock del concesionario.");
         }
@@ -270,8 +309,21 @@ public class Concesionario {
     }
 
     public void consola() {
+        boolean infinito = true;
+        Scanner consola = new Scanner(System.in);
+        while (infinito == true) {
+            System.out.println("Bienvenido a Concesionarios Pochaula");
+            System.out.println("Para entrar como cliente pulsa 1.Para entrar como vendedor pulsa 2.Para entrar como director pulsa 3: ");
+            System.out.println("Para entrar como vendedor pulsa 2");
+            System.out.println("Para entrar como director pulsa 3");
+            System.out.println("Para salir del menú pulsa 4");
+            int numero = consola.nextInt();
+            if (numero == 4) infinito = false;
+            if(numero == 1){
+                System.out.println("Para consultar los coches que tenemos en stock pulse 1.");
+            }
+        }
+
 
     }
-
-
 }

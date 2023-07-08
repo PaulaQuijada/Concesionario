@@ -12,32 +12,6 @@ public abstract class Coche {
     private Exposicion exposicion;
     private ArrayList<Reparacion> reparaciones;
 
-
-    public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, ArrayList<Reparacion> reparaciones) {
-        this.tipo = tipo;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.color = color;
-        this.estado = estado;
-        this.matricula = matricula;
-        this.precioVenta = precioVenta;
-        this.precioCompra = precioCompra;
-        this.reparaciones = reparaciones;
-    }
-
-    public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion, ArrayList<Reparacion> reparaciones) {
-        this.tipo = tipo;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.color = color;
-        this.estado = estado;
-        this.matricula = matricula;
-        this.precioVenta = precioVenta;
-        this.precioCompra = precioCompra;
-        this.exposicion = exposicion;
-        this.reparaciones = reparaciones;
-    }
-
     public Coche(String tipo,String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
         this.tipo= tipo;
         this.marca = marca;
@@ -47,18 +21,6 @@ public abstract class Coche {
         this.matricula = matricula;
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
-    }
-
-    public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion) {
-        this.tipo = tipo;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.color = color;
-        this.estado = estado;
-        this.matricula = matricula;
-        this.precioVenta = precioVenta;
-        this.precioCompra = precioCompra;
-        this.exposicion = exposicion;
     }
 
     public String getTipo() {
@@ -139,12 +101,6 @@ public abstract class Coche {
 
     public void setReparaciones(ArrayList<Reparacion> reparaciones) {
         this.reparaciones = reparaciones;
-    }
-
-    public void comprar() {
-    }
-
-    public void reservar() {
     }
 
     public void cambiarExposicion() {

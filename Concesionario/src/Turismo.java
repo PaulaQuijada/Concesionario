@@ -2,21 +2,8 @@ import java.util.ArrayList;
 
 public class Turismo extends Coche{
 
-
-    public Turismo(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, ArrayList<Reparacion> reparaciones) {
-        super(tipo,marca, modelo, color, estado, matricula, precioVenta, precioCompra, reparaciones);
-    }
-
-    public Turismo(String tipo,String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion, ArrayList<Reparacion> reparaciones) {
-        super(tipo,marca, modelo, color, estado, matricula, precioVenta, precioCompra, exposicion, reparaciones);
-    }
-
     public Turismo(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
         super(tipo,marca, modelo, color, estado, matricula, precioVenta, precioCompra);
-    }
-
-    public Turismo(String tipo,String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion) {
-        super(tipo,marca, modelo, color, estado, matricula, precioVenta, precioCompra, exposicion);
     }
 
     @Override
@@ -107,17 +94,6 @@ public class Turismo extends Coche{
     public void setReparaciones(ArrayList<Reparacion> reparaciones) {
         super.setReparaciones(reparaciones);
     }
-
-    @Override
-    public void comprar() {
-        super.comprar();
-    }
-
-    @Override
-    public void reservar() {
-        super.reservar();
-    }
-
     @Override
     public void cambiarExposicion() {
         super.cambiarExposicion();

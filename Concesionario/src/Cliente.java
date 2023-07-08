@@ -44,7 +44,7 @@ public class Cliente extends Persona {
 
     }
 
-    public void imprimirCochesComprados(Cliente cliente) {
+    public void imprimirCochesComprados() {
         if (cochesComprados.isEmpty()) { //Comprueba si el arraylist cochesComprados está vacío y si lo está entra por aquí:
             System.out.println("No existen coches comprados");
         } else { //Si no está vacío entra por aquí:
@@ -61,7 +61,7 @@ public class Cliente extends Persona {
         }
     }
 
-    public void imprimirCochesReservados(Cliente cliente) {
+    public void imprimirCochesReservados() {
         if (cochesReservados.isEmpty()) { //Comprueba si el arraylist cochesComprados está vacío y si lo está entra por aquí:
             System.out.println("No existen coches reservados");
         } else { //Si no está vacío entra por aquí:

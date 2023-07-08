@@ -1,14 +1,13 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class VendedorAComision extends Persona {
     private int sueldo;
-    private HashMap<String, Coche> cochesVendidos;
+    private ArrayList<Coche> cochesVendidos;
 
     public VendedorAComision(String nombre, String direccion, String DNI, int telefono) {
         super(nombre, direccion, DNI, telefono);
-        cochesVendidos = new HashMap<>();
+        cochesVendidos = new ArrayList<>();
     }
 
     public float getSueldo() {
@@ -19,11 +18,11 @@ public class VendedorAComision extends Persona {
         this.sueldo = sueldo;
     }
 
-    public HashMap<String, Coche> getCochesVendidos() {
+    public ArrayList<Coche> getCochesVendidos() {
         return cochesVendidos;
     }
 
-    public void setCochesVendidos(HashMap<String, Coche> cochesVendidos) {
+    public void setCochesVendidos(ArrayList<Coche> cochesVendidos) {
         this.cochesVendidos = cochesVendidos;
     }
     public void modificarVendedor(){
@@ -47,13 +46,31 @@ public class VendedorAComision extends Persona {
         System.out.println("Dirección del vendedor: " + getDireccion());
         System.out.println("DNI del vendedor: " + getDNI());
         System.out.println("Teléfono del vendedor: " + getTelefono());
+        System.out.println("El sueldo es de: " + sueldoAComision());
         System.out.println("------------------------");
     }
-    public void agregarCocheVendido(String matricula, Coche coche) {
-        cochesVendidos.put(matricula, coche);
+    public void agregarCocheVendido(Coche coche) {
+        cochesVendidos.add(coche);
     }
+    public void imprimirCochesVendidos(){
+        if (cochesVendidos.isEmpty()) { //Comprueba si el arraylist cochesComprados está vacío y si lo está entra por aquí:
+            System.out.println("No existen coches vendidos");
+        } else { //Si no está vacío entra por aquí:
+            for (Coche coche : cochesVendidos) {
+                System.out.println("Coches vendidos: ");
+                System.out.println("Marca: " + coche.getMarca());
+                System.out.println("Modelo: " + coche.getModelo());
+                System.out.println("Color: " + coche.getColor());
+                System.out.println("Matrícula: " + coche.getMatricula());
+                System.out.println("Precio de compra: " + coche.getPrecioCompra());
+                System.out.println("Precio de venta: " + coche.getPrecioVenta());
+                System.out.println();
+            }
+        }
+    }
+
     public int sueldoAComision(){
-        return sueldo = cochesVendidos.size() * 200;
+        return cochesVendidos.size() * 200;
     }
 
 }

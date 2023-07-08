@@ -1,20 +1,10 @@
 import java.util.ArrayList;
 
 public class Todoterreno extends Coche{
-    public Todoterreno(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, ArrayList<Reparacion> reparaciones) {
-        super(tipo, marca, modelo, color, estado, matricula, precioVenta, precioCompra, reparaciones);
-    }
 
-    public Todoterreno(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion, ArrayList<Reparacion> reparaciones) {
-        super(tipo, marca, modelo, color, estado, matricula, precioVenta, precioCompra, exposicion, reparaciones);
-    }
 
     public Todoterreno(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
         super(tipo, marca, modelo, color, estado, matricula, precioVenta, precioCompra);
-    }
-
-    public Todoterreno(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra, Exposicion exposicion) {
-        super(tipo, marca, modelo, color, estado, matricula, precioVenta, precioCompra, exposicion);
     }
 
     @Override
@@ -117,15 +107,6 @@ public class Todoterreno extends Coche{
         super.setReparaciones(reparaciones);
     }
 
-    @Override
-    public void comprar() {
-        super.comprar();
-    }
-
-    @Override
-    public void reservar() {
-        super.reservar();
-    }
 
     @Override
     public void cambiarExposicion() {

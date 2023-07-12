@@ -240,18 +240,18 @@ public class Concesionario {
 
     public HashMap<String, Coche> cochesStock() {
         Turismo coche1 = new Turismo("turismo", "Seat", "Ibiza", "blanco", "en venta", "2452GVW", 15000f, 6000f);
-        Turismo coche2 = new Turismo("turismo", "Audi", "Q8", "negro", "en venta", "1648TBD", 85000f, 38000f);
+        Turismo coche2 = new Turismo("turismo", "Audi", "Q8", "negro", "en venta", "1234ABC", 85000f, 38000f);
 
         coches.put("2452GVW", coche1);
-        coches.put("1648TBD", coche2);
+        coches.put("1234ABC", coche2);
         return coches;
     }
 
-    public void imprimirStock(HashMap<String, Coche> cochesStock) {
-        if (cochesStock.isEmpty()) {
+    public void imprimirStock() {
+        if (coches.isEmpty()) {
             System.out.println("No hay coches en stock");
         } else {
-            for (Coche stock : cochesStock.values()) {
+            for (Coche stock : coches.values()) {
                 System.out.println("Coches en venta: ");
                 System.out.println("Tipo: " + stock.getTipo());
                 System.out.println("Marca: " + stock.getMarca());
@@ -365,7 +365,7 @@ public class Concesionario {
                 coches.remove(matricula);
             }
             else{
-                System.out.println("Introduce el número de exposición: ");
+                System.out.println("Introduce el número de exposición para añadir el coche: ");
                 num = expo.nextInt();
                 if(exposiciones.containsKey(num)){
                     Exposicion exposicion1= exposiciones.get(num);
@@ -377,6 +377,36 @@ public class Concesionario {
 
         }
         else System.out.println("El coche introducido no existe");
+
+    }
+
+    public void removeCocheExpo() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Para eliminar un coche de la exposición introduce primero el número de exposición: ");
+        int numExpo = scanner.nextInt();
+        if (exposiciones.containsKey(numExpo)) {
+            Exposicion exposicion1 = exposiciones.get(numExpo);
+            System.out.println("Introduce la matrícula del coche a remover de la exposición: ");
+            scanner.nextLine();
+            String matricula = scanner.nextLine();
+
+            ArrayList<Coche> coches1 = exposicion1.getCoches();
+                Coche cocheEncontrado = null;
+
+                for (Coche coche : coches1) {
+                    if (coche.getMatricula().equals(matricula)) {
+                        cocheEncontrado = coche;
+                        break;
+                    }
+                }
+                if(cocheEncontrado != null){
+                    coches.put(matricula, cocheEncontrado);
+                    cocheEncontrado.setEstado("en venta");
+                exposicion1.borrarCoche(cocheEncontrado);
+                System.out.println("El coche con matrícula " + cocheEncontrado.getMatricula() + " ha sido eliminado de la exposición");
+            }
+            else System.out.println("El coche introducido no existe");
+        } else System.out.println("No existe la exposición introducida");
 
     }
 

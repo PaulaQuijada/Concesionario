@@ -1,16 +1,21 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
         Concesionario concesionario = new Concesionario();
-        /*concesionario.consola();*/
+        /*concesionario.consola();
         concesionario.agregarExposicion();
         concesionario.imprimirDatosExposicion();
         concesionario.agregarCocheAExpo();
+        concesionario.removeCocheExpo();
         concesionario.imprimirDatosExposicion();
+        System.out.println();
+        concesionario.imprimirStock();*/
+        /*concesionario.imprimirDatosExposicion();
         concesionario.cambiarExposicion();
-        concesionario.imprimirDatosExposicion();
+        concesionario.imprimirDatosExposicion();*/
 
        /* concesionario.imprimirStock(concesionario.cochesStock()); //imprime coches en venta
        /* System.out.println("----------------");

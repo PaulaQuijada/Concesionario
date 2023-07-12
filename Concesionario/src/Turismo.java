@@ -1,6 +1,8 @@
+
+
 import java.util.ArrayList;
 
-public class Turismo extends Coche{
+public class Turismo extends Coche {
 
     public Turismo(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
         super(tipo,marca, modelo, color, estado, matricula, precioVenta, precioCompra);
@@ -94,8 +96,39 @@ public class Turismo extends Coche{
     public void setReparaciones(ArrayList<Reparacion> reparaciones) {
         super.setReparaciones(reparaciones);
     }
+
     @Override
-    public void cambiarExposicion() {
-        super.cambiarExposicion();
+    public String getTipo() {
+        return super.getTipo();
+    }
+
+    @Override
+    public void setTipo(String tipo) {
+        super.setTipo(tipo);
+    }
+
+    @Override
+    public void agregarCocheAReparar(Reparacion reparacion) {
+        super.agregarCocheAReparar(reparacion);
+    }
+
+    @Override
+    public void agregarCochesReparados(Reparacion reparacion) {
+        super.agregarCochesReparados(reparacion);
+    }
+
+    @Override
+    public void consultarReparacionesDeCoche() {
+        super.consultarReparacionesDeCoche();
+    }
+
+    @Override
+    public void imprimirReparaciones() {
+        super.imprimirReparaciones();
+    }
+
+    @Override
+    public void imprimirCoche() {
+        super.imprimirCoche();
     }
 }

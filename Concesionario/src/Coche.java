@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public abstract class Coche {
@@ -11,9 +12,10 @@ public abstract class Coche {
     private float precioCompra;
     private Exposicion exposicion;
     private ArrayList<Reparacion> reparaciones;
+    private ArrayList<Reparacion> reparacionesCompletadas;
 
-    public Coche(String tipo,String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
-        this.tipo= tipo;
+    public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
@@ -21,6 +23,8 @@ public abstract class Coche {
         this.matricula = matricula;
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
+        reparaciones = new ArrayList<>();
+        reparacionesCompletadas = new ArrayList<>();
     }
 
     public String getTipo() {
@@ -102,8 +106,44 @@ public abstract class Coche {
     public void setReparaciones(ArrayList<Reparacion> reparaciones) {
         this.reparaciones = reparaciones;
     }
-
-    public void cambiarExposicion() {
+    public void agregarCocheAReparar(Reparacion reparacion) {
+        reparaciones.add(reparacion);
+        reparacion.getCoche().setEstado("En reparación");
     }
 
+    // Método para reparar un coche y cambiar su estado a "Reparado"
+    public void agregarCochesReparados(Reparacion reparacion) {
+        if (reparacion.isResuelta()) {
+            reparacionesCompletadas.add(reparacion); // Agregamos la reparación a la lista de reparaciones reparadas
+            reparacion.getCoche().setEstado("Reparado");
+        }
+    }
+    public void consultarReparacionesDeCoche() {
+
+        for (Reparacion reparacion : reparaciones) {
+            if (reparacion.getCoche().equals(this)) {
+                reparaciones.add(reparacion);
+            }
+        }
+
+        reparaciones.sort((r1, r2) -> r2.getFecha().compareTo(r1.getFecha()));
+
+    }
+
+    public void imprimirReparaciones() {
+        System.out.println("Reparaciones del coche: " + this.matricula);
+
+        for (Reparacion reparacion : reparaciones) {
+            System.out.println("Fecha: " + reparacion.getFecha());
+            System.out.println("Descripción: " + reparacion.getDescripcion());
+            System.out.println("--------------------------");
+        }
+    }
+    public void imprimirCoche(){
+        System.out.println("Datos del coche:");
+        System.out.println("Tipo de coche: " + getTipo());
+        System.out.println("Marca: " + getMarca());
+        System.out.println("Modelo: " + getModelo());
+        System.out.println("Matrícula: " + getMatricula());
+    }
 }

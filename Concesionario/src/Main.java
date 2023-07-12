@@ -4,9 +4,13 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) {
         Concesionario concesionario = new Concesionario();
-        concesionario.consola();
-
-
+        /*concesionario.consola();*/
+        concesionario.agregarExposicion();
+        concesionario.imprimirDatosExposicion();
+        concesionario.agregarCocheAExpo();
+        concesionario.imprimirDatosExposicion();
+        concesionario.cambiarExposicion();
+        concesionario.imprimirDatosExposicion();
 
        /* concesionario.imprimirStock(concesionario.cochesStock()); //imprime coches en venta
        /* System.out.println("----------------");

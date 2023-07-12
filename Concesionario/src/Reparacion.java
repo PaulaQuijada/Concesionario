@@ -1,14 +1,20 @@
+
 import java.util.Date;
+import java.util.ArrayList;
 
 public class Reparacion {
     private TipoReparacion tipo;
     private Date fecha;
     private String descripcion;
+    private Coche coche;
+    private boolean resuelta;
 
-    public Reparacion(TipoReparacion tipo, Date fecha, String descripcion) {
+    public Reparacion(TipoReparacion tipo, Date fecha, String descripcion, Coche coche) {
         this.tipo = tipo;
         this.fecha = fecha;
         this.descripcion = descripcion;
+        this.coche = coche;
+
     }
 
     public TipoReparacion getTipo() {
@@ -35,6 +41,25 @@ public class Reparacion {
         this.descripcion = descripcion;
     }
 
+    public Coche getCoche() {
+        return coche;
+    }
+
+    public void setCoche(Coche coche) {
+        this.coche = coche;
+    }
+
+    public boolean isResuelta() {
+        return resuelta;
+    }
+
+    public void setResuelta(boolean resuelta) {
+        this.resuelta = resuelta;
+    }
+
+    // Método para cambiar el estado de un coche a "En reparación"
+
+
     // Otros métodos relevantes para la gestión de reparaciones
 
     @Override
@@ -45,12 +70,4 @@ public class Reparacion {
                 ", descripcion='" + descripcion + '\'' +
                 '}';
     }
-}
-
-// Enumeración para representar los tipos de reparación
-enum TipoReparacion {
-    MECANICA,
-    ELECTRICA,
-    CHAPA,
-    REVISION
 }

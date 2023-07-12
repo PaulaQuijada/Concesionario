@@ -1,6 +1,7 @@
+
 import java.util.ArrayList;
 
-public class Todoterreno extends Coche{
+public class Todoterreno extends Coche {
 
 
     public Todoterreno(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
@@ -107,9 +108,28 @@ public class Todoterreno extends Coche{
         super.setReparaciones(reparaciones);
     }
 
+    @Override
+    public void agregarCocheAReparar(Reparacion reparacion) {
+        super.agregarCocheAReparar(reparacion);
+    }
 
     @Override
-    public void cambiarExposicion() {
-        super.cambiarExposicion();
+    public void agregarCochesReparados(Reparacion reparacion) {
+        super.agregarCochesReparados(reparacion);
+    }
+
+    @Override
+    public void consultarReparacionesDeCoche() {
+        super.consultarReparacionesDeCoche();
+    }
+
+    @Override
+    public void imprimirReparaciones() {
+        super.imprimirReparaciones();
+    }
+
+    @Override
+    public void imprimirCoche() {
+        super.imprimirCoche();
     }
 }

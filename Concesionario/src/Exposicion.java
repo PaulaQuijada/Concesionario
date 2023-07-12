@@ -1,14 +1,20 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Exposicion {
     private String tipo;
     private int numExposicion;
     private int telefono;
     private String direccion;
+    private ArrayList<Coche> coches;
 
     public Exposicion(String tipo, int numExposicion, int telefono, String direccion) {
         this.tipo = tipo;
         this.numExposicion = numExposicion;
         this.telefono = telefono;
         this.direccion = direccion;
+        coches = new ArrayList<>();
+
     }
 
     public String getTipo() {
@@ -43,6 +49,19 @@ public class Exposicion {
         this.direccion = direccion;
     }
 
-    public void añadirCoche(Coche coche){}
-    public void borrarCoche(Coche coche){}
+    public ArrayList<Coche> getCoches() {
+        return coches;
+    }
+
+    public void setCoches(ArrayList<Coche> coches) {
+        this.coches = coches;
+    }
+
+    public void agregarCoche(Coche coche){
+        coches.add(coche);
+        coche.setEstado("en exposición");
+   }
+    public void borrarCoche(Coche coche){
+        coches.remove(coche);
+    }
 }

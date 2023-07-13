@@ -22,6 +22,7 @@ public class Concesionario {
         exposiciones = new HashMap<>();
 
     }
+
     public HashMap<String, Cliente> getClientes() {
         return clientes;
     }
@@ -47,11 +48,11 @@ public class Concesionario {
     }
 
 
-    public HashMap<Integer,Exposicion> getExposiciones() {
+    public HashMap<Integer, Exposicion> getExposiciones() {
         return exposiciones;
     }
 
-    public void setExposiciones(HashMap<Integer,Exposicion> exposiciones) {
+    public void setExposiciones(HashMap<Integer, Exposicion> exposiciones) {
         this.exposiciones = exposiciones;
     }
 
@@ -83,11 +84,10 @@ public class Concesionario {
         System.out.println("Introduce el DNI del cliente a dar de baja: ");
         String dni = removeCliente.nextLine();
         Cliente cliente = clientes.get(dni);
-        if(cliente.getCochesComprados().isEmpty() && cliente.getCochesReservados().isEmpty()){
+        if (cliente.getCochesComprados().isEmpty() && cliente.getCochesReservados().isEmpty()) {
             clientes.remove(dni);
             System.out.println("El cliente se ha eliminado correctamente");
-        }
-        else System.out.println("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
+        } else System.out.println("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
     }
 
     public Cliente obtenerCliente() {
@@ -258,21 +258,41 @@ public class Concesionario {
         System.out.println("Introduce la matrícula del coche a vender: ");
         String matricula = venta.nextLine();
         Coche coche = getCoches().get(matricula);
-        if (coches.containsKey(matricula)) { // Comprueba si el coche está en el HashMap de coches del concesionario
+        System.out.println("Selecciona dónde está el coche que quieres vender: ");
+        System.out.println("1-Coche en stock ");
+        System.out.println("2-Coche en reservado ");
+        int opcion = venta.nextInt();
+        if (opcion == 1) {
+            if (coches.containsKey(matricula)) { // Comprueba si el coche está en el HashMap de coches del concesionario
 
-            Cliente cliente = obtenerCliente(); // Obtén el cliente de alguna manera, por ejemplo, a través de la entrada del usuario o consultando el concesionario
-            VendedorAComision vendedor = obtenerVendedor();
+                Cliente cliente = obtenerCliente(); // Obtén el cliente de alguna manera, por ejemplo, a través de la entrada del usuario o consultando el concesionario
+                VendedorAComision vendedor = obtenerVendedor();
 
-            vendedor.agregarCocheVendido(coche);
-            cliente.agregarCocheComprado(coche); // Agrega el coche al método agregarCocheComprado de la clase Cliente
-            getCoches().remove(matricula); // Elimina el coche del HashMap de coches del concesionario
-            System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido vendido al cliente: " + cliente.getNombre());
+                vendedor.agregarCocheVendido(coche);
+                cliente.agregarCocheComprado(coche); // Agrega el coche al método agregarCocheComprado de la clase Cliente
+                getCoches().remove(matricula); // Elimina el coche del HashMap de coches del concesionario
+                System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido vendido al cliente: " + cliente.getNombre());
+            }
+            else System.out.println("El coche no está disponible en el stock del concesionario.");
         }
+        if (opcion == 2) {
+            Cliente cliente = obtenerCliente();
+            ArrayList<Coche> reservas = cliente.getCochesReservados();
+            for(Coche x : reservas) {
+                if(x.getMatricula().equals(matricula)) {
+                    VendedorAComision vendedor = obtenerVendedor();
+                    vendedor.agregarCocheVendido(x);
+                    cliente.agregarCocheComprado(x);
+                    cliente.getCochesReservados().remove(x);
+                    System.out.println("El coche " + x.getMarca() + " " + x.getModelo() + " con matrícula " + x.getMatricula() + " ha sido vendido al cliente: " + cliente.getNombre());
+                    break;
+                }
+                else System.out.println("El coche introducido no está en la lista de reservas del cliente");
+            }
 
-         else {
-            System.out.println("El coche no está disponible en el stock del concesionario.");
         }
     }
+
 
     public void reservarCoche() {
         Scanner reserva = new Scanner(System.in);
@@ -292,28 +312,30 @@ public class Concesionario {
             System.out.println("El coche no está disponible en el stock del concesionario.");
         }
     }
-    public void cancelarReserva(){ //REVISAR NULL POINTER
+
+    public void cancelarReserva() {
         Scanner cancelar = new Scanner(System.in);
         System.out.println("Introduce la matrícula del coche para cancelar la reserva");
         String matricula = cancelar.nextLine();
 
-        if(!coches.containsKey(matricula)){
+        if (!coches.containsKey(matricula)) {
             Cliente cliente = obtenerCliente();
             ArrayList<Coche> reservas = cliente.getCochesReservados();
-            for(Coche coche : reservas){
-                if(coche.getMatricula().equals(matricula)){
+            Coche cocheEncontrado = null;
+            for (Coche coche : reservas) {
+                cocheEncontrado = coche;
+
+                if (coche.getMatricula().equals(matricula)) {
                     cliente.removeCocheReservado(coche);
                     coches.put(matricula, coche);
-                    System.out.println("El coche con matrícula " + coche.getMatricula() + " ha sido eliminado de la lista de reservas del cliente" + cliente.getNombre());
-                }
-                else System.out.println("El coche no se encuentra en la lista de reservas");
+                    System.out.println("El coche con matrícula " + coche.getMatricula() + " ha sido eliminado de la lista de reservas del cliente " + cliente.getNombre());
+                    break;
+                } else System.out.println("El coche no se encuentra en la lista de reservas");
             }
-
-        }
-        else System.out.println("El coche no se encuentra en la lista de reservas");
+        } else System.out.println("El coche no se encuentra en la lista de reservas");
     }
 
-    public Exposicion agregarExposicion(){
+    public Exposicion agregarExposicion() {
         Scanner expo = new Scanner(System.in);
         System.out.println("Introduce los datos para crear una exposición: ");
         System.out.println("Tipo de exposición: ");
@@ -326,23 +348,23 @@ public class Concesionario {
         System.out.println("Dirección: ");
         String direccion = expo.nextLine();
 
-        Exposicion exposicion = new Exposicion(tipo,numExpo,telefono,direccion);
+        Exposicion exposicion = new Exposicion(tipo, numExpo, telefono, direccion);
         exposiciones.put(numExpo, exposicion);
 
         return exposicion;
     } // alta de exposiciones
-    public void removeExposicion(){
+
+    public void removeExposicion() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el número de exposición a eliminar: ");
         int numExpo = scanner.nextInt();
-        if(exposiciones.containsKey(numExpo)){
+        if (exposiciones.containsKey(numExpo)) {
             Exposicion exposicion = exposiciones.get(numExpo);
             exposiciones.remove(numExpo, exposicion);
-        }
-        else System.out.println("La exposición indicada no existe en el concesionario");
+        } else System.out.println("La exposición indicada no existe en el concesionario");
     } // baja de exposiciones
 
-    public void imprimirDatosExposicion(){
+    public void imprimirDatosExposicion() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Elige la exposición a ver: ");
         int numExpo = scanner.nextInt();
@@ -352,48 +374,44 @@ public class Concesionario {
             System.out.println("Número de exposición: " + exposicion.getNumExposicion());
             System.out.println("Teléfono: " + exposicion.getTelefono());
             System.out.println("Dirección: " + exposicion.getDireccion());
-            ArrayList<Coche> coches1= exposicion.getCoches();
-            if(coches1 == null || coches1.isEmpty()) System.out.println("Esta exposición no tiene coches");
+            ArrayList<Coche> coches1 = exposicion.getCoches();
+            if (coches1 == null || coches1.isEmpty()) System.out.println("Esta exposición no tiene coches");
 
             else {
                 for (Coche coches : coches1) {
                     coches.imprimirCoche();
                 }
             }
-        }
-        else System.out.println("No existe la exposición introducida");
+        } else System.out.println("No existe la exposición introducida");
     }
 
-    public void agregarCocheAExpo(){
-        Scanner expo = new Scanner (System.in);
+    public void agregarCocheAExpo() {
+        Scanner expo = new Scanner(System.in);
         System.out.println("Introduce la matrícula del coche a agregar a la exposición: ");
         String matricula = expo.nextLine();
-        if(coches.containsKey(matricula)){
+        if (coches.containsKey(matricula)) {
             Coche coche = coches.get(matricula);
 
             System.out.println("Elige si quieres crear una nueva exposición o utilizar una existente: ");
             System.out.println("1-Crear nueva exposición");
             System.out.println("2-Exposición existente");
             int num = expo.nextInt();
-            if(num == 1){
+            if (num == 1) {
                 Exposicion exposicion = agregarExposicion(); // crea una nueva expo
-                exposiciones.put(exposicion.getNumExposicion(),exposicion); // se añade la expo al hashmap de exposiciones
+                exposiciones.put(exposicion.getNumExposicion(), exposicion); // se añade la expo al hashmap de exposiciones
                 exposicion.agregarCoche(coche); // se añade el coche a la expo
                 coches.remove(matricula);
-            }
-            else{
+            } else {
                 System.out.println("Introduce el número de exposición para añadir el coche: ");
                 num = expo.nextInt();
-                if(exposiciones.containsKey(num)){
-                    Exposicion exposicion1= exposiciones.get(num);
+                if (exposiciones.containsKey(num)) {
+                    Exposicion exposicion1 = exposiciones.get(num);
                     exposicion1.agregarCoche(coche);
                     coches.remove(matricula);
-                }
-                else System.out.println("La exposición indicada no existe");
+                } else System.out.println("La exposición indicada no existe");
             }
 
-        }
-        else System.out.println("El coche introducido no existe");
+        } else System.out.println("El coche introducido no existe");
 
     }
 
@@ -408,21 +426,20 @@ public class Concesionario {
             String matricula = scanner.nextLine();
 
             ArrayList<Coche> coches1 = exposicion1.getCoches();
-                Coche cocheEncontrado = null;
+            Coche cocheEncontrado = null;
 
-                for (Coche coche : coches1) {
-                    if (coche.getMatricula().equals(matricula)) {
-                        cocheEncontrado = coche;
-                        break;
-                    }
+            for (Coche coche : coches1) {
+                if (coche.getMatricula().equals(matricula)) {
+                    cocheEncontrado = coche;
+                    break;
                 }
-                if(cocheEncontrado != null){
-                    coches.put(matricula, cocheEncontrado);
-                    cocheEncontrado.setEstado("en venta");
+            }
+            if (cocheEncontrado != null) {
+                coches.put(matricula, cocheEncontrado);
+                cocheEncontrado.setEstado("en venta");
                 exposicion1.borrarCoche(cocheEncontrado);
                 System.out.println("El coche con matrícula " + cocheEncontrado.getMatricula() + " ha sido eliminado de la exposición");
-            }
-            else System.out.println("El coche introducido no existe");
+            } else System.out.println("El coche introducido no existe");
         } else System.out.println("No existe la exposición introducida");
 
     }
@@ -501,71 +518,67 @@ public class Concesionario {
             System.out.println("Selecciona el tipo de reparación: 1- Mecanica / 2- Electrica / 3- Chapa / 4- Revisión ");
             int opcion = scanner.nextInt();
             TipoReparacion tipo = null;
-            if(opcion == 1) tipo = TipoReparacion.MECANICA;
-            if(opcion == 2) tipo = TipoReparacion.ELECTRICA;
-            if(opcion == 3) tipo = TipoReparacion.CHAPA;
-            if(opcion == 4) tipo = TipoReparacion.REVISION;
+            if (opcion == 1) tipo = TipoReparacion.MECANICA;
+            if (opcion == 2) tipo = TipoReparacion.ELECTRICA;
+            if (opcion == 3) tipo = TipoReparacion.CHAPA;
+            if (opcion == 4) tipo = TipoReparacion.REVISION;
             System.out.println("Fecha de la reparación: ");
             scanner.nextLine();
             String fecha = scanner.nextLine();
-            Reparacion reparacion = new Reparacion(tipo,fecha,false);
+            Reparacion reparacion = new Reparacion(tipo, fecha, false);
             coche.agregarCocheAReparar(reparacion);
 
         } else System.out.println("El coche que pides no está en el stock del concesionario ");
     }
-    public void repararCoche(){
+
+    public void repararCoche() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce la matrícula del coche a reparar: ");
         String matricula = scanner.nextLine();
-        if(coches.containsKey(matricula)){
+        if (coches.containsKey(matricula)) {
             Coche coche = coches.get(matricula);
-            if(coche.getEstado().equals("en reparación")){
+            if (coche.getEstado().equals("en reparación")) {
                 System.out.println("Selecciona el tipo de reparación a reparar: 1- Mecanica / 2- Electrica / 3- Chapa / 4- Revisión ");
                 int opcion = scanner.nextInt();
                 TipoReparacion tipo = null;
-                if(opcion == 1) tipo = TipoReparacion.MECANICA;
-                if(opcion == 2) tipo = TipoReparacion.ELECTRICA;
-                if(opcion == 3) tipo = TipoReparacion.CHAPA;
-                if(opcion == 4) tipo = TipoReparacion.REVISION;
+                if (opcion == 1) tipo = TipoReparacion.MECANICA;
+                if (opcion == 2) tipo = TipoReparacion.ELECTRICA;
+                if (opcion == 3) tipo = TipoReparacion.CHAPA;
+                if (opcion == 4) tipo = TipoReparacion.REVISION;
                 ArrayList<Reparacion> reparaciones = coche.getReparaciones();
-                if(!reparaciones.isEmpty()){
-                for (Reparacion reparacion : reparaciones){
-                    if(reparacion.getTipo() == tipo){
-                        reparacion.setResuelta(true);
-                        break;
+                if (!reparaciones.isEmpty()) {
+                    for (Reparacion reparacion : reparaciones) {
+                        if (reparacion.getTipo() == tipo) {
+                            reparacion.setResuelta(true);
+                            break;
+                        } else System.out.println("Este coche no necesita ese tipo de reparación");
                     }
-                    else System.out.println("Este coche no necesita ese tipo de reparación");
-                }
-                int numReparaciones = reparaciones.size();
-                int reparacionesTotales = 0;
-                for(Reparacion reparacion : reparaciones){
-                    if(reparacion.isResuelta() == true){
-                        reparacionesTotales++;
-                        if(reparacionesTotales == numReparaciones)coche.setEstado("reparado");
+                    int numReparaciones = reparaciones.size();
+                    int reparacionesTotales = 0;
+                    for (Reparacion reparacion : reparaciones) {
+                        if (reparacion.isResuelta() == true) {
+                            reparacionesTotales++;
+                            if (reparacionesTotales == numReparaciones) coche.setEstado("reparado");
+                        }
+
                     }
+                } else System.out.println("No existen reparaciones");
 
-                }
-                }
-                else System.out.println("No existen reparaciones");
-
-            }
-            else System.out.println("El coche no está en reparación");
-        }
-        else System.out.println("El coche que pides no está en el stock del concesionario");
+            } else System.out.println("El coche no está en reparación");
+        } else System.out.println("El coche que pides no está en el stock del concesionario");
     }
+
     public void consultarReparacionesDeCoche() { // método para consultar todas las reparaciones de un coche en concreto
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce la matrícula del coche a consultar reparaciones: ");
         String matricula = scanner.nextLine();
         if (coches.containsKey(matricula)) {
             Coche coche = coches.get(matricula);
-            if(!coche.getReparaciones().isEmpty()){
+            if (!coche.getReparaciones().isEmpty()) {
                 coche.imprimirReparaciones();
-            }
-            else System.out.println("El coche no tiene ninguna reparación");
-        }
-        else System.out.println("El coche introducido no está en el stock del concesionario");
-        }
+            } else System.out.println("El coche no tiene ninguna reparación");
+        } else System.out.println("El coche introducido no está en el stock del concesionario");
+    }
 
     public void consola() {
         boolean infinito = true;
@@ -579,7 +592,7 @@ public class Concesionario {
             System.out.println("Para salir del menú pulsa 4");
             int numero = consola.nextInt();
             if (numero == 4) infinito = false;
-            if(numero == 1){
+            if (numero == 1) {
                 System.out.println("Para consultar los coches que tenemos en stock pulse 1.");
             }
         }

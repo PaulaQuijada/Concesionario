@@ -1,16 +1,19 @@
-import java.sql.SQLOutput;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
         Concesionario concesionario = new Concesionario();
-
         concesionario.reservarCoche();
-        concesionario.cancelarReserva();
-        concesionario.removeCliente();
+        concesionario.venderCoche();
+        concesionario.getClientes().get("26539704W").imprimirCochesComprados();
 
 
+
+
+       /* concesionario.reservarCoche();
+        concesionario.cancelarReserva();*/
 
        /* concesionario.agregarExposicion();
         concesionario.imprimirDatosExposicion();

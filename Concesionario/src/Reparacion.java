@@ -1,19 +1,20 @@
 
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Reparacion {
     private TipoReparacion tipo;
-    private Date fecha;
-    private String descripcion;
-    private Coche coche;
+    private String fecha;
     private boolean resuelta;
 
-    public Reparacion(TipoReparacion tipo, Date fecha, String descripcion, Coche coche) {
+
+
+    public Reparacion(TipoReparacion tipo, String fecha, boolean resuelta) {
         this.tipo = tipo;
         this.fecha = fecha;
-        this.descripcion = descripcion;
-        this.coche = coche;
+        this.resuelta = resuelta;
 
     }
 
@@ -25,28 +26,12 @@ public class Reparacion {
         this.tipo = tipo;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Coche getCoche() {
-        return coche;
-    }
-
-    public void setCoche(Coche coche) {
-        this.coche = coche;
     }
 
     public boolean isResuelta() {
@@ -56,6 +41,7 @@ public class Reparacion {
     public void setResuelta(boolean resuelta) {
         this.resuelta = resuelta;
     }
+
 
     // Método para cambiar el estado de un coche a "En reparación"
 
@@ -67,7 +53,6 @@ public class Reparacion {
         return "Reparacion{" +
                 "tipo=" + tipo +
                 ", fecha=" + fecha +
-                ", descripcion='" + descripcion + '\'' +
                 '}';
     }
 }

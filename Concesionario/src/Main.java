@@ -5,10 +5,31 @@ import java.util.HashMap;
 public class Main {
     public static void main(String[] args) {
         Concesionario concesionario = new Concesionario();
-        /*concesionario.consola();
-        concesionario.agregarExposicion();
+
+        concesionario.reservarCoche();
+        concesionario.cancelarReserva();
+        concesionario.removeCliente();
+
+
+
+       /* concesionario.agregarExposicion();
         concesionario.imprimirDatosExposicion();
-        concesionario.agregarCocheAExpo();
+        System.out.println("Dime el número de exposicion");
+        int numExpo = 1;
+        Exposicion exposicion = concesionario.getExposiciones().get(numExpo);
+        exposicion.modificarExpo();
+        concesionario.imprimirDatosExposicion();*/
+        /*concesionario.agregarCocheReparacion();
+        concesionario.consultarReparacionesDeCoche();
+        concesionario.repararCoche();
+        concesionario.consultarReparacionesDeCoche();*/
+
+
+       /* concesionario.agregarExposicion();
+        concesionario.imprimirDatosExposicion();
+        concesionario.removeExposicion();
+        System.out.println(concesionario.getExposiciones().size());*/
+        /*concesionario.agregarCocheAExpo();
         concesionario.removeCocheExpo();
         concesionario.imprimirDatosExposicion();
         System.out.println();

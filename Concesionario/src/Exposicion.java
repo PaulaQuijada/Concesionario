@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Exposicion {
     private String tipo;
@@ -63,5 +64,21 @@ public class Exposicion {
    }
     public void borrarCoche(Coche coche){
         coches.remove(coche);
+    }
+
+    public void modificarExpo(){
+        Scanner expo = new Scanner(System.in);
+        System.out.println("Introduce los nuevos datos de la exposicion" + getNumExposicion() + ": ");
+        System.out.println("Tipo de exposición: ");
+        String tipo = expo.nextLine();
+        setTipo(tipo);
+        System.out.println("Teléfono: ");
+        int telefono = expo.nextInt();
+        setTelefono(telefono);
+        System.out.println("Dirección: ");
+        expo.nextLine();
+        String direccion = expo.nextLine();
+        setDireccion(direccion);
+        System.out.println("Los datos han sido modificados correctamente");
     }
 }

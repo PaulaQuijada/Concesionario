@@ -43,6 +43,10 @@ public class Cliente extends Persona {
         coche.setEstado("reservado");
 
     }
+    public void removeCocheReservado(Coche coche){
+        cochesReservados.remove(coche);
+        coche.setEstado("en venta");
+    }
 
     public void imprimirCochesComprados() {
         if (cochesComprados.isEmpty()) { //Comprueba si el arraylist cochesComprados está vacío y si lo está entra por aquí:

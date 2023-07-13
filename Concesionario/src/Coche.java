@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Coche {
     private String tipo;
@@ -12,7 +13,6 @@ public abstract class Coche {
     private float precioCompra;
     private Exposicion exposicion;
     private ArrayList<Reparacion> reparaciones;
-    private ArrayList<Reparacion> reparacionesCompletadas;
 
     public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
         this.tipo = tipo;
@@ -24,7 +24,7 @@ public abstract class Coche {
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
         reparaciones = new ArrayList<>();
-        reparacionesCompletadas = new ArrayList<>();
+
     }
 
     public String getTipo() {
@@ -106,36 +106,45 @@ public abstract class Coche {
     public void setReparaciones(ArrayList<Reparacion> reparaciones) {
         this.reparaciones = reparaciones;
     }
+
+    public void modificarCoche(){
+        Scanner coche = new Scanner(System.in);
+        System.out.println("Introduce los nuevos datos para el coche con matrícula " + getMatricula() + ": ");
+        System.out.println("Color: ");
+        String color = coche.nextLine();
+        setColor(color);
+        System.out.println("Matrícula: ");
+        String matricula = coche.nextLine();
+        setMatricula(matricula);
+        System.out.println("Precio de venta:");
+        float nuevoPrecioVenta = coche.nextFloat();
+        setPrecioVenta(nuevoPrecioVenta);
+        System.out.println("Precio de compra: ");
+        float nuevoPrecioCompra = coche.nextFloat();
+        setPrecioCompra(nuevoPrecioCompra);
+        System.out.println("Los datos han sido modificados correctamente");
+        System.out.println();
+    }
     public void agregarCocheAReparar(Reparacion reparacion) {
         reparaciones.add(reparacion);
-        reparacion.getCoche().setEstado("En reparación");
+        setEstado("en reparación");
     }
 
-    // Método para reparar un coche y cambiar su estado a "Reparado"
     public void agregarCochesReparados(Reparacion reparacion) {
         if (reparacion.isResuelta()) {
-            reparacionesCompletadas.add(reparacion); // Agregamos la reparación a la lista de reparaciones reparadas
-            reparacion.getCoche().setEstado("Reparado");
+            reparaciones.add(reparacion); // Agregamos la reparación a la lista de reparaciones reparadas
+            setEstado("reparado");
         }
-    }
-    public void consultarReparacionesDeCoche() {
-
-        for (Reparacion reparacion : reparaciones) {
-            if (reparacion.getCoche().equals(this)) {
-                reparaciones.add(reparacion);
-            }
-        }
-
-        reparaciones.sort((r1, r2) -> r2.getFecha().compareTo(r1.getFecha()));
-
     }
 
     public void imprimirReparaciones() {
-        System.out.println("Reparaciones del coche: " + this.matricula);
-
+        reparaciones.sort((r1, r2) -> r2.getFecha().compareTo(r1.getFecha()));
+        System.out.println("Reparaciones del coche: " + matricula);
         for (Reparacion reparacion : reparaciones) {
+            System.out.println("Tipo de reparación: " + reparacion.getTipo());
+            if(reparacion.isResuelta() == true) System.out.println("Estado: resuelta");
+            else System.out.println("Estado: no resuelta");
             System.out.println("Fecha: " + reparacion.getFecha());
-            System.out.println("Descripción: " + reparacion.getDescripcion());
             System.out.println("--------------------------");
         }
     }
@@ -144,6 +153,12 @@ public abstract class Coche {
         System.out.println("Tipo de coche: " + getTipo());
         System.out.println("Marca: " + getMarca());
         System.out.println("Modelo: " + getModelo());
+        System.out.println("Color: " + getColor());
+        System.out.println("Estado: " + getEstado());
         System.out.println("Matrícula: " + getMatricula());
+        System.out.println("Precio de venta: " + getPrecioVenta());
+        System.out.println("Precio de compra: " + getPrecioCompra());
+        if(reparaciones.size() == 0) System.out.println("Este coche no tiene reparaciones pendientes");
+        else System.out.println("Reparaciones:" + getReparaciones());
     }
 }

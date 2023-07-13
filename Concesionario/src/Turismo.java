@@ -118,11 +118,6 @@ public class Turismo extends Coche {
     }
 
     @Override
-    public void consultarReparacionesDeCoche() {
-        super.consultarReparacionesDeCoche();
-    }
-
-    @Override
     public void imprimirReparaciones() {
         super.imprimirReparaciones();
     }

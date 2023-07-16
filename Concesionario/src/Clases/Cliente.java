@@ -1,6 +1,8 @@
+package Clases;
+import Excepciones.InvalidException;
+import Excepciones.PersonaException;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Cliente extends Persona {
 
@@ -9,10 +11,9 @@ public class Cliente extends Persona {
 
     private Concesionario concesionario;
 
-    public Cliente(String nombre, String direccion, String DNI, int telefono) { // lo que pido para crear un cliente
+    public Cliente(String nombre, String direccion, String DNI, int telefono) throws PersonaException {
         super(nombre, direccion, DNI, telefono);
         cochesComprados = new ArrayList<>();
-        // inicializo los dos arrays vacíos
         cochesReservados = new ArrayList<>();
     }
 
@@ -34,26 +35,20 @@ public class Cliente extends Persona {
 
     public void agregarCocheComprado(Coche coche) {
         cochesComprados.add(coche);
-        coche.setEstado("comprado");
+
     }
-
-
     public void agregarCocheReservado(Coche coche) {
         cochesReservados.add(coche);
-        coche.setEstado("reservado");
-
     }
     public void removeCocheReservado(Coche coche){
         cochesReservados.remove(coche);
-        coche.setEstado("en venta");
-    }
 
+    }
     public void imprimirCochesComprados() {
-        if (cochesComprados.isEmpty()) { //Comprueba si el arraylist cochesComprados está vacío y si lo está entra por aquí:
-            System.out.println("No existen coches comprados");
-        } else { //Si no está vacío entra por aquí:
+
+        if (!cochesComprados.isEmpty()) {
+            System.out.println("Coches comprados: ");
             for (Coche coche : cochesComprados) {
-                System.out.println("Coches comprados: ");
                 System.out.println("Marca: " + coche.getMarca());
                 System.out.println("Modelo: " + coche.getModelo());
                 System.out.println("Color: " + coche.getColor());
@@ -63,44 +58,21 @@ public class Cliente extends Persona {
                 System.out.println();
             }
         }
+        else System.out.println("No existen coches comprados");
     }
-
-    public void imprimirCochesReservados() {
-        if (cochesReservados.isEmpty()) { //Comprueba si el arraylist cochesComprados está vacío y si lo está entra por aquí:
-            System.out.println("No existen coches reservados");
-        } else { //Si no está vacío entra por aquí:
+    public void imprimirCochesReservados(){
+        if (!cochesReservados.isEmpty()) {
+            System.out.println("Coches reservados: ");
             for (Coche coche : cochesReservados) {
-                System.out.println("Coches reservados: ");
                 System.out.println("Marca: " + coche.getMarca());
                 System.out.println("Modelo: " + coche.getModelo());
+                System.out.println("Color: " + coche.getColor());
                 System.out.println("Matrícula: " + coche.getMatricula());
                 System.out.println("Precio de compra: " + coche.getPrecioCompra());
                 System.out.println("Precio de venta: " + coche.getPrecioVenta());
                 System.out.println();
             }
         }
-    }
-    public void modificarCliente(){
-        Scanner cliente = new Scanner(System.in);
-        System.out.println("Introduzca los nuevos datos para el cliente con DNI " + getDNI() + ": ");
-        System.out.println("Introduzca su nuevo nombre: ");
-        String nuevoNombre = cliente.nextLine();
-        setNombre(nuevoNombre);
-        System.out.println("Introduzca su nueva dirección: ");
-        String nuevaDireccion = cliente.nextLine();
-        setDireccion(nuevaDireccion);
-        System.out.println("Introduzca su nuevo teléfono: ");
-        int nuevoTeléfono = cliente.nextInt();
-        // if(nuevoTeléfono < 99999999 && nuevoTeléfono > 999999999) throw new Exception("El nuevo teléfono no puede ser menor ni mayor a 9 cifras");
-        setTelefono(nuevoTeléfono);
-
-
-    }
-    public void imprimirDatosCliente(){
-        System.out.println("Nombre del cliente: " + getNombre());
-        System.out.println("Dirección del cliente: " + getDireccion());
-        System.out.println("DNI del cliente: " + getDNI());
-        System.out.println("Teléfono del cliente: " + getTelefono());
-        System.out.println("------------------------");
+        else System.out.println("No existen coches reservados");
     }
 }

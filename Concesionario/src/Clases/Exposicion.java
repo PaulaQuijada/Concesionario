@@ -1,5 +1,8 @@
+package Clases;
+
+import Excepciones.ExposicionException;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Exposicion {
@@ -9,7 +12,7 @@ public class Exposicion {
     private String direccion;
     private ArrayList<Coche> coches;
 
-    public Exposicion(String tipo, int numExposicion, int telefono, String direccion) {
+    public Exposicion(String tipo, int numExposicion, int telefono, String direccion) throws ExposicionException {
         this.tipo = tipo;
         this.numExposicion = numExposicion;
         this.telefono = telefono;
@@ -28,10 +31,6 @@ public class Exposicion {
 
     public int getNumExposicion() {
         return numExposicion;
-    }
-
-    public void setNumExposicion(int numExposicion) {
-        this.numExposicion = numExposicion;
     }
 
     public int getTelefono() {
@@ -60,25 +59,23 @@ public class Exposicion {
 
     public void agregarCoche(Coche coche){
         coches.add(coche);
-        coche.setEstado("en exposición");
-   }
+    }
     public void borrarCoche(Coche coche){
         coches.remove(coche);
     }
-
-    public void modificarExpo(){
-        Scanner expo = new Scanner(System.in);
-        System.out.println("Introduce los nuevos datos de la exposicion" + getNumExposicion() + ": ");
-        System.out.println("Tipo de exposición: ");
-        String tipo = expo.nextLine();
-        setTipo(tipo);
-        System.out.println("Teléfono: ");
-        int telefono = expo.nextInt();
-        setTelefono(telefono);
-        System.out.println("Dirección: ");
-        expo.nextLine();
-        String direccion = expo.nextLine();
-        setDireccion(direccion);
-        System.out.println("Los datos han sido modificados correctamente");
+    public void imprimirCochesExpo () {
+        for (Coche coche : coches) {
+            System.out.println("Tipo: " + coche.getTipo());
+            System.out.println("Marca: " + coche.getMarca());
+            System.out.println("Modelo: " + coche.getModelo());
+            System.out.println("Color: " + coche.getColor());
+            System.out.println("Matricula: " + coche.getMatricula());
+            System.out.println("Estado: " + coche.getEstado());
+            System.out.println("Precio de venta: " + coche.getPrecioVenta());
+            System.out.println("Precio de compra: " + coche.getPrecioCompra());
+            System.out.println("------------------------------");
+        }
     }
+
+
 }

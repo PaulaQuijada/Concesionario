@@ -1,37 +1,45 @@
-
+package Clases;
+import Excepciones.CocheException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public abstract class Coche {
-    private String tipo;
+public class Coche {
+    private TipoCoche tipo;
     private String marca;
     private String modelo;
     private String color; //he añadido este atributo
-    private String estado;
+    private EstadoCoche estado;
     private String matricula;
     private float precioVenta;
     private float precioCompra;
-    private Exposicion exposicion;
+
     private ArrayList<Reparacion> reparaciones;
 
-    public Coche(String tipo, String marca, String modelo, String color, String estado, String matricula, float precioVenta, float precioCompra) {
+    public Coche(TipoCoche tipo, String marca, String modelo, String color, EstadoCoche estado, String matricula, float precioVenta, float precioCompra) throws CocheException {
         this.tipo = tipo;
+        if(marca == null || marca.trim().isEmpty()) throw new CocheException("La marca del coche no puede estar vacía");
         this.marca = marca;
+        if(modelo == null || modelo.trim().isEmpty()) throw new CocheException("El modelo del coche no puede estar vacío");
         this.modelo = modelo;
+        if(color == null || color.trim().isEmpty()) throw new CocheException("El color del coche no puede estar vacío");
         this.color = color;
+        if(estado == null) throw new CocheException("El estado del coche no puede estar vacío");
         this.estado = estado;
+        String ultimasTresLetras = matricula.substring(4); // Obtener las últimas tres letras
+        if(matricula == null || matricula.length() !=7 || !ultimasTresLetras.matches("[A-Z]{3}")) throw new CocheException("La matrícula introducida no es válida");
         this.matricula = matricula;
+        if(precioVenta <= 0) throw new CocheException("El precio no puede ser menor o igual a 0");
         this.precioVenta = precioVenta;
+        if(precioCompra <= 0) throw new CocheException("El precio no puede ser menor o igual a 0");
         this.precioCompra = precioCompra;
-        reparaciones = new ArrayList<>();
 
+        this.reparaciones = new ArrayList<>();
     }
 
-    public String getTipo() {
+    public TipoCoche getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoCoche tipo) {
         this.tipo = tipo;
     }
 
@@ -59,11 +67,11 @@ public abstract class Coche {
         this.color = color;
     }
 
-    public String getEstado() {
+    public EstadoCoche getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoCoche estado) {
         this.estado = estado;
     }
 
@@ -91,14 +99,6 @@ public abstract class Coche {
         this.precioCompra = precioCompra;
     }
 
-    public Exposicion getExposiciones() {
-        return exposicion;
-    }
-
-    public void setExposiciones(Exposicion exposicion) {
-        this.exposicion = exposicion;
-    }
-
     public ArrayList<Reparacion> getReparaciones() {
         return reparaciones;
     }
@@ -107,33 +107,14 @@ public abstract class Coche {
         this.reparaciones = reparaciones;
     }
 
-    public void modificarCoche(){
-        Scanner coche = new Scanner(System.in);
-        System.out.println("Introduce los nuevos datos para el coche con matrícula " + getMatricula() + ": ");
-        System.out.println("Color: ");
-        String color = coche.nextLine();
-        setColor(color);
-        System.out.println("Matrícula: ");
-        String matricula = coche.nextLine();
-        setMatricula(matricula);
-        System.out.println("Precio de venta:");
-        float nuevoPrecioVenta = coche.nextFloat();
-        setPrecioVenta(nuevoPrecioVenta);
-        System.out.println("Precio de compra: ");
-        float nuevoPrecioCompra = coche.nextFloat();
-        setPrecioCompra(nuevoPrecioCompra);
-        System.out.println("Los datos han sido modificados correctamente");
-        System.out.println();
-    }
+
     public void agregarCocheAReparar(Reparacion reparacion) {
         reparaciones.add(reparacion);
-        setEstado("en reparación");
     }
 
     public void agregarCochesReparados(Reparacion reparacion) {
         if (reparacion.isResuelta()) {
             reparaciones.add(reparacion); // Agregamos la reparación a la lista de reparaciones reparadas
-            setEstado("reparado");
         }
     }
 
@@ -148,17 +129,6 @@ public abstract class Coche {
             System.out.println("--------------------------");
         }
     }
-    public void imprimirCoche(){
-        System.out.println("Datos del coche:");
-        System.out.println("Tipo de coche: " + getTipo());
-        System.out.println("Marca: " + getMarca());
-        System.out.println("Modelo: " + getModelo());
-        System.out.println("Color: " + getColor());
-        System.out.println("Estado: " + getEstado());
-        System.out.println("Matrícula: " + getMatricula());
-        System.out.println("Precio de venta: " + getPrecioVenta());
-        System.out.println("Precio de compra: " + getPrecioCompra());
-        if(reparaciones.size() == 0) System.out.println("Este coche no tiene reparaciones pendientes");
-        else System.out.println("Reparaciones:" + getReparaciones());
-    }
+
 }
+

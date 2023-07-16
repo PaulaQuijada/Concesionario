@@ -1,8 +1,5 @@
+package Clases;
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
 
 public class Reparacion {
     private TipoReparacion tipo;
@@ -43,16 +40,15 @@ public class Reparacion {
     }
 
 
-    // Método para cambiar el estado de un coche a "En reparación"
 
 
-    // Otros métodos relevantes para la gestión de reparaciones
 
     @Override
     public String toString() {
         return "Reparacion{" +
                 "tipo=" + tipo +
-                ", fecha=" + fecha +
+                ", fecha='" + fecha + '\'' +
+                ", resuelta=" + resuelta +
                 '}';
     }
 }

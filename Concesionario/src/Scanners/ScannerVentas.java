@@ -2,6 +2,7 @@ package Scanners;
 
 import Clases.*;
 import Excepciones.InvalidException;
+import Excepciones.NotFoundException;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class ScannerVentas {
                     VendedorAComision vendedor = vendedores.get(dni);
                     coche.setEstado(EstadoCoche.VENDIDO);
                     cliente.agregarCocheComprado(coche);
+                    concesionario.registrarVenta(matricula,cliente.getNombre());
                     vendedor.agregarCocheVendido(coche);
                     coches.remove(matricula);
                     System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido vendido al cliente: " + cliente.getNombre());
@@ -70,15 +72,16 @@ public class ScannerVentas {
                             vendedor.agregarCocheVendido(coche);
                             cliente.agregarCocheComprado(coche);
                             cliente.getCochesReservados().remove(coche);
+                            concesionario.registrarVenta(matricula,cliente.getNombre());
                             System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido vendido al cliente: " + cliente.getNombre());
                             break;
-                        } else throw new InvalidException("El coche introducido no está en la lista de reservas del cliente");
+                        } else throw new NotFoundException("El coche introducido no está en la lista de reservas del cliente");
                     }
 
-                } else throw new InvalidException("El vendedor no está dado de alta");
-            } else throw new InvalidException("El cliente no está dado de alta");
+                } else throw new NotFoundException("El vendedor no está dado de alta");
+            } else throw new NotFoundException("El cliente no está dado de alta");
         }
-       catch (InvalidException e){
+       catch (NotFoundException e){
            System.out.println(e.getMessage());
        }
     }

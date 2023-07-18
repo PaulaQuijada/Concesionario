@@ -23,7 +23,7 @@ public class ScannerVendedor {
     public void agregarVendedor() { //Este servirá para agregar un vendedor por scanner
         Scanner añadirVendedor = new Scanner(System.in);
         try {
-            System.out.println("Introduzca los datos del cliente: ");
+            System.out.println("Introduzca los datos del vendedor: ");
             System.out.println("Introduzca su nombre: ");
             String nombre = añadirVendedor.nextLine();
             System.out.println("Introduzca su dirección: ");

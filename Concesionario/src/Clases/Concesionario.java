@@ -1,19 +1,24 @@
 package Clases;
+import Clases.Cliente;
 import Excepciones.PersonaException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Concesionario {
     private HashMap<String, Cliente> clientes;
     private HashMap<String, VendedorAComision> vendedores;
     private HashMap<String, Coche> coches;
+    private HashMap<String, String> ventas;
     private DirectorComercial director;
     private HashMap<Integer, Exposicion> exposiciones;
 
     public Concesionario() throws PersonaException {
-        clientes = new HashMap<>();
-        vendedores = new HashMap<>();
-        coches = new HashMap<>();
-        this.director = new DirectorComercial("Juan", "A", "12345678A", "123456789", 666778899);
+        this.clientes = new HashMap<>();
+        this.vendedores = new HashMap<>();
+        this.coches = new HashMap<>();
+        this.ventas = new HashMap<>();
+        this.director = new DirectorComercial("Juan", "Álvarez", "C/Albaricoque", "12345678F", 666778899);
         exposiciones = new HashMap<>();
 
     }
@@ -41,6 +46,11 @@ public class Concesionario {
     public void setCoches(HashMap<String, Coche> coches) {
         this.coches = coches;
     }
+
+    public HashMap<String, String> getVentas() {
+        return ventas;
+    }
+
     public HashMap<Integer, Exposicion> getExposiciones() {
         return exposiciones;
     }
@@ -76,6 +86,13 @@ public class Concesionario {
     public void removeCoche(String matricula) { //Este servirá para eliminar un coche por scanner
         coches.remove(matricula);
     }
+    public void registrarVenta(String matriculaCoche, String nombreCliente){
+        ventas.put(matriculaCoche, nombreCliente);
+    }
+    public String queCliente(String cliente){
+        return ventas.get(cliente);
+    }
+
     public void imprimirStock() {
         if (coches.isEmpty()) {
             System.out.println("No hay coches en stock");
@@ -100,5 +117,13 @@ public class Concesionario {
     public void removeExposicion(int numExpo) {
         exposiciones.remove(numExpo); }
 
-
+    public void imprimirVentas(){
+        if (ventas.isEmpty()) {
+            System.out.println("No hay coches en stock");
+        } else {
+            for (String nombre : ventas.values()) {
+                System.out.println(nombre);
+            }
+        }
+    }
 }

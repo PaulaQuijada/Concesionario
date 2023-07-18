@@ -3,6 +3,7 @@ import Clases.Cliente;
 import Clases.Coche;
 import Clases.Concesionario;
 import Excepciones.InvalidException;
+import Excepciones.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,12 +46,18 @@ public class ScannerCliente {
             System.out.println("Introduce el DNI del cliente a dar de baja: ");
             String dni = removeCliente.nextLine();
             Cliente cliente = concesionario.getClientes().get(dni);
-            if (cliente.getCochesComprados().isEmpty() && cliente.getCochesReservados().isEmpty()) {
-                concesionario.removeCliente(dni);
-                System.out.println("El cliente se ha eliminado correctamente");
-            } else System.out.println("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
-        } catch (Exception e) {
+            if (clientes.containsKey(dni)) {
+                if (cliente.getCochesComprados().isEmpty() && cliente.getCochesReservados().isEmpty()) {
+                    concesionario.removeCliente(dni);
+                    System.out.println("El cliente se ha eliminado correctamente");
+                } else throw new InvalidException("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
+            } else throw new NotFoundException("El cliente no está registrado en el concesionario");
+        }
+        catch (InvalidException e) {
             System.out.println(e.getMessage());
+        }
+        catch (NotFoundException notFound){
+            System.out.println(notFound.getMessage());
         }
     }
 
@@ -147,8 +154,8 @@ public class ScannerCliente {
                 int nuevoTeléfono = scanner.nextInt();
                 cliente.setTelefono(nuevoTeléfono);
             }
-            else throw new InvalidException("El cliente no está dado de alta");
-        } catch (InvalidException e) {
+            else throw new NotFoundException("El cliente no está dado de alta");
+        } catch (NotFoundException e) {
             System.out.println(e.getMessage());
         }
     }

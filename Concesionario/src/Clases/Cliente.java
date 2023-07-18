@@ -11,8 +11,8 @@ public class Cliente extends Persona {
 
     private Concesionario concesionario;
 
-    public Cliente(String nombre, String direccion, String DNI, int telefono) throws PersonaException {
-        super(nombre, direccion, DNI, telefono);
+    public Cliente(String nombre, String apellido, String direccion, String DNI, int telefono) throws PersonaException {
+        super(nombre, apellido, direccion, DNI, telefono);
         cochesComprados = new ArrayList<>();
         cochesReservados = new ArrayList<>();
     }

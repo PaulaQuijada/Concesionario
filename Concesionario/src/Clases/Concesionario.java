@@ -13,7 +13,7 @@ public class Concesionario {
         clientes = new HashMap<>();
         vendedores = new HashMap<>();
         coches = new HashMap<>();
-        this.director = new DirectorComercial("Juan", "A", "12345678A", 123456789);
+        this.director = new DirectorComercial("Juan", "A", "12345678A", "123456789", 666778899);
         exposiciones = new HashMap<>();
 
     }

@@ -17,20 +17,22 @@ public class ScannerCliente {
         this.clientes = concesionario.getClientes();
     }
 
-    public void agregarCliente() { // dar de alta a un cliente //FALTA EXCEPCIONES
+    public void agregarCliente() {
         Scanner añadirCliente = new Scanner(System.in);
         try {
             System.out.println("Introduzca los datos del cliente: ");
-            System.out.println("Introduzca su nombre: ");
+            System.out.println("Nombre: ");
             String nombre = añadirCliente.nextLine();
-            System.out.println("Introduzca su dirección: ");
+            System.out.println("Apellido: ");
+            String apellido = añadirCliente.nextLine();
+            System.out.println("Dirección: ");
             String direccion = añadirCliente.nextLine();
-            System.out.println("Introduzca su DNI: ");
+            System.out.println("DNI: ");
             String dni = añadirCliente.nextLine();
-            System.out.println("Introduzca su número de teléfono: ");
+            System.out.println("Número de teléfono: ");
             int telefono = añadirCliente.nextInt();
 
-            concesionario.agregarCliente(new Cliente(nombre, direccion, dni, telefono));
+            concesionario.agregarCliente(new Cliente(nombre, apellido, direccion, dni, telefono));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             agregarCliente();
@@ -62,6 +64,7 @@ public class ScannerCliente {
                 Cliente cliente = clientes.get(dni);
                 System.out.println("Datos del cliente: ");
                 System.out.println("Nombre: " + cliente.getNombre());
+                System.out.println("Apellido: " + cliente.getApellido());
                 System.out.println("Dirección: " + cliente.getDireccion());
                 System.out.println("DNI: " + cliente.getDNI());
                 System.out.println("Teléfono: " + cliente.getTelefono());
@@ -137,9 +140,6 @@ public class ScannerCliente {
             if (clientes.containsKey(dni)) {
                 Cliente cliente = clientes.get(dni);
                 System.out.println("Introduzca los nuevos datos para el cliente con DNI " + cliente.getDNI() + ": ");
-                System.out.println("Introduzca su nombre: ");
-                String nuevoNombre = scanner.nextLine();
-                cliente.setNombre(nuevoNombre);
                 System.out.println("Introduzca su dirección: ");
                 String nuevaDireccion = scanner.nextLine();
                 cliente.setDireccion(nuevaDireccion);

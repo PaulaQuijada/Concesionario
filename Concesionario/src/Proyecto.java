@@ -1,4 +1,5 @@
 import Clases.Concesionario;
+import Excepciones.PersonaException;
 import Scanners.*;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class Proyecto {
     private ScannerReparacion SRep;
     private ScannerConcesionario SConce;
 
-    public Proyecto() {
+    public Proyecto() throws PersonaException {
         this.SCli = new ScannerCliente(new Concesionario());
         this.SCo = new ScannerCoche(new Concesionario());
         this.SVen = new ScannerVendedor(new Concesionario());

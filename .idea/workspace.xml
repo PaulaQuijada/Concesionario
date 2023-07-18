@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6c0df5a4-66ef-4405-9053-eeced47ac0bb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Clases/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Clases/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Clases/Concesionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Clases/Concesionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Clases/DirectorComercial.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Clases/DirectorComercial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Clases/Mecanico.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Clases/Mecanico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Clases/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Clases/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Clases/VendedorAComision.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Clases/VendedorAComision.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Proyecto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Proyecto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Scanners/ScannerCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Scanners/ScannerCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Scanners/ScannerCoche.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Scanners/ScannerCoche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concesionario/src/Scanners/ScannerVendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concesionario/src/Scanners/ScannerVendedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Cliente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Coche.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Concesionario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/DirectorComercial.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Exposicion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Industrial.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Mecanico.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Persona.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Reparacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/TipoReparacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Todoterreno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Turismo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/VendedorAComision.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2Si33GU6MSUeYNsPIsjNzxGpLE7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6c0df5a4-66ef-4405-9053-eeced47ac0bb" name="Changes" comment="" />
+      <created>1689615372251</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689615372251</updated>
+    </task>
+    <servers />
+  </component>
+</project>

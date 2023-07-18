@@ -5,6 +5,7 @@ import Clases.Coche;
 import Clases.VendedorAComision;
 import Clases.Concesionario;
 import Excepciones.InvalidException;
+import Excepciones.PersonaException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,11 +33,13 @@ public class ScannerVendedor {
             System.out.println("Introduzca su número de teléfono: ");
             int telefono = añadirVendedor.nextInt();
             // if(nuevoTeléfono < 99999999 && nuevoTeléfono > 999999999) throw new Exception("El nuevo teléfono no puede ser menor ni mayor a 9 cifras");
-            VendedorAComision vendedor = new VendedorAComision(nombre, direccion, dni, telefono);
+            VendedorAComision vendedor = new VendedorAComision(nombre, "", direccion, dni, telefono);
             concesionario.agregarVendedor(vendedor);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
             //consola.director();
+        } catch (PersonaException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -123,5 +126,28 @@ public class ScannerVendedor {
             System.out.println(e.getMessage());
         }
     }
-    public void consolaVendedor(){}
+   /* public void consolaVendedor(){
+        Scanner scanner = new Scanner(System.in);
+        try {
+            int opcion = 0;
+            while (opcion != 4) {
+                System.out.println("1-VENDER COCHE");
+                System.out.println("2-RESERVAR COCHE");
+                System.out.println("3-CONSULTAR DATOS DE CLIENTES");
+                System.out.println("4-CONSULTAR DATOS DE COCHES");
+                System.out.println("5-CONSULTAR DATOS DE EXPOSICIONES");
+                System.out.println("6-MENU PRINCIPAL");
+                System.out.print("Elige una opción:");
+                opcion = scanner.nextInt();
+                if (opcion < 1 || opcion > 6) throw new InvalidException("Introduce una de las opciones");
+                if (opcion == 1)
+                if (opcion == 2)
+                    if (opcion == 3)
+            }
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+            consolaVendedor();
+        }
+    }
+    }*/
 }

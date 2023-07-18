@@ -26,7 +26,7 @@ public class Coche {
         this.estado = estado;
         String ultimasTresLetras = matricula.substring(4); // Obtener las últimas tres letras
         if(matricula == null || matricula.length() !=7 || !ultimasTresLetras.matches("[A-Z]{3}")) throw new CocheException("La matrícula introducida no es válida");
-        this.matricula = matricula;
+        this.matricula = matricula; // EDITAR EXCEPCION
         if(precioVenta <= 0) throw new CocheException("El precio no puede ser menor o igual a 0");
         this.precioVenta = precioVenta;
         if(precioCompra <= 0) throw new CocheException("El precio no puede ser menor o igual a 0");

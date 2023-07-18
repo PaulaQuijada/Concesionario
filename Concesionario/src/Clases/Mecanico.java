@@ -1,13 +1,14 @@
 package Clases;
 
 import Excepciones.InvalidException;
+import Excepciones.PersonaException;
 
 import java.util.ArrayList;
 
 public class Mecanico extends Persona {
     private ArrayList<Coche> cochesReparados;
-    public Mecanico(String nombre, String direccion, String DNI, int telefono) throws InvalidException {
-        super(nombre, direccion, DNI, telefono);
+    public Mecanico(String nombre, String apellido, String direccion, String DNI, int telefono) throws InvalidException, PersonaException {
+        super(nombre, apellido, direccion, DNI, telefono);
         cochesReparados = new ArrayList<>();
     }
 

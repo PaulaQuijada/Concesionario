@@ -2,8 +2,8 @@ package Clases;
 import Excepciones.PersonaException;
 
 public class DirectorComercial extends Persona {
-    public DirectorComercial(String nombre, String direccion, String DNI, int telefono) throws PersonaException {
-        super(nombre, direccion, DNI, telefono);
+    public DirectorComercial(String nombre, String apellido, String direccion, String DNI, int telefono) throws PersonaException {
+        super(nombre, apellido, direccion, DNI, telefono);
     }
     public void imprimirDatosDirector(){
         System.out.println("Datos del director: ");

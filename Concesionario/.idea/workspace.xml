@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b9b63e01-22cf-4d13-9510-a6b4a2904151" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Coche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Coche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Concesionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Concesionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/DirectorComercial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/DirectorComercial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Mecanico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Mecanico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/VendedorAComision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/VendedorAComision.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Proyecto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Proyecto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerCoche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerCoche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerConcesionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerConcesionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerVendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerVendedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Cliente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Coche.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Concesionario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/DirectorComercial.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Exposicion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Industrial.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Mecanico.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Persona.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Reparacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/TipoReparacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Todoterreno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/Turismo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Concesionario/VendedorAComision.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Si3ARspqBJb8A7GyHCK1ssnIVH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b9b63e01-22cf-4d13-9510-a6b4a2904151" name="Changes" comment="" />
+      <created>1689615430276</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689615430276</updated>
+    </task>
+    <servers />
+  </component>
+</project>

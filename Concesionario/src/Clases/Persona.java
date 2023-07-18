@@ -3,13 +3,21 @@ import Excepciones.PersonaException;
 
 public class Persona {
     private String nombre;
+    private String apellido;
     private String direccion;
     private String DNI;
     private int telefono;
 
-    public Persona(String nombre, String direccion, String DNI, int telefono) throws PersonaException {
+    /* EXCEPCIONES:
+    NOMBRE Y APELLIDO: SIN NUMEROS
+    DNI: 9 DIGITOS 1ºLETRA O ULTIMO
+    MATRICULA: 7-8 DIGITOS
+    TELEFONO: 9 DIGITOS
+    */
+    public Persona(String nombre, String apellido, String direccion, String DNI, int telefono) throws PersonaException {
         if(nombre == null || nombre.trim().isEmpty()) throw new PersonaException("El nombre no puede estar vacío");
         this.nombre = nombre;
+        this.apellido = apellido;
         if(direccion == null || direccion.trim().isEmpty()) throw new PersonaException("La dirección no puede estar vacía");
         this.direccion = direccion;
         if (DNI == null || DNI.length() != 9 || !DNI.matches("\\d{8}[A-Z]")) throw new PersonaException("El DNI ingresado es inválido");
@@ -26,6 +34,14 @@ public class Persona {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getDireccion() {

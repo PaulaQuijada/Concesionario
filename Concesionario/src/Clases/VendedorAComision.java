@@ -1,6 +1,7 @@
 package Clases;
 
 import Excepciones.InvalidException;
+import Excepciones.PersonaException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,8 +10,8 @@ public class VendedorAComision extends Persona {
     private int sueldo;
     private ArrayList<Coche> cochesVendidos;
 
-    public VendedorAComision(String nombre, String direccion, String DNI, int telefono) throws InvalidException {
-        super(nombre, direccion, DNI, telefono);
+    public VendedorAComision(String nombre, String apellido, String direccion, String DNI, int telefono) throws InvalidException, PersonaException {
+        super(nombre, apellido, direccion, DNI, telefono);
         cochesVendidos = new ArrayList<>();
     }
 

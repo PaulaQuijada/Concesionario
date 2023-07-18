@@ -18,7 +18,7 @@ public class ScannerConcesionario {
         this.vendedores = concesionario.getVendedores();
     }
 
-    public void queCliente() {
+    public void queCliente() { //CAMBIAR METODO PARA QUE DEVUELVA CLIENTE
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el dni del cliente para consultar los datos de los coches que ha comprado/reservado: ");
         String dni = scanner.nextLine();

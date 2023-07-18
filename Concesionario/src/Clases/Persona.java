@@ -1,5 +1,6 @@
 package Clases;
-import Excepciones.PersonaException;
+
+import Excepciones.InvalidException;
 
 public class Persona {
     private String nombre;
@@ -14,17 +15,17 @@ public class Persona {
     MATRICULA: 7-8 DIGITOS
     TELEFONO: 9 DIGITOS
     */
-    public Persona(String nombre, String apellido, String direccion, String DNI, int telefono) throws PersonaException {
-        if(nombre == null || nombre.trim().isEmpty()) throw new PersonaException("El nombre no puede estar vacío");
+    public Persona(String nombre, String apellido, String direccion, String DNI, int telefono) throws InvalidException {
+        if(nombre == null || nombre.trim().isEmpty()) throw new InvalidException("El nombre no puede estar vacío");
         this.nombre = nombre;
         this.apellido = apellido;
-        if(direccion == null || direccion.trim().isEmpty()) throw new PersonaException("La dirección no puede estar vacía");
+        if(direccion == null || direccion.trim().isEmpty()) throw new InvalidException("La dirección no puede estar vacía");
         this.direccion = direccion;
-        if (DNI == null || DNI.length() != 9 || !DNI.matches("\\d{8}[A-Z]")) throw new PersonaException("El DNI ingresado es inválido");
+        if (DNI == null || DNI.length() != 9 || !DNI.matches("\\d{8}[A-Z]")) throw new InvalidException("El DNI ingresado es inválido");
         this.DNI = DNI;
         int cantidadCifras = String.valueOf(telefono).length();
         cantidadCifras = 9;
-        if(cantidadCifras !=9) throw new PersonaException("El teléfono introducido no es válido");
+        if(cantidadCifras !=9) throw new InvalidException("El teléfono introducido no es válido");
         this.telefono = telefono;
     }
 

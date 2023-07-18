@@ -22,19 +22,21 @@ public class ScannerCliente {
         Scanner añadirCliente = new Scanner(System.in);
         try {
             System.out.println("Introduzca los datos del cliente: ");
-            System.out.println("Nombre: ");
+            System.out.print("Nombre: ");
             String nombre = añadirCliente.nextLine();
-            System.out.println("Apellido: ");
+            System.out.print("Apellido: ");
             String apellido = añadirCliente.nextLine();
-            System.out.println("Dirección: ");
+            System.out.print("Edad: ");
+            int edad = añadirCliente.nextInt();
+            System.out.print("Dirección: ");
             String direccion = añadirCliente.nextLine();
-            System.out.println("DNI: ");
+            System.out.print("DNI: ");
             String dni = añadirCliente.nextLine();
-            System.out.println("Número de teléfono: ");
+            System.out.print("Número de teléfono: ");
             int telefono = añadirCliente.nextInt();
 
-            concesionario.agregarCliente(new Cliente(nombre, apellido, direccion, dni, telefono));
-        } catch (Exception e) {
+            concesionario.agregarCliente(new Cliente(nombre, apellido, edad, direccion, dni, telefono));
+        } catch (InvalidException e) {
             System.out.println(e.getMessage());
             agregarCliente();
         }
@@ -43,7 +45,7 @@ public class ScannerCliente {
     public void removeCliente() {
         Scanner removeCliente = new Scanner(System.in);
         try {
-            System.out.println("Introduce el DNI del cliente a dar de baja: ");
+            System.out.print("Introduce el DNI del cliente a dar de baja: ");
             String dni = removeCliente.nextLine();
             Cliente cliente = concesionario.getClientes().get(dni);
             if (clientes.containsKey(dni)) {
@@ -76,8 +78,8 @@ public class ScannerCliente {
                 System.out.println("DNI: " + cliente.getDNI());
                 System.out.println("Teléfono: " + cliente.getTelefono());
                 System.out.println("------------------------");
-            } else throw new InvalidException("Este cliente no está dado de alta");
-        } catch (InvalidException e) {
+            } else throw new NotFoundException("Este cliente no está dado de alta");
+        } catch (NotFoundException e) {
             System.out.println(e.getMessage());
             //volver a menú clientes consola.clientes();
         }
@@ -86,13 +88,13 @@ public class ScannerCliente {
     public void scannerCochesComprados() {
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("Introduce el dni del cliente:");
+            System.out.print("Introduce el dni del cliente:");
             String dni = scanner.nextLine();
             if (clientes.containsKey(dni)) {
                 Cliente cliente = clientes.get(dni);
                 ArrayList<Coche> compras = cliente.getCochesComprados();
                 if (compras.isEmpty()) {
-                    System.out.println("No existen coches comprados");
+                    throw new InvalidException("No existen coches comprados");
                 } else {
                     for (Coche coche : compras) {
                         System.out.println("Coches comprados: ");
@@ -105,17 +107,20 @@ public class ScannerCliente {
                         System.out.println();
                     }
                 }
-            } else System.out.println("El cliente no está dado de alta");
+            } else throw new NotFoundException("El cliente no está dado de alta");
 
-        } catch (Exception e) {
+        } catch (InvalidException e) {
             System.out.println(e.getMessage());
+        }
+        catch (NotFoundException notFound){
+            System.out.println(notFound.getMessage());
         }
     }
 
     public void scannerCochesReservados() {
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("Introduce el dni del cliente:");
+            System.out.print("Introduce el dni del cliente:");
             String dni = scanner.nextLine();
             if (clientes.containsKey(dni)) {
                 Cliente cliente = clientes.get(dni);
@@ -133,24 +138,27 @@ public class ScannerCliente {
                         System.out.println();
                     }
                 }
-            }
+            }else throw new NotFoundException("El cliente no está dado de alta");
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+        }
+        catch (NotFoundException notFound){
+            System.out.println(notFound.getMessage());
         }
     }
 
     public void modificarCliente() {
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("Introduce el dni del cliente a modificar datos:");
+            System.out.print("Introduce el dni del cliente a modificar datos:");
             String dni = scanner.nextLine();
             if (clientes.containsKey(dni)) {
                 Cliente cliente = clientes.get(dni);
                 System.out.println("Introduzca los nuevos datos para el cliente con DNI " + cliente.getDNI() + ": ");
-                System.out.println("Introduzca su dirección: ");
+                System.out.print("Dirección: ");
                 String nuevaDireccion = scanner.nextLine();
                 cliente.setDireccion(nuevaDireccion);
-                System.out.println("Introduzca su teléfono: ");
+                System.out.print("Teléfono: ");
                 int nuevoTeléfono = scanner.nextInt();
                 cliente.setTelefono(nuevoTeléfono);
             }

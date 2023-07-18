@@ -1,18 +1,19 @@
 package Clases;
+
 import Excepciones.InvalidException;
-import Excepciones.PersonaException;
 
 import java.util.ArrayList;
 
 public class Cliente extends Persona {
-
+    private int edad;
     private ArrayList<Coche> cochesComprados;
     private ArrayList<Coche> cochesReservados;
 
     private Concesionario concesionario;
 
-    public Cliente(String nombre, String apellido, String direccion, String DNI, int telefono) throws PersonaException {
+    public Cliente(String nombre, String apellido,  int edad, String direccion, String DNI, int telefono) throws InvalidException {
         super(nombre, apellido, direccion, DNI, telefono);
+        if(edad < 18) throw new InvalidException("El cliente debe ser mayor de edad");
         cochesComprados = new ArrayList<>();
         cochesReservados = new ArrayList<>();
     }

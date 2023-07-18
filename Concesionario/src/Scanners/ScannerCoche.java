@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import Clases.*;
-import Excepciones.CocheException;
 import Excepciones.InvalidException;
+import Excepciones.NotFoundException;
 
 public class ScannerCoche {
     private Concesionario concesionario;
@@ -19,29 +19,29 @@ public class ScannerCoche {
         Scanner añadirCoche = new Scanner(System.in);
         try {
             TipoCoche tipo = null;
-            System.out.println("Introduce el tipo de coche a añadir siendo 1-Turismo, 2-Industrial o 3-Todoterreno: ");
+            System.out.print("Introduce el tipo de coche a añadir siendo 1-Turismo, 2-Industrial o 3-Todoterreno: ");
             int num = añadirCoche.nextInt();
             añadirCoche.nextLine();
             if (num == 1) tipo = TipoCoche.TURISMO;
             if (num == 2) tipo = TipoCoche.INDUSTRIAL;
             if (num == 3) tipo = TipoCoche.TODOTERRENO;
             System.out.println("Introduzca los datos del coche a añadir: ");
-            System.out.println("Marca: ");
+            System.out.print("Marca: ");
             String marca = añadirCoche.nextLine();
-            System.out.println("Modelo: ");
+            System.out.print("Modelo: ");
             String modelo = añadirCoche.nextLine();
-            System.out.println("Color: ");
+            System.out.print("Color: ");
             String color = añadirCoche.nextLine();
             EstadoCoche estado = EstadoCoche.EN_VENTA;
-            System.out.println("Matrícula: ");
+            System.out.print("Matrícula: ");
             String matricula = añadirCoche.nextLine();
-            System.out.println("Precio de compra: ");
+            System.out.print("Precio de compra: ");
             float precioCompra = añadirCoche.nextFloat();
-            System.out.println("Precio de venta: ");
+            System.out.print("Precio de venta: ");
             float precioVenta = añadirCoche.nextFloat();
             Coche coche = new Coche(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta);
             concesionario.agregarCoche(coche);
-        } catch (CocheException e){
+        } catch (InvalidException e){
             System.out.println(e.getMessage());
             //ScannerDirector.consolaDirector();
         }
@@ -50,13 +50,13 @@ public class ScannerCoche {
     public void removeCoche() {
         Scanner removeCoche = new Scanner(System.in);
         try {
-            System.out.println("Introduce la matrícula del coche a eliminar: ");
+            System.out.print("Introduce la matrícula del coche a eliminar: ");
             String matricula = removeCoche.nextLine();
             HashMap<String, Coche> coches = concesionario.getCoches();
             if (coches.containsKey(matricula)) {
                 concesionario.removeCoche(matricula);
-            } else throw new InvalidException("El coche no está dado de alta en el concesionario");
-        } catch (InvalidException e) {
+            } else throw new NotFoundException("El coche no está dado de alta en el concesionario");
+        } catch (NotFoundException e) {
             System.out.println(e.getMessage());
             //volver a menú clientes
         }
@@ -65,7 +65,7 @@ public class ScannerCoche {
     public void imprimirCoche() {
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("Introduce la matricula del coche: ");
+            System.out.print("Introduce la matricula del coche: ");
             String matricula = scanner.nextLine();
             HashMap<String, Coche> coches = concesionario.getCoches();
             if (coches.containsKey(matricula)) {
@@ -80,37 +80,40 @@ public class ScannerCoche {
                 System.out.println("Matrícula: " + coche.getMatricula());
                 System.out.println("Precio de venta: " + coche.getPrecioVenta());
                 System.out.println("Precio de compra: " + coche.getPrecioCompra());
-                if (reparaciones.size() == 0) System.out.println("Este coche no tiene reparaciones pendientes");
+                if (reparaciones.size() == 0) throw new InvalidException("Este coche no tiene reparaciones pendientes");
                 else for (Reparacion reparacion : reparaciones) {
                     System.out.println("Reparaciones:" + reparacion.toString());
                 }
-            } else throw new InvalidException("El coche no se encuentra en el concesionario");
+            } else throw new NotFoundException("El coche no se encuentra en el concesionario");
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+        }
+        catch (NotFoundException notFound){
+            System.out.println(notFound.getMessage());
         }
     }
     public void modificarCoche(){
         Scanner scanner = new Scanner(System.in);
-       try{ System.out.println("Introduce la matrícula del coche: ");
+       try{ System.out.print("Introduce la matrícula del coche para modificar sus datos: ");
         String matricula = scanner.nextLine();
         if(coches.containsKey(matricula)) {
             Coche coche = coches.get(matricula);
             System.out.println("Introduce los nuevos datos para el coche con matrícula " + coche.getMatricula() + ": ");
-            System.out.println("Color: ");
+            System.out.print("Color: ");
             String color = scanner.nextLine();
             coche.setColor(color);
-            System.out.println("Precio de venta:");
+            System.out.print("Precio de venta:");
             float nuevoPrecioVenta = scanner.nextFloat();
             coche.setPrecioVenta(nuevoPrecioVenta);
-            System.out.println("Precio de compra: ");
+            System.out.print("Precio de compra: ");
             float nuevoPrecioCompra = scanner.nextFloat();
             coche.setPrecioCompra(nuevoPrecioCompra);
             System.out.println("Los datos han sido modificados correctamente");
             System.out.println();
         }
-        else throw new InvalidException("El coche no existe");
+        else throw new NotFoundException("El coche no está disponible en el concesionario");
        }
-       catch (InvalidException e){
+       catch (NotFoundException e){
            System.out.println(e.getMessage());
 
         }

@@ -1,5 +1,6 @@
 package Clases;
-import Excepciones.CocheException;
+import Excepciones.InvalidException;
+
 import java.util.ArrayList;
 
 public class Coche {
@@ -14,22 +15,22 @@ public class Coche {
 
     private ArrayList<Reparacion> reparaciones;
 
-    public Coche(TipoCoche tipo, String marca, String modelo, String color, EstadoCoche estado, String matricula, float precioVenta, float precioCompra) throws CocheException {
+    public Coche(TipoCoche tipo, String marca, String modelo, String color, EstadoCoche estado, String matricula, float precioVenta, float precioCompra) throws InvalidException {
         this.tipo = tipo;
-        if(marca == null || marca.trim().isEmpty()) throw new CocheException("La marca del coche no puede estar vacía");
+        if(marca == null || marca.trim().isEmpty()) throw new InvalidException("La marca del coche no puede estar vacía");
         this.marca = marca;
-        if(modelo == null || modelo.trim().isEmpty()) throw new CocheException("El modelo del coche no puede estar vacío");
+        if(modelo == null || modelo.trim().isEmpty()) throw new InvalidException("El modelo del coche no puede estar vacío");
         this.modelo = modelo;
-        if(color == null || color.trim().isEmpty()) throw new CocheException("El color del coche no puede estar vacío");
+        if(color == null || color.trim().isEmpty()) throw new InvalidException("El color del coche no puede estar vacío");
         this.color = color;
-        if(estado == null) throw new CocheException("El estado del coche no puede estar vacío");
+        if(estado == null) throw new InvalidException("El estado del coche no puede estar vacío");
         this.estado = estado;
         String ultimasTresLetras = matricula.substring(4); // Obtener las últimas tres letras
-        if(matricula == null || matricula.length() !=7 || !ultimasTresLetras.matches("[A-Z]{3}")) throw new CocheException("La matrícula introducida no es válida");
+        if(matricula == null || matricula.length() !=7 || !ultimasTresLetras.matches("[A-Z]{3}")) throw new InvalidException("La matrícula introducida no es válida");
         this.matricula = matricula; // EDITAR EXCEPCION
-        if(precioVenta <= 0) throw new CocheException("El precio no puede ser menor o igual a 0");
+        if(precioVenta <= 0) throw new InvalidException("El precio no puede ser menor o igual a 0");
         this.precioVenta = precioVenta;
-        if(precioCompra <= 0) throw new CocheException("El precio no puede ser menor o igual a 0");
+        if(precioCompra <= 0) throw new InvalidException("El precio no puede ser menor o igual a 0");
         this.precioCompra = precioCompra;
 
         this.reparaciones = new ArrayList<>();

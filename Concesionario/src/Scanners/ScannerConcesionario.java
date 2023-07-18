@@ -22,7 +22,7 @@ public class ScannerConcesionario {
         this.ventas = concesionario.getVentas();
     }
 
-    public void queCliente() { //CAMBIAR METODO PARA QUE DEVUELVA CLIENTE
+    public void queCliente() {
         Scanner scanner = new Scanner(System.in);
        try{ System.out.print("Introduce la matrícula del coche a consultar: ");
         String matricula = scanner.nextLine();
@@ -37,12 +37,12 @@ public class ScannerConcesionario {
     }
     public void queCoches(){
         Scanner scanner = new Scanner(System.in);
-        try {System.out.println("Introduce el dni del vendedor para consultar sus coches vendidos: ");
+        try {System.out.print("Introduce el dni del vendedor para consultar sus coches vendidos: ");
         String dni = scanner.nextLine();
         if (vendedores.containsKey(dni)) {
             VendedorAComision vendedor = vendedores.get(dni);
             vendedor.imprimirCochesVendidos();
-        } else throw new NotFoundException("El vendedor no ha sido encontrado en la lista de registros del concesionario");
+        } else throw new NotFoundException("El vendedor no está registrado en el concesionario");
     }
         catch (NotFoundException e){
             System.out.println(e.getMessage());}

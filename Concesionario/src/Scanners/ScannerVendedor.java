@@ -1,11 +1,10 @@
 package Scanners;
 
-import Clases.Cliente;
 import Clases.Coche;
 import Clases.VendedorAComision;
 import Clases.Concesionario;
 import Excepciones.InvalidException;
-import Excepciones.PersonaException;
+import Excepciones.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,42 +19,40 @@ public class ScannerVendedor {
         this.vendedores = concesionario.getVendedores();
     }
 
-    public void agregarVendedor() { //Este servirá para agregar un vendedor por scanner
+    public void agregarVendedor() {
         Scanner añadirVendedor = new Scanner(System.in);
         try {
             System.out.println("Introduzca los datos del vendedor: ");
-            System.out.println("Introduzca su nombre: ");
+            System.out.print("Introduzca su nombre: ");
             String nombre = añadirVendedor.nextLine();
-            System.out.println("Introduzca su dirección: ");
+            System.out.print("Introduzca su dirección: ");
             String direccion = añadirVendedor.nextLine();
-            System.out.println("Introduzca su DNI: ");
+            System.out.print("Introduzca su DNI: ");
             String dni = añadirVendedor.nextLine();
-            System.out.println("Introduzca su número de teléfono: ");
+            System.out.print("Introduzca su número de teléfono: ");
             int telefono = añadirVendedor.nextInt();
-            // if(nuevoTeléfono < 99999999 && nuevoTeléfono > 999999999) throw new Exception("El nuevo teléfono no puede ser menor ni mayor a 9 cifras");
             VendedorAComision vendedor = new VendedorAComision(nombre, "", direccion, dni, telefono);
             concesionario.agregarVendedor(vendedor);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
             //consola.director();
-        } catch (PersonaException e) {
-            throw new RuntimeException(e);
         }
     }
 
     public void removeVendedor() {
-        Scanner removeVendedor = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("Introduce el DNI del vendedor a dar de baja: ");
-            String dni = removeVendedor.nextLine();
+            System.out.print("Introduce el DNI del vendedor a dar de baja: ");
+            String dni = scanner.nextLine();
             HashMap<String, VendedorAComision> vendedor = concesionario.getVendedores();
-            if(vendedor.containsKey(dni)){
-            concesionario.removeVendedor(dni);}
-            else throw new InvalidException("El cliente no está dado de alta");
-        } catch (InvalidException e) {
+            if (vendedor.containsKey(dni)) {
+                concesionario.removeVendedor(dni);
+            } else throw new NotFoundException("El cliente no está dado de alta");
+        } catch (NotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
+
     public void imprimirCochesVendidos() {
         Scanner scanner = new Scanner(System.in);
         try {
@@ -78,11 +75,14 @@ public class ScannerVendedor {
                         System.out.println();
                     }
                 }
-            } else throw new InvalidException("El vendedor no está dado de alta");
+            } else throw new NotFoundException("El vendedor no está dado de alta");
+        } catch (NotFoundException notFound) {
+            System.out.println(notFound.getMessage());
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
         }
     }
+
     public void imprimirDatosVendedor() { // imprime los datos del vendedor
         Scanner scanner = new Scanner(System.in);
         try {
@@ -96,8 +96,8 @@ public class ScannerVendedor {
                 System.out.println("DNI: " + vendedor.getDNI());
                 System.out.println("Teléfono: " + vendedor.getTelefono());
                 System.out.println("------------------------");
-            } else throw new InvalidException("Este vendedor no está dado de alta");
-        } catch (InvalidException e) {
+            } else throw new NotFoundException("Este vendedor no está dado de alta");
+        } catch (NotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -120,13 +120,14 @@ public class ScannerVendedor {
                 System.out.println("Introduzca su nuevo teléfono: ");
                 int nuevoTeléfono = scanner.nextInt();
                 vendedor.setTelefono(nuevoTeléfono);
-            } else throw new InvalidException("El vendedor no está dado de alta");
+            } else throw new NotFoundException("El vendedor no está dado de alta");
 
-        } catch (InvalidException e) {
+        } catch (NotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
-   /* public void consolaVendedor(){
+
+    /*public void consolaVendedor() {
         Scanner scanner = new Scanner(System.in);
         try {
             int opcion = 0;
@@ -141,13 +142,15 @@ public class ScannerVendedor {
                 opcion = scanner.nextInt();
                 if (opcion < 1 || opcion > 6) throw new InvalidException("Introduce una de las opciones");
                 if (opcion == 1)
-                if (opcion == 2)
-                    if (opcion == 3)
+                    if (opcion == 2)
+                        if (opcion == 3)
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
             consolaVendedor();
         }
-    }
     }*/
 }
+
+
+

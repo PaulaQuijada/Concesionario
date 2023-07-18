@@ -5,6 +5,7 @@ import Clases.Coche;
 import Clases.Concesionario;
 import Clases.EstadoCoche;
 import Excepciones.InvalidException;
+import Excepciones.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,12 +25,12 @@ public class ScannerReservas {
     public void reservarCoche() {
         Scanner reserva = new Scanner(System.in);
         try {
-            System.out.println("Introduce la matrícula del coche a reservar: ");
+            System.out.print("Introduce la matrícula del coche a reservar: ");
             String matricula = reserva.nextLine();
 
             if (coches.containsKey(matricula)) {
                 Coche coche = coches.get(matricula);
-                System.out.println("Introduce el dni del cliente:");
+                System.out.print("Introduce el dni del cliente:");
                 String dni = reserva.nextLine();
 
                 if (clientes.containsKey(dni)) {
@@ -38,20 +39,20 @@ public class ScannerReservas {
                     cliente.agregarCocheReservado(coche);
                     concesionario.removeCoche(matricula);
                     System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido reservado por el cliente: " + cliente.getNombre());
-                } else System.out.println("El cliente no está dado de alta");
-            } else System.out.println("El coche no está disponible en el stock del concesionario.");
+                } else throw new NotFoundException("El cliente no está dado de alta");
+            } else throw new NotFoundException("El coche no está disponible en el stock del concesionario.");
         }
-     catch(Exception e){
+     catch(NotFoundException e){
          System.out.println(e.getMessage());
         }
     }
     public void cancelarReserva(){
         Scanner cancelar = new Scanner(System.in);
-        try{ System.out.println("Introduce el dni del cliente:");
+        try{ System.out.print("Introduce el dni del cliente:");
         String dni = cancelar.nextLine();
         if (clientes.containsKey(dni)) {
             Cliente cliente = clientes.get(dni);
-            System.out.println("Introduce la matrícula del coche para cancelar la reserva");
+            System.out.print("Introduce la matrícula del coche para cancelar la reserva");
             String matricula = cancelar.nextLine();
             ArrayList<Coche> reservas = cliente.getCochesReservados();
             int conteo = 0;
@@ -63,12 +64,12 @@ public class ScannerReservas {
                     cliente.removeCocheReservado(coche);
                     conteo = 0;
                 }
-                if(conteo == reservas.size()) System.out.println("El coche no está en la lista de reservas del cliente");
+                if(conteo == reservas.size()) throw new NotFoundException("El coche no está en la lista de reservas del cliente");
             }
 
-        } else throw new InvalidException("El cliente no está dado de alta");
+        } else throw new NotFoundException("El cliente no está dado de alta");
     }
-        catch (InvalidException e){
+        catch (NotFoundException e){
             System.out.println(e.getMessage());
             //volver al menú principal
         }

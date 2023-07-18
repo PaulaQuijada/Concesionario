@@ -2,10 +2,8 @@ package Concesionario;
 
 import java.util.Scanner;
 import Clases.Concesionario;
-import Excepciones.PersonaException;
+import Excepciones.InvalidException;
 import Scanners.*;
-
-import java.util.Scanner;
 
 class Proyecto {
     private ScannerCliente SCli;
@@ -21,7 +19,7 @@ class Proyecto {
 
     private Concesionario concesionario;
 
-    public Proyecto() throws PersonaException {
+    public Proyecto() throws InvalidException {
         this.concesionario = new Concesionario();
         this.SCli = new ScannerCliente(this.concesionario);
         this.SCo = new ScannerCoche(this.concesionario);
@@ -111,7 +109,7 @@ class Proyecto {
               vendedores.imprimirDatosVendedor();
               coches.agregarCoche();
               coches.imprimirCoche();
-              ventas.venderCoche();
+              ventas.venderCocheStock();
               concesionario.queCliente();
         }
           catch (Exception e){

@@ -1,5 +1,4 @@
 package Clases;
-import Excepciones.PersonaException;
 
 public class DirectorComercial extends Persona {
     public DirectorComercial(String nombre, String apellido, String direccion, String DNI, int telefono) throws PersonaException {

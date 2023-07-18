@@ -1,9 +1,8 @@
 package Clases;
 
-import Excepciones.ExposicionException;
+import Excepciones.InvalidException;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Exposicion {
     private String tipo;
@@ -12,7 +11,7 @@ public class Exposicion {
     private String direccion;
     private ArrayList<Coche> coches;
 
-    public Exposicion(String tipo, int numExposicion, int telefono, String direccion) throws ExposicionException {
+    public Exposicion(String tipo, int numExposicion, int telefono, String direccion) throws InvalidException {
         this.tipo = tipo;
         this.numExposicion = numExposicion;
         this.telefono = telefono;

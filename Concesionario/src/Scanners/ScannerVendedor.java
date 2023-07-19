@@ -102,7 +102,7 @@ public class ScannerVendedor {
         }
     }
 
-    public void modificarVendedor() {
+    /*public void modificarVendedor() {
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Introduce el dni del vendedor a modificar datos: ");
@@ -125,7 +125,7 @@ public class ScannerVendedor {
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     /*public void consolaVendedor() {
         Scanner scanner = new Scanner(System.in);

@@ -105,14 +105,9 @@ class Proyecto {
 
               clientes.agregarCliente();
               clientes.imprimirDatosCliente();
-              vendedores.agregarVendedor();
-              vendedores.imprimirDatosVendedor();
-              coches.agregarCoche();
-              coches.imprimirCoche();
-              ventas.venderCocheStock();
-              concesionario.queCliente();
+
         }
-          catch (Exception e){
+          catch (InvalidException e){
               System.out.println(e.getMessage());
           }
         }

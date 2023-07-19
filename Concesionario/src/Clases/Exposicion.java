@@ -1,31 +1,30 @@
 package Clases;
 
+import Comprobaciones.Int.ComprobarNumExpo;
+import Comprobaciones.Int.ComprobarTlf;
+import Comprobaciones.String.ComprobarDireccion;
 import Excepciones.InvalidException;
 
 import java.util.ArrayList;
 
 public class Exposicion {
-    private String tipo;
     private int numExposicion;
     private int telefono;
     private String direccion;
     private ArrayList<Coche> coches;
+    private ComprobarNumExpo comprobarNumExpo = new ComprobarNumExpo();
+    private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
+    private ComprobarTlf comprobarTlf = new ComprobarTlf();
 
-    public Exposicion(String tipo, int numExposicion, int telefono, String direccion) throws InvalidException {
-        this.tipo = tipo;
+    public Exposicion(int numExposicion, int telefono, String direccion) throws InvalidException {
+        comprobarNumExpo.comprobacion(numExposicion);
         this.numExposicion = numExposicion;
+        comprobarTlf.comprobacion(telefono);
         this.telefono = telefono;
+        comprobarDireccion.comprobacion(direccion);
         this.direccion = direccion;
         coches = new ArrayList<>();
 
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public int getNumExposicion() {
@@ -36,7 +35,8 @@ public class Exposicion {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(int telefono) throws InvalidException{
+        comprobarTlf.comprobacion(telefono);
         this.telefono = telefono;
     }
 
@@ -44,7 +44,8 @@ public class Exposicion {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(String direccion) throws InvalidException{
+        comprobarDireccion.comprobacion(direccion);
         this.direccion = direccion;
     }
 

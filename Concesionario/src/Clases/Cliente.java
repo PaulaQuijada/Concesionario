@@ -1,5 +1,6 @@
 package Clases;
 
+import Comprobaciones.Int.ComprobarEdad;
 import Excepciones.InvalidException;
 
 import java.util.ArrayList;
@@ -8,12 +9,13 @@ public class Cliente extends Persona {
     private int edad;
     private ArrayList<Coche> cochesComprados;
     private ArrayList<Coche> cochesReservados;
-
+    private ComprobarEdad comprobarEdad = new ComprobarEdad();
     private Concesionario concesionario;
 
     public Cliente(String nombre, String apellido,  int edad, String direccion, String DNI, int telefono) throws InvalidException {
         super(nombre, apellido, direccion, DNI, telefono);
-        if(edad < 18) throw new InvalidException("El cliente debe ser mayor de edad");
+        comprobarEdad.comprobacion(edad);
+        this.edad = edad;
         cochesComprados = new ArrayList<>();
         cochesReservados = new ArrayList<>();
     }
@@ -32,6 +34,14 @@ public class Cliente extends Persona {
 
     public void setCochesReservados(ArrayList<Coche> cochesReservados) {
         this.cochesReservados = cochesReservados;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public void agregarCocheComprado(Coche coche) {

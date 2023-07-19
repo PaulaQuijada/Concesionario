@@ -1,5 +1,8 @@
 package Clases;
-
+import Comprobaciones.String.ComprobarDNI;
+import Comprobaciones.String.ComprobarDireccion;
+import Comprobaciones.String.ComprobarNombre;
+import Comprobaciones.Int.ComprobarTlf;
 import Excepciones.InvalidException;
 
 public class Persona {
@@ -8,24 +11,26 @@ public class Persona {
     private String direccion;
     private String DNI;
     private int telefono;
+    private ComprobarNombre comprobarNombre = new ComprobarNombre();
+    private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
+    private ComprobarDNI comprobarDNI = new ComprobarDNI();
+    private ComprobarTlf comprobarTlf = new ComprobarTlf();
 
-    /* EXCEPCIONES:
-    NOMBRE Y APELLIDO: SIN NUMEROS
-    DNI: 9 DIGITOS 1ºLETRA O ULTIMO
-    MATRICULA: 7-8 DIGITOS
-    TELEFONO: 9 DIGITOS
-    */
+
     public Persona(String nombre, String apellido, String direccion, String DNI, int telefono) throws InvalidException {
-        if(nombre == null || nombre.trim().isEmpty()) throw new InvalidException("El nombre no puede estar vacío");
+        comprobarNombre.comprobacion(nombre);
         this.nombre = nombre;
+
+        comprobarNombre.comprobacion(apellido);
         this.apellido = apellido;
-        if(direccion == null || direccion.trim().isEmpty()) throw new InvalidException("La dirección no puede estar vacía");
+
+        comprobarDireccion.comprobacion(direccion);
         this.direccion = direccion;
-        if (DNI == null || DNI.length() != 9 || !DNI.matches("\\d{8}[A-Z]")) throw new InvalidException("El DNI ingresado es inválido");
+
+        comprobarDNI.comprobacion(DNI);
         this.DNI = DNI;
-        int cantidadCifras = String.valueOf(telefono).length();
-        cantidadCifras = 9;
-        if(cantidadCifras !=9) throw new InvalidException("El teléfono introducido no es válido");
+
+        comprobarTlf.comprobacion(telefono);
         this.telefono = telefono;
     }
 
@@ -33,15 +38,18 @@ public class Persona {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre) throws InvalidException{
+        comprobarNombre.comprobacion(nombre);
         this.nombre = nombre;
     }
 
     public String getApellido() {
+
         return apellido;
     }
 
-    public void setApellido(String apellido) {
+    public void setApellido(String apellido) throws InvalidException{
+        comprobarNombre.comprobacion(apellido);
         this.apellido = apellido;
     }
 
@@ -49,7 +57,8 @@ public class Persona {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(String direccion) throws InvalidException{
+        comprobarDireccion.comprobacion(direccion);
         this.direccion = direccion;
     }
 
@@ -57,7 +66,8 @@ public class Persona {
         return DNI;
     }
 
-    public void setDNI(String DNI) {
+    public void setDNI(String DNI) throws InvalidException{
+        comprobarDNI.comprobacion(DNI);
         this.DNI = DNI;
     }
 
@@ -65,7 +75,8 @@ public class Persona {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(int telefono) throws InvalidException{
+        comprobarTlf.comprobacion(telefono);
         this.telefono = telefono;
     }
 }

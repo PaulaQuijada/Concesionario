@@ -39,10 +39,6 @@ public class Reparacion {
         this.resuelta = resuelta;
     }
 
-
-
-
-
     @Override
     public String toString() {
         return "Reparacion{" +

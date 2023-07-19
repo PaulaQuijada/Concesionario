@@ -1,5 +1,7 @@
 package Clases;
 
+import Excepciones.InvalidException;
+
 import java.util.HashMap;
 
 public class Concesionario {
@@ -10,7 +12,7 @@ public class Concesionario {
     private DirectorComercial director;
     private HashMap<Integer, Exposicion> exposiciones;
 
-    public Concesionario() throws PersonaException {
+    public Concesionario() throws InvalidException {
         this.clientes = new HashMap<>();
         this.vendedores = new HashMap<>();
         this.coches = new HashMap<>();
@@ -59,7 +61,6 @@ public class Concesionario {
     public DirectorComercial getDirector() {
         return director;
     }
-
     public void setDirector(DirectorComercial director) {
         this.director = director;
     }

@@ -25,8 +25,6 @@ public class ScannerExpo {
         Scanner expo = new Scanner(System.in);
         try {
             System.out.println("Introduce los datos para crear una exposición: ");
-            System.out.print("Tipo de exposición: ");
-            String tipo = expo.nextLine();
             System.out.print("Número de exposición: ");
             int numExpo = expo.nextInt();
             System.out.print("Teléfono: ");
@@ -34,7 +32,7 @@ public class ScannerExpo {
             System.out.print("Dirección: ");
             String direccion = expo.nextLine();
 
-            Exposicion exposicion = new Exposicion(tipo, numExpo, telefono, direccion);
+            Exposicion exposicion = new Exposicion(numExpo, telefono, direccion);
             concesionario.agregarExposicion(exposicion);
             return exposicion;
         } catch (InvalidException e) {
@@ -66,7 +64,6 @@ public class ScannerExpo {
             int numExpo = scanner.nextInt();
             if (exposiciones.containsKey(numExpo)) {
                 Exposicion exposicion = exposiciones.get(numExpo);
-                System.out.println("Tipo de exposición: " + exposicion.getTipo());
                 System.out.println("Número de exposición: " + exposicion.getNumExposicion());
                 System.out.println("Teléfono: " + exposicion.getTelefono());
                 System.out.println("Dirección: " + exposicion.getDireccion());
@@ -108,9 +105,6 @@ public class ScannerExpo {
             if (exposiciones.containsKey(numExpo)) {
                 Exposicion exposicion = exposiciones.get(numExpo);
                 System.out.println("Introduce los nuevos datos de la exposicion" + exposicion.getNumExposicion() + ": ");
-                System.out.print("Tipo de exposición: ");
-                String tipo = expo.nextLine();
-                exposicion.setTipo(tipo);
                 System.out.print("Teléfono: ");
                 int telefono = expo.nextInt();
                 exposicion.setTelefono(telefono);
@@ -120,7 +114,10 @@ public class ScannerExpo {
                 System.out.println("Los datos han sido modificados correctamente");
             } else throw new NotFoundException("El número de exposición introducido no existe");
 
-        } catch (NotFoundException e) {
+        } catch (NotFoundException n) {
+            System.out.println(n.getMessage());
+        }
+        catch (InvalidException e){
             System.out.println(e.getMessage());
         }
     }

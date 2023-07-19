@@ -35,19 +35,24 @@ public class ScannerCliente {
             System.out.print("Nombre: ");
             String nombre = añadirCliente.nextLine();
             comprobarNombre.comprobacion(nombre);
+
             System.out.print("Apellido: ");
             String apellido = añadirCliente.nextLine();
             comprobarNombre.comprobacion(apellido);
+
             System.out.print("Edad: ");
             int edad = añadirCliente.nextInt();
             comprobarEdad.comprobacion(edad);
             System.out.print("Dirección: ");
+
             añadirCliente.nextLine();
             String direccion = añadirCliente.nextLine();
             comprobarDireccion.comprobacion(direccion);
+
             System.out.print("DNI: ");
             String dni = añadirCliente.nextLine();
             comprobarDNI.comprobacion(dni);
+
             System.out.print("Número de teléfono: ");
             int telefono = añadirCliente.nextInt();
             comprobarTlf.comprobacion(telefono);

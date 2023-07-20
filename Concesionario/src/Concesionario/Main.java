@@ -1,7 +1,8 @@
 package Concesionario;
 
 import java.util.Scanner;
-import Clases.Concesionario;
+
+import Clases.*;
 import Excepciones.InvalidException;
 import Scanners.*;
 
@@ -102,9 +103,15 @@ class Proyecto {
               ScannerCliente clientes = proyecto.getSCli();
               ScannerVendedor vendedores = proyecto.getSVend();
               ScannerMecanico mecanicos = proyecto.getSMec();
+              ScannerReparacion reparaciones = proyecto.getSRep();
               ScannerConcesionario concesionario = proyecto.getSConce();
 
-              clientes.agregarCliente();
+              mecanicos.agregarMecanico();
+              coches.agregarCoche();
+              reparaciones.agregarReparacion();
+              reparaciones.agregarReparacion();
+              mecanicos.repararCoche();
+              coches.listarReparacionesOrdenadas();
 
 
         }

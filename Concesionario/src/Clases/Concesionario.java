@@ -171,6 +171,17 @@ public class Concesionario {
             }
         }
     }
+    public void imprimirMecanico(){
+        if (mecanicos.isEmpty()) {
+            System.out.println("No hay mecánicos disponibles");
+        } else {
+            for (Mecanico mecanico : mecanicos.values()) {
+                System.out.println("Nombre: " + mecanico.getNombre());
+                System.out.println("Apellido: " + mecanico.getApellido());
+                System.out.println("Dni: " + mecanico.getDNI());
+            }
+        }
+    }
 
     public void consultarCochesAReparar() {
         ArrayList<Coche> coches1 = new ArrayList<>();

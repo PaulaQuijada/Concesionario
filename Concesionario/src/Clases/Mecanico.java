@@ -3,6 +3,8 @@ package Clases;
 import Excepciones.InvalidException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Mecanico extends Persona {
     private ArrayList<Coche> cochesReparados;
@@ -18,5 +20,10 @@ public class Mecanico extends Persona {
     public void setCochesReparados(ArrayList<Coche> cochesReparados) {
         this.cochesReparados = cochesReparados;
     }
+
+    public void agregarCochesReparados(Coche coche){
+        cochesReparados.add(coche);
+    }
+
 
 }

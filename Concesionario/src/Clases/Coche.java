@@ -5,6 +5,8 @@ import Comprobaciones.String.*;
 import Excepciones.InvalidException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Coche {
     private TipoCoche tipo;
@@ -136,9 +138,6 @@ public class Coche {
             System.out.println("Fecha: " + reparacion.getFecha());
             System.out.println("--------------------------");
         }
-    }
-    public void consultarCochesAReparar(){
-
     }
 
 }

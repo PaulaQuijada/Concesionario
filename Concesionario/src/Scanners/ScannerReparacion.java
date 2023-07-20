@@ -1,23 +1,21 @@
 package Scanners;
-import Clases.Coche;
-import Clases.Concesionario;
-import Clases.Reparacion;
-import Clases.TipoReparacion;
+import Clases.*;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class ScannerReparacion {
     private Concesionario concesionario;
     private HashMap<String, Coche> coches;
+    private HashMap<String, Mecanico> mecanicos;
 
     public ScannerReparacion(Concesionario concesionario) {
         this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
+        this.mecanicos = concesionario.getMecanicos();
     }
-    public void agregarCocheReparacion() {
+    public void agregarReparacion() {
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.print("Introduce la matrícula del coche que tiene que ser reparado: ");
@@ -43,6 +41,7 @@ public class ScannerReparacion {
             System.out.println(e.getMessage());
         }
     }
+
     public void consultarReparacionesDeCoche() {
         Scanner scanner = new Scanner(System.in);
         try {

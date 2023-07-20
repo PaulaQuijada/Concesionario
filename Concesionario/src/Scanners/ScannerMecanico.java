@@ -16,6 +16,7 @@ public class ScannerMecanico {
 
     private Concesionario concesionario;
     private HashMap<String, Coche> coches;
+    private HashMap<String, Mecanico> mecanicos;
     private ComprobarNombre comprobarNombre = new ComprobarNombre();
     private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
@@ -25,6 +26,7 @@ public class ScannerMecanico {
     public ScannerMecanico(Concesionario concesionario) {
         this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
+        this.mecanicos = concesionario.getMecanicos();
     }
     public void agregarMecanico() {
         Scanner añadirMecanico = new Scanner(System.in);
@@ -75,26 +77,36 @@ public class ScannerMecanico {
     public void repararCoche() {
         Scanner reparar = new Scanner(System.in);
         try {
-            System.out.print("Introduce la matrícula del coche a reparar:");
-            String matricula = reparar.nextLine();
-            if (coches.containsKey(matricula)) {
-                Coche coche = coches.get(matricula);
-                ArrayList<Reparacion> reparaciones = coche.getReparaciones();
-                if(!reparaciones.isEmpty()){
-                    for(Reparacion reparacion : reparaciones){
-                        reparacion.setResuelta(true);
-                    }
-                    coche.setEstado(EstadoCoche.EN_VENTA);
-                    System.out.println("Todas las reparaciones han sido corregidas");
-                } else throw new InvalidException("El coche no tiene reparaciones");
-            } else throw new NotFoundException("El coche no se encuentra en el stock del concesionario");
+            concesionario.imprimirMecanico();
+            System.out.println("Introduce el dni del mecánico que quieras que arregle tu vehículo: ");
+            String dni = reparar.nextLine();
+            if (mecanicos.containsKey(dni)) {
+                Mecanico mecanico = mecanicos.get(dni);
+                System.out.print("Introduce la matrícula del coche a reparar:");
+                String matricula = reparar.nextLine();
+                if (coches.containsKey(matricula)) {
+                    Coche coche = coches.get(matricula);
+                    ArrayList<Reparacion> reparaciones = coche.getReparaciones();
+                    if (!reparaciones.isEmpty()) {
+
+                        for (Reparacion reparacion : reparaciones) {
+                            reparacion.setResuelta(true);
+
+                        }
+                        mecanico.agregarCochesReparados(coche);
+                        coche.setEstado(EstadoCoche.EN_VENTA);
+                        System.out.println("Todas las reparaciones han sido corregidas");
+                    } else throw new InvalidException("El coche no tiene reparaciones");
+                } else throw new NotFoundException("El coche no se encuentra en el stock del concesionario");
+            } else throw new NotFoundException("El mecánico escogido no está dado de alta");
         }
-        catch (InvalidException e){
+        catch (InvalidException | NotFoundException e){
             System.out.println(e.getMessage());
         }
-        catch (NotFoundException notFound){
-            System.out.println(notFound.getMessage());
-        }
+    }
+
+    public void imprimirMecanico(){
+
     }
 
     public void consolaMecanico(){

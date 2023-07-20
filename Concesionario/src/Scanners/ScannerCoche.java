@@ -1,7 +1,6 @@
 package Scanners;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
+
 import Clases.*;
 import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
@@ -10,12 +9,14 @@ import Excepciones.NotFoundException;
 public class ScannerCoche {
     private Concesionario concesionario;
     private HashMap<String, Coche> coches;
+    private HashMap<String, Mecanico> mecanicos;
     private ArrayList<Reparacion> reparaciones;
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
     public ScannerCoche(Concesionario concesionario) {
         this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
+        this.mecanicos = concesionario.getMecanicos();
     }
 
     public void agregarCoche() {
@@ -122,9 +123,37 @@ public class ScannerCoche {
 
         }
     }
+    public void listarReparacionesOrdenadas() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            concesionario.imprimirMecanico();
+            System.out.println("Introduce el dni del mecánico a consultar: ");
+            String dni = scanner.nextLine();
+            if (mecanicos.containsKey(dni)) {
+                Mecanico mecanico = mecanicos.get(dni);
+                ArrayList<Reparacion> todasLasReparaciones = new ArrayList<>();
+                for (Coche coche : mecanico.getCochesReparados()) {
+                    for (Reparacion reparacion : coche.getReparaciones()) {
+                        todasLasReparaciones.add(reparacion);
+
+                    }
+                }
+                Collections.sort(todasLasReparaciones, Comparator.comparing(Reparacion::getFecha).reversed());
+                System.out.println("Reparaciones de los coches reparados por el mecánico " + mecanico.getNombre() + " " + mecanico.getApellido() + ":");
+                for (Reparacion reparacion : todasLasReparaciones) {
+                    if (reparacion.isResuelta()) {
+                        System.out.println("Fecha: " + reparacion.getFecha() + ", Tipo: " + reparacion.getTipo());
+                    }
+                }
+            } else throw new NotFoundException("El mecánico no está dado de alta en el concesionario");
+        } catch (NotFoundException n){
+            System.out.println(n.getMessage());
+        }
+    }
+
 
     public void consolaCoches(){
-        //scanner para dar de alta/baja un coche, modificar coche,
+
     }
     }
 

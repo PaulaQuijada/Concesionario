@@ -3,6 +3,10 @@ package Scanners;
 import Clases.Coche;
 import Clases.VendedorAComision;
 import Clases.Concesionario;
+import Comprobaciones.Int.ComprobarTlf;
+import Comprobaciones.String.ComprobarDNI;
+import Comprobaciones.String.ComprobarDireccion;
+import Comprobaciones.String.ComprobarNombre;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
@@ -10,10 +14,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static Concesionario.Main.menu;
+
 public class ScannerVendedor {
     private Concesionario concesionario;
     private HashMap<String, VendedorAComision> vendedores;
-
+    private ScannerVentas scannerVentas;
+    private ScannerReservas scannerReservas;
+    private ComprobarNombre comprobarNombre = new ComprobarNombre();
+    private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
+    private ComprobarDNI comprobarDNI = new ComprobarDNI();
+    private ComprobarTlf comprobarTlf = new ComprobarTlf();
     public ScannerVendedor(Concesionario concesionario) {
         this.concesionario = concesionario;
         this.vendedores = concesionario.getVendedores();
@@ -23,14 +34,21 @@ public class ScannerVendedor {
         Scanner añadirVendedor = new Scanner(System.in);
         try {
             System.out.println("Introduzca los datos del vendedor: ");
-            System.out.print("Introduzca su nombre: ");
+            System.out.print("Nombre: ");
             String nombre = añadirVendedor.nextLine();
-            System.out.print("Introduzca su dirección: ");
+            comprobarNombre.comprobacion(nombre);
+            System.out.println("Apellido: ");
+            String apellido = añadirVendedor.nextLine();
+            comprobarNombre.comprobacion(apellido);
+            System.out.print("Dirección: ");
             String direccion = añadirVendedor.nextLine();
-            System.out.print("Introduzca su DNI: ");
+            comprobarDireccion.comprobacion(direccion);
+            System.out.print("DNI: ");
             String dni = añadirVendedor.nextLine();
-            System.out.print("Introduzca su número de teléfono: ");
+            comprobarDNI.comprobacion(dni);
+            System.out.print("Teléfono: ");
             int telefono = añadirVendedor.nextInt();
+            comprobarTlf.comprobacion(telefono);
             VendedorAComision vendedor = new VendedorAComision(nombre, "", direccion, dni, telefono);
             concesionario.agregarVendedor(vendedor);
         } catch (InvalidException e) {
@@ -44,12 +62,16 @@ public class ScannerVendedor {
         try {
             System.out.print("Introduce el DNI del vendedor a dar de baja: ");
             String dni = scanner.nextLine();
+            comprobarDNI.comprobacion(dni);
             HashMap<String, VendedorAComision> vendedor = concesionario.getVendedores();
             if (vendedor.containsKey(dni)) {
                 concesionario.removeVendedor(dni);
-            } else throw new NotFoundException("El cliente no está dado de alta");
+            } else throw new NotFoundException("El vendedor no está dado de alta");
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
+        }
+        catch (InvalidException i){
+            System.out.println(i.getMessage());
         }
     }
 
@@ -88,6 +110,7 @@ public class ScannerVendedor {
         try {
             System.out.println("Introduce el dni del vendedor: ");
             String dni = scanner.nextLine();
+            comprobarDNI.comprobacion(dni);
             if (vendedores.containsKey(dni)) {
                 VendedorAComision vendedor = vendedores.get(dni);
                 System.out.println("Datos del vendedor: ");
@@ -97,12 +120,12 @@ public class ScannerVendedor {
                 System.out.println("Teléfono: " + vendedor.getTelefono());
                 System.out.println("------------------------");
             } else throw new NotFoundException("Este vendedor no está dado de alta");
-        } catch (NotFoundException e) {
+        } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    /*public void modificarVendedor() {
+    public void modificarVendedor() {
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Introduce el dni del vendedor a modificar datos: ");
@@ -122,12 +145,15 @@ public class ScannerVendedor {
                 vendedor.setTelefono(nuevoTeléfono);
             } else throw new NotFoundException("El vendedor no está dado de alta");
 
-        } catch (NotFoundException e) {
+        } catch (NotFoundException n) {
+            System.out.println(n.getMessage());
+        }
+        catch (InvalidException e){
             System.out.println(e.getMessage());
         }
-    }*/
+    }
 
-    /*public void consolaVendedor() {
+    public void consolaVendedor() {
         Scanner scanner = new Scanner(System.in);
         try {
             int opcion = 0;
@@ -141,15 +167,18 @@ public class ScannerVendedor {
                 System.out.print("Elige una opción:");
                 opcion = scanner.nextInt();
                 if (opcion < 1 || opcion > 6) throw new InvalidException("Introduce una de las opciones");
-                if (opcion == 1)
-                    if (opcion == 2)
-                        if (opcion == 3)
+                if (opcion == 1) scannerVentas.venderCocheStock();
+                if (opcion == 2) scannerReservas.reservarCoche();
+                if (opcion == 3)
+                if (opcion == 4)
+                if (opcion == 5) concesionario.imprimirExposiciones();
+                if (opcion == 6) menu();
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
             consolaVendedor();
         }
-    }*/
+    }
 }
 
 

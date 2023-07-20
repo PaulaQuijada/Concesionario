@@ -1,9 +1,7 @@
 package Scanners;
 
-import Clases.Cliente;
-import Clases.Coche;
-import Clases.Concesionario;
-import Clases.EstadoCoche;
+import Clases.*;
+import Comprobaciones.String.ComprobarDNI;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
@@ -15,11 +13,14 @@ public class ScannerReservas {
     private Concesionario concesionario;
     private HashMap<String, Coche> coches;
     private HashMap<String, Cliente> clientes;
+    private ComprobarDNI comprobarDNI = new ComprobarDNI();
+
 
     public ScannerReservas(Concesionario concesionario) {
         this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
         this.clientes = concesionario.getClientes();
+
     }
 
     public void reservarCoche() {
@@ -74,4 +75,5 @@ public class ScannerReservas {
             //volver al menú principal
         }
     }
+
 }

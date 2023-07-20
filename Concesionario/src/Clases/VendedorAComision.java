@@ -34,6 +34,8 @@ public class VendedorAComision extends Persona {
         System.out.println("Dirección del vendedor: " + getDireccion());
         System.out.println("DNI del vendedor: " + getDNI());
         System.out.println("Teléfono del vendedor: " + getTelefono());
+        System.out.println("Ha vendido " + cochesVendidos.size() + " coches");
+        System.out.println("Teléfono del vendedor: " + getTelefono());
         System.out.println("El sueldo es de: " + sueldoAComision());
         System.out.println("------------------------");
     }
@@ -55,8 +57,6 @@ public class VendedorAComision extends Persona {
     public void agregarCocheVendido(Coche coche) {
         cochesVendidos.add(coche);
     }
-
-
     public int sueldoAComision(){
         return cochesVendidos.size() * 200;
     }

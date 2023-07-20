@@ -23,56 +23,39 @@ public class ScannerDirector {
         this.concesionario = concesionario;
     }
 
-    public void agregarDirector() {
+    public void agregarDirector() { //PARA AGREGAR UN DIRECTOR NUEVO O MODIFICAR SUS DATOS
         Scanner añadirDirector = new Scanner(System.in);
-        try {
-            System.out.println("Introduzca los datos del cliente: ");
+        try { DirectorComercial director = new DirectorComercial();
+            System.out.println("Introduzca los datos para agregar o modificar al director: ");
             System.out.print("Nombre: ");
             String nombre = añadirDirector.nextLine();
-            comprobarNombre.comprobacion(nombre);
+            director.setNombre(nombre);
+
             System.out.print("Apellido: ");
             String apellido = añadirDirector.nextLine();
-            comprobarNombre.comprobacion(apellido);
+            director.setApellido(apellido);
+
             System.out.print("Dirección: ");
             añadirDirector.nextLine();
             String direccion = añadirDirector.nextLine();
-            comprobarDireccion.comprobacion(direccion);
+            director.setDireccion(direccion);
+
             System.out.print("DNI: ");
             String dni = añadirDirector.nextLine();
-            comprobarDNI.comprobacion(dni);
+            director.setDNI(dni);
+
             System.out.print("Número de teléfono: ");
             int telefono = añadirDirector.nextInt();
-            comprobarTlf.comprobacion(telefono);
+            director.setTelefono(telefono);
 
-            concesionario.agregarDirector(new DirectorComercial(nombre,apellido,direccion,dni,telefono));
+            concesionario.agregarDirector(director);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
             agregarDirector();
         }
     }
-    public void modificarDirector() {
-        Scanner scanner = new Scanner(System.in);
-        try {
-            System.out.print("Introduce el dni del director a modificar datos: ");
-            String dni = scanner.nextLine();
-            comprobarDNI.comprobacion(dni);
-            DirectorComercial director = concesionario.getDirector();
-            if(director.getDNI().equals(dni)) {
-                System.out.println("Introduzca los nuevos datos para el director con DNI " + director.getDNI() + ": ");
-                System.out.print("Dirección: ");
-                String direccion = scanner.nextLine();
-                director.setDireccion(direccion);
-                System.out.print("Teléfono: ");
-                int teléfono = scanner.nextInt();
-                director.setTelefono(teléfono);
-                System.out.println("Los datos se han modificado correctamente");
-            } else throw new NotFoundException("El director no está dado de alta");
-        } catch (NotFoundException n) {
-            System.out.println(n.getMessage());
-        }
-        catch (InvalidException e){
-            System.out.println(e.getMessage());
-        }
-    }
 
+    public void consolaDirector(){
+
+    }
 }

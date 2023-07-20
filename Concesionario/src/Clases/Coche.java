@@ -10,7 +10,7 @@ public class Coche {
     private TipoCoche tipo;
     private String marca;
     private String modelo;
-    private String color; //he añadido este atributo
+    private String color;
     private EstadoCoche estado;
     private String matricula;
     private float precioVenta;
@@ -136,6 +136,9 @@ public class Coche {
             System.out.println("Fecha: " + reparacion.getFecha());
             System.out.println("--------------------------");
         }
+    }
+    public void consultarCochesAReparar(){
+
     }
 
 }

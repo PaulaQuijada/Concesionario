@@ -2,6 +2,7 @@ package Scanners;
 import Clases.Cliente;
 import Clases.Coche;
 import Clases.Concesionario;
+import Clases.Reparacion;
 import Comprobaciones.Int.ComprobarEdad;
 import Comprobaciones.Int.ComprobarTlf;
 import Comprobaciones.String.ComprobarDNI;
@@ -14,9 +15,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static Concesionario.Main.menu;
+
 public class ScannerCliente {
     private Concesionario concesionario;
     private HashMap<String, Cliente> clientes;
+    private ScannerReservas scannerReservas;
     private ComprobarNombre comprobarNombre = new ComprobarNombre();
     private ComprobarEdad comprobarEdad = new ComprobarEdad();
     private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
@@ -43,8 +47,8 @@ public class ScannerCliente {
             System.out.print("Edad: ");
             int edad = añadirCliente.nextInt();
             comprobarEdad.comprobacion(edad);
-            System.out.print("Dirección: ");
 
+            System.out.print("Dirección: ");
             añadirCliente.nextLine();
             String direccion = añadirCliente.nextLine();
             comprobarDireccion.comprobacion(direccion);
@@ -78,11 +82,8 @@ public class ScannerCliente {
                 } else throw new InvalidException("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
             } else throw new NotFoundException("El cliente no está registrado en el concesionario");
         }
-        catch (InvalidException e) {
+        catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-        }
-        catch (NotFoundException n){
-            System.out.println(n.getMessage());
         }
     }
 
@@ -143,7 +144,6 @@ public class ScannerCliente {
             System.out.println(n.getMessage());
         }
     }
-
     public void scannerCochesReservados() {
         Scanner scanner = new Scanner(System.in);
         try {
@@ -156,13 +156,18 @@ public class ScannerCliente {
                 if (reservas.isEmpty()) {
                     throw new InvalidException("No existen coches reservados");
                 } else {
+                    System.out.println("Coches reservados: ");
                     for (Coche coche : reservas) {
-                        System.out.println("Coches reservados: ");
+                        ArrayList<Reparacion> reparaciones = coche.getReparaciones();
                         System.out.println("Marca: " + coche.getMarca());
                         System.out.println("Modelo: " + coche.getModelo());
                         System.out.println("Matrícula: " + coche.getMatricula());
                         System.out.println("Precio de compra: " + coche.getPrecioCompra());
                         System.out.println("Precio de venta: " + coche.getPrecioVenta());
+                        if (reparaciones.size() == 0) throw new InvalidException("Este coche no tiene reparaciones pendientes");
+                        else for (Reparacion reparacion : reparaciones) {
+                            System.out.println("Reparaciones:" + reparacion.toString());
+                        }
                         System.out.println();
                     }
                 }
@@ -174,7 +179,6 @@ public class ScannerCliente {
             System.out.println(n.getMessage());
         }
     }
-
     public void modificarCliente() {
         Scanner scanner = new Scanner(System.in);
         try {
@@ -209,13 +213,14 @@ public class ScannerCliente {
             while (opcion != 4) {
                 System.out.println("1-CONSULTAR COCHES EN STOCK");
                 System.out.println("2-CONSULTA EXPOSICIONES");
-                System.out.println("3-CONSULTAR REPARACIONES RESERVADOS");
+                System.out.println("3-CONSULTAR COCHES RESERVADOS");
                 System.out.println("4-MENU PRINCIPAL");
                 opcion = consola.nextInt();
                 if (opcion < 1 || opcion > 4) throw new InvalidException("Introduce una de las opciones");
                 if (opcion == 1) concesionario.imprimirStock();
-                if (opcion == 2) //concesionario.imprimirExposicion;
-                    if (opcion == 3) ; //imprimir reparaciones;
+                if (opcion == 2) concesionario.imprimirExposiciones();
+                if (opcion == 3) scannerCochesReservados();
+                if(opcion == 4) menu();
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());

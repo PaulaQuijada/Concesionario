@@ -10,7 +10,6 @@ public class Cliente extends Persona {
     private ArrayList<Coche> cochesComprados;
     private ArrayList<Coche> cochesReservados;
     private ComprobarEdad comprobarEdad = new ComprobarEdad();
-    private Concesionario concesionario;
 
     public Cliente(String nombre, String apellido,  int edad, String direccion, String DNI, int telefono) throws InvalidException {
         super(nombre, apellido, direccion, DNI, telefono);
@@ -81,6 +80,7 @@ public class Cliente extends Persona {
                 System.out.println("Matrícula: " + coche.getMatricula());
                 System.out.println("Precio de compra: " + coche.getPrecioCompra());
                 System.out.println("Precio de venta: " + coche.getPrecioVenta());
+                System.out.println();
                 System.out.println();
             }
         }

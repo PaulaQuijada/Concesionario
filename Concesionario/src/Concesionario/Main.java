@@ -101,10 +101,11 @@ class Proyecto {
               ScannerCoche coches = proyecto.getSCo();
               ScannerCliente clientes = proyecto.getSCli();
               ScannerVendedor vendedores = proyecto.getSVend();
+              ScannerMecanico mecanicos = proyecto.getSMec();
               ScannerConcesionario concesionario = proyecto.getSConce();
 
               clientes.agregarCliente();
-              clientes.imprimirDatosCliente();
+
 
         }
           catch (InvalidException e){

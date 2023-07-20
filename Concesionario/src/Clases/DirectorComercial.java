@@ -6,6 +6,10 @@ public class DirectorComercial extends Persona {
     public DirectorComercial(String nombre, String apellido, String direccion, String DNI, int telefono) throws InvalidException {
         super(nombre, apellido, direccion, DNI, telefono);
     }
+
+    public DirectorComercial() {
+    }
+
     public void imprimirDatosDirector(){
         System.out.println("Datos del director: ");
         System.out.println("Nombre: " + getNombre());

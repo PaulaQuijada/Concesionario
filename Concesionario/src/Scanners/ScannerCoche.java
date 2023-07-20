@@ -3,12 +3,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import Clases.*;
+import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
 public class ScannerCoche {
     private Concesionario concesionario;
     private HashMap<String, Coche> coches;
+    private ArrayList<Reparacion> reparaciones;
+    private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
     public ScannerCoche(Concesionario concesionario) {
         this.concesionario = concesionario;
@@ -67,6 +70,7 @@ public class ScannerCoche {
         try {
             System.out.print("Introduce la matricula del coche: ");
             String matricula = scanner.nextLine();
+            comprobarMatricula.comprobacion(matricula);
             HashMap<String, Coche> coches = concesionario.getCoches();
             if (coches.containsKey(matricula)) {
                 Coche coche = coches.get(matricula);
@@ -118,6 +122,7 @@ public class ScannerCoche {
 
         }
     }
+
     public void consolaCoches(){
         //scanner para dar de alta/baja un coche, modificar coche,
     }

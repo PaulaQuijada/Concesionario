@@ -23,7 +23,7 @@ public class ScannerDirector {
         this.concesionario = concesionario;
     }
 
-    public void agregarDirector() { //PARA AGREGAR UN DIRECTOR NUEVO O MODIFICAR SUS DATOS
+    public void agregarModificarDirector() { //PARA AGREGAR UN DIRECTOR NUEVO O MODIFICAR SUS DATOS
         Scanner añadirDirector = new Scanner(System.in);
         try { DirectorComercial director = new DirectorComercial();
             System.out.println("Introduzca los datos para agregar o modificar al director: ");
@@ -51,7 +51,7 @@ public class ScannerDirector {
             concesionario.agregarDirector(director);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            agregarDirector();
+            agregarModificarDirector();
         }
     }
 

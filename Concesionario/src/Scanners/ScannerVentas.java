@@ -21,7 +21,7 @@ public class ScannerVentas {
         this.vendedores = concesionario.getVendedores();
         this.coches = concesionario.getCoches();
     }
-
+ //COMPROBADO
     public void venderCocheStock() {
         Scanner venta = new Scanner(System.in);
        try{ System.out.print("Introduce la matrícula del coche a vender: ");

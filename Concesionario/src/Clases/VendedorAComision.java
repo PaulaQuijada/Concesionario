@@ -52,7 +52,7 @@ public class VendedorAComision extends Persona {
                 System.out.println();
             }
         }
-        System.out.println("Este vendedor no ha vendido ningún coche");
+        else System.out.println("Este vendedor no ha vendido ningún coche");
     }
     public void agregarCocheVendido(Coche coche) {
         cochesVendidos.add(coche);

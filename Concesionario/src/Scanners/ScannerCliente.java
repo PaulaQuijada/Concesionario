@@ -66,11 +66,12 @@ public class ScannerCliente {
             System.out.println(e.getMessage());
             agregarCliente();
         }
-    }
+    } //COMPROBADO
 
     public void removeCliente() {
         Scanner removeCliente = new Scanner(System.in);
         try {
+            concesionario.imprimirClientes();
             System.out.print("Introduce el DNI del cliente a dar de baja: ");
             String dni = removeCliente.nextLine();
             comprobarDNI.comprobacion(dni);
@@ -84,12 +85,14 @@ public class ScannerCliente {
         }
         catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
+            removeCliente();
         }
-    }
+    } //COMPROBADO
 
     public void imprimirDatosCliente() {
         Scanner scanner = new Scanner(System.in);
         try {
+            concesionario.imprimirClientes();
             System.out.print("Introduce el dni para imprimir los datos del cliente:");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
@@ -104,17 +107,16 @@ public class ScannerCliente {
                 System.out.println("Teléfono: " + cliente.getTelefono());
                 System.out.println("------------------------");
             } else throw new NotFoundException("Este cliente no está dado de alta");
-        } catch (NotFoundException n) {
+        } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            //volver a menú clientes consola.clientes();
-        } catch (InvalidException e){
-            System.out.println(e.getMessage());
+            imprimirDatosCliente();
         }
-    }
+    } //COMPROBADO
 
     public void scannerCochesComprados() {
         Scanner scanner = new Scanner(System.in);
         try {
+            concesionario.imprimirClientes();
             System.out.print("Introduce el dni del cliente:");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
@@ -147,6 +149,7 @@ public class ScannerCliente {
     public void scannerCochesReservados() {
         Scanner scanner = new Scanner(System.in);
         try {
+            concesionario.imprimirClientes();
             System.out.print("Introduce el dni del cliente:");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
@@ -182,6 +185,7 @@ public class ScannerCliente {
     public void modificarCliente() {
         Scanner scanner = new Scanner(System.in);
         try {
+            concesionario.imprimirClientes();
             System.out.print("Introduce el dni del cliente a modificar datos:");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);

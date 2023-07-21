@@ -101,6 +101,7 @@ public class ScannerCoche {
         Scanner scanner = new Scanner(System.in);
        try{ System.out.print("Introduce la matrícula del coche para modificar sus datos: ");
         String matricula = scanner.nextLine();
+           comprobarMatricula.comprobacion(matricula);
         if(coches.containsKey(matricula)) {
             Coche coche = coches.get(matricula);
             System.out.println("Introduce los nuevos datos para el coche con matrícula " + coche.getMatricula() + ": ");
@@ -118,15 +119,14 @@ public class ScannerCoche {
         }
         else throw new NotFoundException("El coche no está disponible en el concesionario");
        }
-       catch (NotFoundException e){
+       catch (NotFoundException | InvalidException e){
            System.out.println(e.getMessage());
-
         }
     }
     public void listarReparacionesOrdenadas() {
         Scanner scanner = new Scanner(System.in);
         try {
-            concesionario.imprimirMecanico();
+            concesionario.imprimirMecanicos();
             System.out.println("Introduce el dni del mecánico a consultar: ");
             String dni = scanner.nextLine();
             if (mecanicos.containsKey(dni)) {
@@ -149,7 +149,7 @@ public class ScannerCoche {
         } catch (NotFoundException n){
             System.out.println(n.getMessage());
         }
-    }
+    } //COMPROBADO
 
 
     public void consolaCoches(){

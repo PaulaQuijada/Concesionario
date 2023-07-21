@@ -1,5 +1,6 @@
 package Scanners;
 import Clases.*;
+import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
@@ -9,6 +10,7 @@ public class ScannerReparacion {
     private Concesionario concesionario;
     private HashMap<String, Coche> coches;
     private HashMap<String, Mecanico> mecanicos;
+    private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
     public ScannerReparacion(Concesionario concesionario) {
         this.concesionario = concesionario;
@@ -20,6 +22,7 @@ public class ScannerReparacion {
         try {
             System.out.print("Introduce la matrícula del coche que tiene que ser reparado: ");
             String matricula = scanner.nextLine();
+            comprobarMatricula.comprobacion(matricula);
             if (coches.containsKey(matricula)) {
                 Coche coche = coches.get(matricula);
                 System.out.println("Introduce la reparación a añadir: ");
@@ -37,7 +40,7 @@ public class ScannerReparacion {
                 coche.agregarCocheAReparar(reparacion);
 
             } else throw new NotFoundException("El coche no está en el stock del concesionario ");
-        } catch (NotFoundException e) {
+        } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -47,17 +50,15 @@ public class ScannerReparacion {
         try {
             System.out.print("Introduce la matrícula del coche a consultar reparaciones: ");
             String matricula = scanner.nextLine();
+            comprobarMatricula.comprobacion(matricula);
             if (coches.containsKey(matricula)) {
                 Coche coche = coches.get(matricula);
                 if (!coche.getReparaciones().isEmpty()) {
                     coche.imprimirReparaciones();
                 } else throw new InvalidException("El coche no tiene ninguna reparación");
             } else throw new NotFoundException("El coche introducido no está en el stock del concesionario");
-        } catch (NotFoundException notFound) {
+        } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
-        }
-        catch (InvalidException e){
-            System.out.println(e.getMessage());
         }
     }
 }

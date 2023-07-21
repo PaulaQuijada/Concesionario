@@ -106,12 +106,18 @@ class Proyecto {
               ScannerReparacion reparaciones = proyecto.getSRep();
               ScannerConcesionario concesionario = proyecto.getSConce();
 
-              mecanicos.agregarMecanico();
+              vendedores.agregarVendedor();
+              System.out.println("--------------------------------------------------");
+              clientes.agregarCliente();
+              System.out.println("--------------------------------------------------");
               coches.agregarCoche();
-              reparaciones.agregarReparacion();
-              reparaciones.agregarReparacion();
-              mecanicos.repararCoche();
-              coches.listarReparacionesOrdenadas();
+              System.out.println("--------------------------------------------------");
+              ventas.venderCocheStock();
+              System.out.println("--------------------------------------------------");
+              concesionario.queCliente();
+              System.out.println("--------------------------------------------------");
+              concesionario.queCoches();
+              System.out.println("--------------------------------------------------");
 
 
         }

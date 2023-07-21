@@ -57,7 +57,7 @@ public class ScannerMecanico {
             System.out.println(e.getMessage());
             agregarMecanico();
         }
-    }
+    } //COMPROBADO
 
     public void removeMecanico() {
         Scanner scanner = new Scanner(System.in);
@@ -77,7 +77,7 @@ public class ScannerMecanico {
     public void repararCoche() {
         Scanner reparar = new Scanner(System.in);
         try {
-            concesionario.imprimirMecanico();
+            concesionario.imprimirMecanicos();
             System.out.println("Introduce el dni del mecánico que quieras que arregle tu vehículo: ");
             String dni = reparar.nextLine();
             if (mecanicos.containsKey(dni)) {
@@ -103,11 +103,7 @@ public class ScannerMecanico {
         catch (InvalidException | NotFoundException e){
             System.out.println(e.getMessage());
         }
-    }
-
-    public void imprimirMecanico(){
-
-    }
+    } //COMPROBADO
 
     public void consolaMecanico(){
         Scanner scanner = new Scanner(System.in);

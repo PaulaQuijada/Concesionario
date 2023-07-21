@@ -3,6 +3,9 @@ import Clases.Cliente;
 import Clases.Coche;
 import Clases.Concesionario;
 import Clases.VendedorAComision;
+import Comprobaciones.String.ComprobarDNI;
+import Comprobaciones.String.ComprobarMatricula;
+import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
 import java.util.HashMap;
@@ -14,6 +17,8 @@ public class ScannerConcesionario {
     private HashMap<String, VendedorAComision> vendedores;
     private HashMap<String, Coche> coches;
     private HashMap<String, String> ventas;
+    private ComprobarDNI comprobarDNI = new ComprobarDNI();
+    private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
     public ScannerConcesionario(Concesionario concesionario) {
         this.concesionario = concesionario;
@@ -26,25 +31,30 @@ public class ScannerConcesionario {
         Scanner scanner = new Scanner(System.in);
        try{ System.out.print("Introduce la matrícula del coche a consultar: ");
         String matricula = scanner.nextLine();
+        comprobarMatricula.comprobacion(matricula);
         if (ventas.containsKey(matricula)) {
             String nombreCliente = ventas.get(matricula);
             System.out.println("El coche ha sido comprado o reservado por " + nombreCliente);
             }
         else throw new NotFoundException("El coche no ha sido encontrado en el registro de ventas");
         }
-       catch (NotFoundException e) {
-           System.out.println(e.getMessage());}
+       catch (NotFoundException | InvalidException e) {
+           System.out.println(e.getMessage());
+       }
     }
     public void queCoches(){
         Scanner scanner = new Scanner(System.in);
         try {System.out.print("Introduce el dni del vendedor para consultar sus coches vendidos: ");
         String dni = scanner.nextLine();
+            comprobarDNI.comprobacion(dni);
         if (vendedores.containsKey(dni)) {
             VendedorAComision vendedor = vendedores.get(dni);
             vendedor.imprimirCochesVendidos();
         } else throw new NotFoundException("El vendedor no está registrado en el concesionario");
     }
-        catch (NotFoundException e){
-            System.out.println(e.getMessage());}
+        catch (NotFoundException | InvalidException e){
+            System.out.println(e.getMessage());
+        }
     }
+
 }

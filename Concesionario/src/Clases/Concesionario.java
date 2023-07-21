@@ -156,8 +156,6 @@ public class Concesionario {
         } else {
             for (Exposicion exposicion : exposiciones.values()) {
                 System.out.println("Número de exposición: " + exposicion.getNumExposicion());
-                System.out.println("Teléfono: " + exposicion.getTelefono());
-                System.out.println("Dirección: " + exposicion.getDireccion());
             }
         }
     }
@@ -171,7 +169,32 @@ public class Concesionario {
             }
         }
     }
-    public void imprimirMecanico(){
+    public void imprimirClientes(){
+        if (clientes.isEmpty()) {
+            System.out.println("No hay clientes disponibles");
+        } else {
+            for (Cliente cliente : clientes.values()) {
+                System.out.println("Nombre: " + cliente.getNombre());
+                System.out.println("Apellido: " + cliente.getApellido());
+                System.out.println("Dirección: " + cliente.getDireccion());
+                System.out.println("DNI: " + cliente.getDNI());
+                System.out.println("Teléfono: " + cliente.getTelefono());
+                System.out.println("------------------------");
+            }
+        }
+    }
+    public void imprimirVendedores(){
+        if (vendedores.isEmpty()) {
+            System.out.println("No hay vendedores disponibles");
+        } else {
+            for (VendedorAComision vendedor : vendedores.values()) {
+                System.out.println("Nombre: " + vendedor.getNombre());
+                System.out.println("DNI: " + vendedor.getDNI());
+                System.out.println("------------------------");
+            }
+        }
+    }
+    public void imprimirMecanicos(){
         if (mecanicos.isEmpty()) {
             System.out.println("No hay mecánicos disponibles");
         } else {

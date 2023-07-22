@@ -37,18 +37,23 @@ public class ScannerVendedor {
             System.out.print("Nombre: ");
             String nombre = añadirVendedor.nextLine();
             comprobarNombre.comprobacion(nombre);
+
             System.out.print("Apellido: ");
             String apellido = añadirVendedor.nextLine();
             comprobarNombre.comprobacion(apellido);
+
             System.out.print("Dirección: ");
             String direccion = añadirVendedor.nextLine();
             comprobarDireccion.comprobacion(direccion);
-            System.out.print("DNI: ");
+
+            System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
             String dni = añadirVendedor.nextLine();
             comprobarDNI.comprobacion(dni);
+
             System.out.print("Teléfono: ");
             int telefono = añadirVendedor.nextInt();
             comprobarTlf.comprobacion(telefono);
+
             VendedorAComision vendedor = new VendedorAComision(nombre, apellido, direccion, dni, telefono);
             concesionario.agregarVendedor(vendedor);
         } catch (InvalidException e) {

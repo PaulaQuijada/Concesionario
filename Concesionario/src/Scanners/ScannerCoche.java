@@ -62,7 +62,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El coche no está dado de alta en el concesionario");
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
-            //volver a menú clientes
+
         }
     }
 

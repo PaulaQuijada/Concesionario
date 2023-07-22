@@ -104,23 +104,23 @@ class Proyecto {
               ScannerVendedor vendedores = proyecto.getSVend();
               ScannerMecanico mecanicos = proyecto.getSMec();
               ScannerReparacion reparaciones = proyecto.getSRep();
+              ScannerExpo exposiciones = proyecto.getSExpo();
               ScannerConcesionario concesionario = proyecto.getSConce();
+              ScannerDirector director = proyecto.getSDir();
 
-              vendedores.agregarVendedor();
-              System.out.println("--------------------------------------------------");
-              clientes.agregarCliente();
-              System.out.println("--------------------------------------------------");
               coches.agregarCoche();
-              System.out.println("--------------------------------------------------");
-              ventas.venderCocheStock();
-              System.out.println("--------------------------------------------------");
-              concesionario.queCliente();
-              System.out.println("--------------------------------------------------");
-              concesionario.queCoches();
-              System.out.println("--------------------------------------------------");
+              System.out.println("------------------------------------");
+              exposiciones.agregarExposicion();
+              System.out.println("------------------------------------");
+              exposiciones.agregarCocheAExpo();
+              System.out.println("------------------------------------");
+exposiciones.agregarExposicion();
+              System.out.println("------------------------------------");
+              exposiciones.cambiarCocheDeExposicion();
+              System.out.println("------------------------------------");
+              exposiciones.imprimirCochesExpo();
 
-
-        }
+          }
           catch (InvalidException e){
               System.out.println(e.getMessage());
           }

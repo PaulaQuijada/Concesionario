@@ -41,7 +41,7 @@ public class ScannerConcesionario {
        catch (NotFoundException | InvalidException e) {
            System.out.println(e.getMessage());
        }
-    }
+    } //COMPROBADO
     public void queCoches(){
         Scanner scanner = new Scanner(System.in);
         try {System.out.print("Introduce el dni del vendedor para consultar sus coches vendidos: ");
@@ -55,6 +55,6 @@ public class ScannerConcesionario {
         catch (NotFoundException | InvalidException e){
             System.out.println(e.getMessage());
         }
-    }
+    } //COMPROBADO
 
 }

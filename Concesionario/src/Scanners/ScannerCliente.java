@@ -53,7 +53,7 @@ public class ScannerCliente {
             String direccion = añadirCliente.nextLine();
             comprobarDireccion.comprobacion(direccion);
 
-            System.out.print("DNI: ");
+            System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
             String dni = añadirCliente.nextLine();
             comprobarDNI.comprobacion(dni);
 
@@ -139,11 +139,8 @@ public class ScannerCliente {
                 }
             } else throw new NotFoundException("El cliente no está dado de alta");
 
-        } catch (InvalidException e) {
+        } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-        }
-        catch (NotFoundException n){
-            System.out.println(n.getMessage());
         }
     }
     public void scannerCochesReservados() {
@@ -164,6 +161,7 @@ public class ScannerCliente {
                         ArrayList<Reparacion> reparaciones = coche.getReparaciones();
                         System.out.println("Marca: " + coche.getMarca());
                         System.out.println("Modelo: " + coche.getModelo());
+                        System.out.println("Color: " + coche.getColor());
                         System.out.println("Matrícula: " + coche.getMatricula());
                         System.out.println("Precio de compra: " + coche.getPrecioCompra());
                         System.out.println("Precio de venta: " + coche.getPrecioVenta());
@@ -175,11 +173,8 @@ public class ScannerCliente {
                     }
                 }
             }else throw new NotFoundException("El cliente no está dado de alta");
-        } catch (InvalidException e) {
+        } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-        }
-        catch (NotFoundException n){
-            System.out.println(n.getMessage());
         }
     }
     public void modificarCliente() {

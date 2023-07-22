@@ -7,6 +7,7 @@ import Comprobaciones.Float.ComprobarPrecioCompra;
 import Comprobaciones.Int.ComprobarNumExpo;
 import Comprobaciones.Int.ComprobarTlf;
 import Comprobaciones.String.ComprobarDireccion;
+import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
@@ -41,6 +42,7 @@ public class ScannerExpo {
             comprobarTlf.comprobacion(telefono);
 
             System.out.print("Dirección: ");
+            expo.nextLine();
             String direccion = expo.nextLine();
             comprobarDireccion.comprobacion(direccion);
 
@@ -51,7 +53,7 @@ public class ScannerExpo {
             System.out.println(e.getMessage());
         }
         return null;
-    }
+    } //COMPROBADO
 
     public void removeExposicion() {
         Scanner scanner = new Scanner(System.in);
@@ -68,7 +70,7 @@ public class ScannerExpo {
         catch (NotFoundException | InvalidException notFound){
             System.out.println(notFound.getMessage());
         }
-    }
+    } //COMPROBADO
 
     public void imprimirDatosExposicion() {
         Scanner scanner = new Scanner(System.in);
@@ -85,7 +87,7 @@ public class ScannerExpo {
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
         }
-    }
+    } //COMPROBADO
 
     public void imprimirCochesExpo() {
         Scanner scanner = new Scanner(System.in);
@@ -109,32 +111,33 @@ public class ScannerExpo {
         catch (NotFoundException notFound){
             System.out.println(notFound.getMessage());
         }
-    }
+    } //COMPROBADO
 
     public void modificarExpo() {
         Scanner expo = new Scanner(System.in);
         try {
-            System.out.print("Introduce el número de exposición: ");
+            System.out.print("Introduce el número de exposición a modificar: ");
             int numExpo = expo.nextInt();
             if (exposiciones.containsKey(numExpo)) {
                 Exposicion exposicion = exposiciones.get(numExpo);
-                System.out.println("Introduce los nuevos datos de la exposicion" + exposicion.getNumExposicion() + ": ");
+                System.out.println("Introduce los nuevos datos de la exposicion número " + exposicion.getNumExposicion() + ": ");
                 System.out.print("Teléfono: ");
                 int telefono = expo.nextInt();
                 exposicion.setTelefono(telefono);
+
                 System.out.print("Dirección: ");
+                expo.nextLine();
                 String direccion = expo.nextLine();
                 exposicion.setDireccion(direccion);
+
+
                 System.out.println("Los datos han sido modificados correctamente");
             } else throw new NotFoundException("El número de exposición introducido no existe");
 
-        } catch (NotFoundException n) {
+        } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
         }
-        catch (InvalidException e){
-            System.out.println(e.getMessage());
-        }
-    }
+    } //COMPROBADO
 
     public void agregarCocheAExpo() {
         Scanner expo = new Scanner(System.in);
@@ -170,7 +173,7 @@ public class ScannerExpo {
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
         }
-    }
+    } //COMPROBADO
 
     public void removeCocheExpo() {
         Scanner scanner = new Scanner(System.in);
@@ -183,6 +186,7 @@ public class ScannerExpo {
                 System.out.println("Estos son los coches que tiene esta exposición: ");
                 exposicion.imprimirCochesExpo();
                 System.out.print("Introduce la matrícula del coche a eliminar de la exposición: ");
+                scanner.nextLine();
                 String matricula = scanner.nextLine();
                 ArrayList<Coche> coches = exposicion.getCoches();
                 for (Coche coche : coches) {
@@ -196,7 +200,7 @@ public class ScannerExpo {
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
         }
-    }
+    } //COMPROBADO
 
 
     public void cambiarCocheDeExposicion() {
@@ -207,10 +211,11 @@ public class ScannerExpo {
 
             if (exposiciones.containsKey(numExpo)) {
                 System.out.println("Aquí está la lista de coches de la exposición: ");
-                System.out.println("-----------------------");
                 Exposicion exposicion = exposiciones.get(numExpo);
                 exposicion.imprimirCochesExpo();
+                System.out.println("-----------------------");
                 System.out.println("Introduce la matrícula del coche a cambiar de exposición: ");
+                cambio.nextLine();
                 String matricula = cambio.nextLine();
                 ArrayList<Coche> cochesExpo = exposicion.getCoches();
                 for (Coche coche : cochesExpo) {
@@ -221,24 +226,24 @@ public class ScannerExpo {
                         System.out.println("2-Añadir coche a una exposición ya existente ");
                         numExpo = cambio.nextInt();
                         if (numExpo == 1) {
-                            Exposicion nuevaExpo = agregarExposicion();
+                            Exposicion nuevaExpo=agregarExposicion();
                             nuevaExpo.agregarCoche(coche);
                             System.out.println("El coche se ha añadido correctamente");
-                        } else System.out.println("Introduce el número de exposición donde quieres mover el coche: ");
+                        } else if(numExpo == 2) {System.out.println("Introduce el número de exposición donde quieres mover el coche: ");
                         numExpo = cambio.nextInt();
                         if (exposiciones.containsKey(numExpo)) {
-                            exposicion.agregarCoche(coche);
+                            Exposicion exposicion1 = exposiciones.get(numExpo);
+                            exposicion1.agregarCoche(coche);
                             System.out.println("El coche se ha añadido correctamente");
+                            break;
+                        }
                         } else throw new InvalidException("El número de exposición introducida no existe");
                     } else throw new NotFoundException("El coche no se encuentra en la exposición");
                 }
             }
         }
-        catch (InvalidException e){
+        catch (InvalidException | NotFoundException e){
             System.out.println(e.getMessage());
         }
-        catch (NotFoundException notFound){
-            System.out.println(notFound.getMessage());
-        }
-    }
+    } //COMPROBADO
 }

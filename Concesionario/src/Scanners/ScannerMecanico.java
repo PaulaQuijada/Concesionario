@@ -44,7 +44,7 @@ public class ScannerMecanico {
             String direccion = añadirMecanico.nextLine();
             comprobarDireccion.comprobacion(direccion);
 
-            System.out.print("DNI: ");
+            System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
             String dni = añadirMecanico.nextLine();
             comprobarDNI.comprobacion(dni);
 

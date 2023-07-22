@@ -3,6 +3,7 @@ package Scanners;
 import Clases.Cliente;
 import Clases.Concesionario;
 import Clases.DirectorComercial;
+import Clases.VendedorAComision;
 import Comprobaciones.Int.ComprobarTlf;
 import Comprobaciones.String.ComprobarDNI;
 import Comprobaciones.String.ComprobarDireccion;
@@ -36,11 +37,10 @@ public class ScannerDirector {
             director.setApellido(apellido);
 
             System.out.print("Dirección: ");
-            añadirDirector.nextLine();
             String direccion = añadirDirector.nextLine();
             director.setDireccion(direccion);
 
-            System.out.print("DNI: ");
+            System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
             String dni = añadirDirector.nextLine();
             director.setDNI(dni);
 
@@ -53,7 +53,26 @@ public class ScannerDirector {
             System.out.println(e.getMessage());
             agregarModificarDirector();
         }
-    }
+    } //COMPROBADO
+    public void imprimirDatosDirector() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Introduce el dni del director: ");
+            String dni = scanner.nextLine();
+            comprobarDNI.comprobacion(dni);
+            if (concesionario.getDirector().getDNI().equals(dni)) {
+                DirectorComercial director = concesionario.getDirector();
+                System.out.println("Datos del director: ");
+                System.out.println("Nombre: " + director.getNombre());
+                System.out.println("Dirección: " + director.getDireccion());
+                System.out.println("DNI: " + director.getDNI());
+                System.out.println("Teléfono: " + director.getTelefono());
+                System.out.println("------------------------");
+            } else throw new NotFoundException("El director no está dado de alta");
+        } catch (NotFoundException | InvalidException e) {
+            System.out.println(e.getMessage());
+        }
+    } //COMPROBADO
 
     public void consolaDirector(){
 

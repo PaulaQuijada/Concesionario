@@ -197,11 +197,8 @@ public class ScannerCliente {
                 cliente.setTelefono(nuevoTeléfono);
             }
             else throw new NotFoundException("El cliente no está dado de alta");
-        } catch (NotFoundException n) {
+        } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-        }
-        catch (InvalidException e){
-            System.out.println(e.getMessage());
         }
     }
 

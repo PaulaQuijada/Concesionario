@@ -72,11 +72,8 @@ public class ScannerVendedor {
             if (vendedor.containsKey(dni)) {
                 concesionario.removeVendedor(dni);
             } else throw new NotFoundException("El vendedor no está dado de alta");
-        } catch (NotFoundException e) {
+        } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-        }
-        catch (InvalidException i){
-            System.out.println(i.getMessage());
         }
     }
 
@@ -149,6 +146,9 @@ public class ScannerVendedor {
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
         }
+    }
+    public void listadoPorTotalVendido(){
+
     }
 
     public void consolaVendedor() {

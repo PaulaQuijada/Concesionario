@@ -87,4 +87,12 @@ public class ScannerVentas {
            System.out.println(e.getMessage());
        }
     }
+    public void consolaVentas(){
+        Scanner ventas = new Scanner(System.in);
+        System.out.println("1-VENDER COCHE DE STOCK");
+        System.out.println("2-VENDER COCHE DE RESERVAS");
+        int opcion = ventas.nextInt();
+        if(opcion == 1) venderCocheStock();
+        if(opcion == 2) venderCocheReservas();
+    }
     }

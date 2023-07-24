@@ -14,11 +14,9 @@ import Excepciones.NotFoundException;
 import java.util.Scanner;
 
 public class ScannerDirector {
-    private ComprobarNombre comprobarNombre = new ComprobarNombre();
-    private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
-    private ComprobarTlf comprobarTlf = new ComprobarTlf();
     private Concesionario concesionario;
+    private ScannerCliente clientes = new ScannerCliente(concesionario);
 
     public ScannerDirector(Concesionario concesionario) {
         this.concesionario = concesionario;
@@ -75,6 +73,32 @@ public class ScannerDirector {
     } //COMPROBADO
 
     public void consolaDirector(){
+    Scanner director = new Scanner(System.in);
+        System.out.println("1-AÑADIR/MODIFICAR DIRECTOR");
+        System.out.println("2-IMPRIMIR DATOS DEL DIRECTOR");
+        System.out.println("3-CLIENTES");
+        System.out.println("4-VENDEDORES");
+        System.out.println("5-MECÁNICOS");
+        System.out.println("6-VEHÍCULOS");
+        System.out.println("7-EXPOSICIONES");
+        System.out.println("8-VENTAS/RESERVAS");
+        System.out.println("9-TALLER");
+        System.out.println("10-INFORMES");
+        System.out.println("-MENU PRINCIPAL");
+        int opcion = director.nextInt();
+        if(opcion == 1) agregarModificarDirector();
+        if(opcion == 2) imprimirDatosDirector();
+        if(opcion == 3) {
+            System.out.println("1-DAR DE ALTA CLIENTE");
+            System.out.println("2-MODIFICAR CLIENTE");
+            System.out.println("3-CONSULTAR DATOS CLIENTE");
+            System.out.println(4);
+            System.out.println("-DAR DE BAJA CLIENTE");
+            if(opcion == 1) clientes.agregarCliente();
+            if(opcion == 2) clientes.modificarCliente();
+            if(opcion == 3) clientes.imprimirDatosCliente();
+            if(opcion == 4) clientes.removeCliente();
+        }
 
     }
 }

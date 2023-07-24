@@ -6,6 +6,8 @@ import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
+import static Concesionario.Main.menu;
+
 public class ScannerCoche {
     private Concesionario concesionario;
     private HashMap<String, Coche> coches;
@@ -153,7 +155,20 @@ public class ScannerCoche {
 
 
     public void consolaCoches(){
-
+        Scanner coches = new Scanner(System.in);
+        System.out.println("1-AGREGAR COCHE");
+        System.out.println("2-MODIFICAR COCHE");
+        System.out.println("3-CONSULTAR DATOS DE UN COCHE");
+        System.out.println("4-REPARACIONES DE UN COCHE");
+        System.out.println("5-ELIMINAR UN COCHE");
+        System.out.println("6-VOLVER AL MENU");
+        int opcion = coches.nextInt();
+        if(opcion == 1) agregarCoche();
+        if(opcion == 2) modificarCoche();
+        if(opcion == 3) imprimirCoche();
+        if(opcion == 4) listarReparacionesOrdenadas();
+        if(opcion == 5) removeCoche();
+        if(opcion == 6) menu();
     }
     }
 

@@ -20,6 +20,7 @@ public class ScannerReparacion {
     public void agregarReparacion() {
         Scanner scanner = new Scanner(System.in);
         try {
+            concesionario.imprimirStock();
             System.out.print("Introduce la matrícula del coche que tiene que ser reparado: ");
             String matricula = scanner.nextLine();
             comprobarMatricula.comprobacion(matricula);
@@ -60,5 +61,13 @@ public class ScannerReparacion {
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
         }
+    } //CAMBIAR MÉTODO PARA COCHES YA REPARADOS
+    public void consolaTaller(){
+        Scanner taller = new Scanner(System.in);
+        System.out.println("1-AGREGAR UNA REPARACIÓN");
+        System.out.println("2-CONSULTAR REPARACIONES");
+        int opcion = taller.nextInt();
+        if(opcion == 1) agregarReparacion();
+        if(opcion == 2) consultarReparacionesDeCoche();
     }
 }

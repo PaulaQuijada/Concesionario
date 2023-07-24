@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static Concesionario.Main.menu;
+
 public class ScannerExpo {
     private Concesionario concesionario;
     private HashMap<Integer, Exposicion> exposiciones;
@@ -63,6 +65,7 @@ public class ScannerExpo {
             comprobarNumExpo.comprobacion(numExpo);
             if (exposiciones.containsKey(numExpo)) {
                 Exposicion exposicion = exposiciones.get(numExpo);
+                //SI LA EXPOSICIÓN ESTÁ LLENA QUE NO SE PUEDA BORRAR
                 exposiciones.remove(numExpo, exposicion);
                 System.out.println("La exposición ha sido eliminada correctamente");
             } else throw new NotFoundException("La exposición indicada no existe en el concesionario");
@@ -105,11 +108,8 @@ public class ScannerExpo {
                     }
                 }
             } else throw new NotFoundException("El número de exposición introducido no existe");
-        } catch (InvalidException e) {
+        } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-        }
-        catch (NotFoundException notFound){
-            System.out.println(notFound.getMessage());
         }
     } //COMPROBADO
 
@@ -246,4 +246,27 @@ public class ScannerExpo {
             System.out.println(e.getMessage());
         }
     } //COMPROBADO
+    public void consolaExposiciones(){
+        Scanner expo = new Scanner(System.in);
+        System.out.println("1-DAR DE ALTA A UNA EXPOSICIÓN");
+        System.out.println("2- MODIFICAR UNA EXPOSICIÓN");
+        System.out.println("3- AGREGAR VEHÍCULO A UNA EXPOSICIÓN");
+        System.out.println("4- ELIMINAR COCHE DE EXPOSICIÓN");
+        System.out.println("5- MOVER VEHÍCULO ENTRE EXPOSICIONES");
+        System.out.println("6- CONSULTAR DATOS DE EXPOSICIONES");
+        System.out.println("7- CONSULTAR COCHES DE EXPOSICIONES");
+        System.out.println("8- DAR DE BAJA A UNA EXPOSICIÓN");
+        System.out.println("9- MENÚ PRINCIPAL");
+        System.out.print("Introduce la opción elegida: ");
+        int opcion = expo.nextInt();
+        if(opcion == 1) agregarExposicion();
+        if(opcion == 2) modificarExpo();
+        if(opcion == 3) agregarCocheAExpo();
+        if(opcion == 4) removeCocheExpo();
+        if(opcion == 5) cambiarCocheDeExposicion();
+        if(opcion == 6) imprimirDatosExposicion();
+        if(opcion == 7) imprimirCochesExpo();
+        if(opcion == 8) removeExposicion();
+        if(opcion == 9) menu();
+    }
 }

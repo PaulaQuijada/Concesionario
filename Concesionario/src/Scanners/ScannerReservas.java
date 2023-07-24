@@ -77,5 +77,13 @@ public class ScannerReservas {
             System.out.println(e.getMessage());
         }
     }
+    public void consolaReservas(){
+        Scanner reservas = new Scanner(System.in);
+        System.out.println("1-RESERVAR COCHE");
+        System.out.println("2-CANCELAR RESERVA");
+        int opcion = reservas.nextInt();
+        if(opcion == 1) reservarCoche();
+        if(opcion == 2) cancelarReserva();
+    }
 
 }

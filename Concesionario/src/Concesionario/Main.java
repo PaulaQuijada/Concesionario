@@ -90,9 +90,9 @@ class Proyecto {
                 System.out.println("Para entrar como director pulsa 3");
                 System.out.println("Para salir del menú pulsa 4");
                 int numero = consola.nextInt();
-                if (numero == 1) {
-                   /* ScannerCliente SCli = new ScannerCliente();*/
-                }
+               /* if (numero == 1) */
+
+
             }
         }
         public static void main(String[] args) {
@@ -108,17 +108,7 @@ class Proyecto {
               ScannerConcesionario concesionario = proyecto.getSConce();
               ScannerDirector director = proyecto.getSDir();
 
-              coches.agregarCoche();
-              System.out.println("------------------------------------");
-              exposiciones.agregarExposicion();
-              System.out.println("------------------------------------");
-              exposiciones.agregarCocheAExpo();
-              System.out.println("------------------------------------");
-exposiciones.agregarExposicion();
-              System.out.println("------------------------------------");
-              exposiciones.cambiarCocheDeExposicion();
-              System.out.println("------------------------------------");
-              exposiciones.imprimirCochesExpo();
+
 
           }
           catch (InvalidException e){

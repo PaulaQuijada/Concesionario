@@ -4,24 +4,25 @@ import Clases.*;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static Concesionario.Main.menu;
+import static Concesionario.Proyecto.menu;
 
 public class ScannerVentas {
     private Concesionario concesionario;
     private HashMap<String, Cliente> clientes;
     private HashMap<String, VendedorAComision> vendedores;
     private HashMap<String, Coche> coches;
+    private ScannerVendedor scannerVendedor;
 
-    public ScannerVentas() throws InvalidException {
-        this.concesionario = new Concesionario();
+    public ScannerVentas(Concesionario concesionario) throws InvalidException {
+        this.concesionario = concesionario;
         this.clientes = concesionario.getClientes();
         this.vendedores = concesionario.getVendedores();
         this.coches = concesionario.getCoches();
+
     }
 
     //COMPROBADO
@@ -53,7 +54,7 @@ public class ScannerVentas {
             } else throw new NotFoundException("El coche no está disponible en el stock del concesionario.");
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
-            consolaVentas();
+            menu(concesionario);
         }
     }
 
@@ -88,25 +89,30 @@ public class ScannerVentas {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaVentas();
+            menu(concesionario);
         }
     }
 
     public void consolaVentas() {
         try {
             Scanner ventas = new Scanner(System.in);
+            System.out.println("**************");
+            System.out.println("*** VENTAS ***");
+            System.out.println("**************");
             System.out.println("1-VENDER COCHE DE STOCK");
             System.out.println("2-VENDER COCHE DE RESERVAS");
-            System.out.println("3-MENÚ PRINCIPAL");
-            System.out.print("Elige entre una de las opciones: ");
+            System.out.println("2-VOLVER AL MENÚ DEL VENDEDOR");
+            System.out.println("4-MENÚ PRINCIPAL");
+            System.out.print("Elija una de las opciones: ");
             int opcion = ventas.nextInt();
-            if (opcion < 1 || opcion > 3) throw new InvalidException("Debe introducir una de las opciones disponibles");
+            if (opcion < 1 || opcion > 4) throw new InvalidException("Debe introducir una de las opciones disponibles");
             if (opcion == 1) venderCocheStock();
             if (opcion == 2) venderCocheReservas();
-            if (opcion == 3) menu();
+            if (opcion == 3) scannerVendedor.consolaVendedor();
+            if (opcion == 4)  menu(concesionario);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaVentas();
+            menu(concesionario);
         }
     }
 }

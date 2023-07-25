@@ -12,6 +12,8 @@ import Excepciones.NotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static Concesionario.Proyecto.menu;
+
 public class ScannerConcesionario {
     private Concesionario concesionario;
     private HashMap<String, Cliente> clientes;
@@ -20,13 +22,15 @@ public class ScannerConcesionario {
     private HashMap<String, String> ventas;
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
-    private ScannerDirector scannerDirector = new ScannerDirector();
 
-    public ScannerConcesionario() throws InvalidException {
-        this.concesionario = new Concesionario();
+
+    public ScannerConcesionario(Concesionario concesionario) throws InvalidException {
+        this.concesionario = concesionario;
         this.clientes = concesionario.getClientes();
         this.vendedores = concesionario.getVendedores();
         this.ventas = concesionario.getVentas();
+
+
     }
 
     public void queCliente() {
@@ -41,7 +45,7 @@ public class ScannerConcesionario {
             } else throw new NotFoundException("El coche no ha sido encontrado en el registro de ventas");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            scannerDirector.informes();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -57,7 +61,7 @@ public class ScannerConcesionario {
             } else throw new NotFoundException("El vendedor no está registrado en el concesionario");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            scannerDirector.informes();
+            menu(concesionario);
         }
     } //COMPROBADO
 

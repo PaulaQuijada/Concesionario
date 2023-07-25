@@ -41,7 +41,6 @@ public class Coche {
         this.precioVenta = precioVenta;
         comprobarPrecioCompra.comprobacion(precioCompra);
         this.precioCompra = precioCompra;
-
         this.reparaciones = new ArrayList<>();
     }
 

@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static Concesionario.Main.menu;
+
+import static Concesionario.Proyecto.menu;
 
 public class ScannerCliente {
     private Concesionario concesionario;
@@ -27,9 +28,11 @@ public class ScannerCliente {
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarTlf comprobarTlf = new ComprobarTlf();
 
-    public ScannerCliente() throws InvalidException {
-        this.concesionario = new Concesionario();
+
+    public ScannerCliente(Concesionario concesionario) throws InvalidException {
+        this.concesionario = concesionario;
         this.clientes = concesionario.getClientes();
+
     }
 
     public void agregarCliente() {
@@ -64,7 +67,7 @@ public class ScannerCliente {
             concesionario.agregarCliente(new Cliente(nombre, apellido, edad, direccion, dni, telefono));
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaClientes();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -86,7 +89,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está registrado en el concesionario");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaClientes();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -110,7 +113,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("Este cliente no está dado de alta");
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            consolaClientes();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -142,7 +145,7 @@ public class ScannerCliente {
 
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaClientes();
+            menu(concesionario);
         }
     }
 
@@ -179,7 +182,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaClientes();
+            menu(concesionario);
         }
     }
 
@@ -204,7 +207,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            consolaClientes();
+            menu(concesionario);
         }
     }
 
@@ -213,22 +216,30 @@ public class ScannerCliente {
             Scanner consola = new Scanner(System.in);
             int opcion = 0;
             while (opcion != 5) {
+                System.out.println("*********************");
+                System.out.println("*** MENÚ CLIENTES ***");
+                System.out.println("*********************");
                 System.out.println("1-CONSULTAR COCHES EN STOCK");
                 System.out.println("2-CONSULTA EXPOSICIONES");
                 System.out.println("3-CONSULTAR COCHES COMPRADOS");
                 System.out.println("4-CONSULTAR COCHES RESERVADOS");
                 System.out.println("5-MENU PRINCIPAL");
+                System.out.print("Elija una de las opciones: ");
                 opcion = consola.nextInt();
-                if (opcion < 1 || opcion > 4) throw new InvalidException("Introduce una de las opciones");
+                if (opcion < 1 || opcion > 5){
+                    System.out.println("*** ERROR ***");
+                    throw new InvalidException("Debe elegir entre una de las opciones disponibles");
+                }
                 if (opcion == 1) concesionario.imprimirStock();
                 if (opcion == 2) concesionario.imprimirExposiciones();
-                if (opcion == 3) scannerCochesReservados();
-                if (opcion == 4) scannerCochesComprados();
-                if (opcion == 5) menu();
+                if (opcion == 3) scannerCochesComprados();
+                if (opcion == 4) scannerCochesReservados();
+                if (opcion == 5)  menu(concesionario);
+
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaClientes();
+            menu(concesionario);
         }
     }
 }

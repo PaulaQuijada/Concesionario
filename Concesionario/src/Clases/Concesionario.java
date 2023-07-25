@@ -2,7 +2,6 @@ package Clases;
 
 import Excepciones.InvalidException;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,7 +25,7 @@ public class Concesionario {
         this.ventas = new HashMap<>();
         this.director = new DirectorComercial("Juan", "Álvarez", "C/Albaricoque", "12345678F", 666778899);
         exposiciones = new HashMap<>();
-        llenar();
+
 
     }
     public HashMap<String, Cliente> getClientes() {
@@ -154,6 +153,7 @@ public class Concesionario {
         coches.put("1234AAA", new Coche(TipoCoche.TURISMO, "K", "K", "K", EstadoCoche.EN_VENTA, "1234AAA", 1000, 500));
         vendedores.put("12345678B", new VendedorAComision("P","P", "P","12345678B", 123456789));
         vendedores.put("12345678C", new VendedorAComision("L","L", "L","12345678C", 123456788));
+
     }
 
 

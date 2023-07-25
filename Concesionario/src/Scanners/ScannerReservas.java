@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static Concesionario.Main.menu;
+import static Concesionario.Proyecto.menu;
 
 public class ScannerReservas {
     private Concesionario concesionario;
@@ -19,8 +19,8 @@ public class ScannerReservas {
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
-    public ScannerReservas() throws InvalidException {
-        this.concesionario = new Concesionario();
+    public ScannerReservas(Concesionario concesionario) throws InvalidException {
+        this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
         this.clientes = concesionario.getClientes();
 
@@ -47,7 +47,7 @@ public class ScannerReservas {
             } else throw new NotFoundException("El coche no está disponible en el stock del concesionario.");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            consolaReservas();
+            menu(concesionario);
         }
     }
 
@@ -79,26 +79,29 @@ public class ScannerReservas {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            consolaReservas();
+            menu(concesionario);
         }
     }
 
     public void consolaReservas() {
         try {
             Scanner reservas = new Scanner(System.in);
+            System.out.println("****************");
+            System.out.println("*** RESERVAS ***");
+            System.out.println("****************");
             System.out.println("1-RESERVAR COCHE");
             System.out.println("2-CANCELAR RESERVA");
             System.out.println("3-MENÚ PRINCIPAL");
-            System.out.print("Elige entre una de las opciones: ");
+            System.out.print("Elija una de las opciones: ");
             int opcion = reservas.nextInt();
             if (opcion < 1 || opcion > 3)
                 throw new InvalidException("Debe elegir entre una de las opciones disponibles");
             if (opcion == 1) reservarCoche();
             if (opcion == 2) cancelarReserva();
-            if (opcion == 3) menu();
+            if (opcion == 3)  menu(concesionario);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaReservas();
+            menu(concesionario);
         }
     }
 }

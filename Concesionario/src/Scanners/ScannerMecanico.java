@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static Concesionario.Proyecto.menu;
+
 public class ScannerMecanico {
 
     private Concesionario concesionario;
@@ -23,11 +25,13 @@ public class ScannerMecanico {
     private ComprobarTlf comprobarTlf = new ComprobarTlf();
 
 
-    public ScannerMecanico() throws InvalidException {
-        this.concesionario = new Concesionario();
+    public ScannerMecanico(Concesionario concesionario) throws InvalidException {
+        this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
         this.mecanicos = concesionario.getMecanicos();
+
     }
+
     public void agregarMecanico() {
         Scanner añadirMecanico = new Scanner(System.in);
         try {
@@ -55,9 +59,10 @@ public class ScannerMecanico {
             concesionario.agregarMecanico(mecanico);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaMecanico();
+            menu(concesionario);
         }
     } //COMPROBADO
+
     public void imprimirDatosMecanico() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -75,9 +80,10 @@ public class ScannerMecanico {
             } else throw new NotFoundException("Este mecánico no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            consolaMecanico();
+            menu(concesionario);
         }
     }
+
     public void modificarMecanico() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -97,13 +103,13 @@ public class ScannerMecanico {
 
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            consolaMecanico();
+            menu(concesionario);
         }
     }
 
     public void removeMecanico() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.print("Introduce el DNI del mecánico a dar de baja: ");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
@@ -113,7 +119,7 @@ public class ScannerMecanico {
             } else throw new NotFoundException("El mecánico no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            consolaMecanico();
+            menu(concesionario);
         }
     }
 
@@ -142,26 +148,29 @@ public class ScannerMecanico {
                     } else throw new InvalidException("El coche no tiene reparaciones");
                 } else throw new NotFoundException("El coche no se encuentra en el stock del concesionario");
             } else throw new NotFoundException("El mecánico escogido no está dado de alta");
-        }
-        catch (InvalidException | NotFoundException e){
+        } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaMecanico();
+            menu(concesionario);
         }
     } //COMPROBADO
 
-    public void consolaMecanico(){
-       try{ Scanner scanner = new Scanner(System.in);
-        System.out.println("1-CONSULTAR COCHES A REPARAR");
-        System.out.println("2-REPARAR COCHE");
-        System.out.println("3-MENÚ PRINCIPAL");
-        System.out.print("Introduce la opción elegida: ");
-        int opcion = scanner.nextInt();
-        if(opcion <1 || opcion >3) throw new InvalidException("Elige entre una de las opciones");
-        if(opcion == 1) concesionario.consultarCochesAReparar();
-        if(opcion == 2) repararCoche();
-    } catch (InvalidException e) {
-           System.out.println(e.getMessage());
-           consolaMecanico();
-       }
+    public void consolaMecanico() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("*************************");
+            System.out.println("*** MENÚ DEL MECÁNICO ***");
+            System.out.println("*************************");
+            System.out.println("1-CONSULTAR COCHES A REPARAR");
+            System.out.println("2-REPARAR COCHE");
+            System.out.println("3-MENÚ PRINCIPAL");
+            System.out.print("Elija una de las opciones: ");
+            int opcion = scanner.nextInt();
+            if (opcion < 1 || opcion > 3) throw new InvalidException("Elige entre una de las opciones");
+            if (opcion == 1) concesionario.consultarCochesAReparar();
+            if (opcion == 2) repararCoche();
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+            menu(concesionario);
+        }
     }
 }

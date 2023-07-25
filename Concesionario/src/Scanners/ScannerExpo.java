@@ -4,11 +4,10 @@ import Clases.Coche;
 import Clases.Concesionario;
 import Clases.EstadoCoche;
 import Clases.Exposicion;
-import Comprobaciones.Float.ComprobarPrecioCompra;
+
 import Comprobaciones.Int.ComprobarNumExpo;
 import Comprobaciones.Int.ComprobarTlf;
 import Comprobaciones.String.ComprobarDireccion;
-import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static Concesionario.Main.menu;
+import static Concesionario.Proyecto.menu;
 
 public class ScannerExpo {
     private Concesionario concesionario;
@@ -26,8 +25,8 @@ public class ScannerExpo {
     private ComprobarTlf comprobarTlf = new ComprobarTlf();
     private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
 
-    public ScannerExpo() throws InvalidException {
-        this.concesionario = new Concesionario();
+    public ScannerExpo(Concesionario concesionario) throws InvalidException {
+        this.concesionario = concesionario;
         this.exposiciones = concesionario.getExposiciones();
         this.coches = concesionario.getCoches();
     }
@@ -54,7 +53,7 @@ public class ScannerExpo {
             return exposicion;
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
         return null;
     } //COMPROBADO
@@ -74,7 +73,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("La exposición indicada no existe en el concesionario");
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -92,7 +91,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("El número de exposición introducido no existe");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -114,7 +113,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("El número de exposición introducido no existe");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -141,7 +140,7 @@ public class ScannerExpo {
 
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -163,6 +162,7 @@ public class ScannerExpo {
                     coche.setEstado(EstadoCoche.EN_EXPOSICION);
                     exposicion.agregarCoche(coche);
                     coches.remove(matricula);
+                    System.out.println("El coche se ha añadido correctamente");
                 } else {
                     System.out.print("Introduce el número de exposición para añadir el coche: ");
                     num = expo.nextInt();
@@ -171,6 +171,7 @@ public class ScannerExpo {
                         coche.setEstado(EstadoCoche.EN_EXPOSICION);
                         exposicion1.agregarCoche(coche);
                         coches.remove(matricula);
+                        System.out.println("El coche se ha añadido correctamente");
                     } else throw new NotFoundException("La exposición indicada no existe");
                 }
 
@@ -178,7 +179,7 @@ public class ScannerExpo {
 
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -201,12 +202,14 @@ public class ScannerExpo {
                         coche.setEstado(EstadoCoche.EN_VENTA);
                         exposicion.borrarCoche(coche);
                         concesionario.agregarCoche(coche);
+                        System.out.println("El coche se ha eliminado correctamente");
+                        break;
                     } else throw new InvalidException("El coche introducido no existe");
                 }
             } else throw new InvalidException("No existe la exposición introducida");
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -236,6 +239,7 @@ public class ScannerExpo {
                             Exposicion nuevaExpo = agregarExposicion();
                             nuevaExpo.agregarCoche(coche);
                             System.out.println("El coche se ha añadido correctamente");
+                            break;
                         } else if (numExpo == 2) {
                             System.out.println("Introduce el número de exposición donde quieres mover el coche: ");
                             numExpo = cambio.nextInt();
@@ -251,7 +255,7 @@ public class ScannerExpo {
             }
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -260,6 +264,9 @@ public class ScannerExpo {
             Scanner expo = new Scanner(System.in);
             int opcion = 0;
             while (opcion != 9) {
+                System.out.println("********************");
+                System.out.println("*** EXPOSICIONES ***");
+                System.out.println("********************");
                 System.out.println("1-DAR DE ALTA A UNA EXPOSICIÓN");
                 System.out.println("2- MODIFICAR UNA EXPOSICIÓN");
                 System.out.println("3- AGREGAR VEHÍCULO A UNA EXPOSICIÓN");
@@ -269,7 +276,7 @@ public class ScannerExpo {
                 System.out.println("7- CONSULTAR COCHES DE EXPOSICIONES");
                 System.out.println("8- DAR DE BAJA A UNA EXPOSICIÓN");
                 System.out.println("9- MENÚ PRINCIPAL");
-                System.out.print("Introduce la opción elegida: ");
+                System.out.print("Elija una de las opciones: ");
                 opcion = expo.nextInt();
                 if (opcion < 1 || opcion > 9) throw new InvalidException("Elige entre una de las opciones");
                 if (opcion == 1) agregarExposicion();
@@ -280,11 +287,11 @@ public class ScannerExpo {
                 if (opcion == 6) imprimirDatosExposicion();
                 if (opcion == 7) imprimirCochesExpo();
                 if (opcion == 8) removeExposicion();
-                if (opcion == 9) menu();
+                if (opcion == 9)  menu(concesionario);
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaExposiciones();
+            menu(concesionario);
         }
     }
 }

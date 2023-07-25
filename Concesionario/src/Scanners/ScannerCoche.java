@@ -6,17 +6,17 @@ import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
-import static Concesionario.Main.menu;
+
+import static Concesionario.Proyecto.menu;
 
 public class ScannerCoche {
     private Concesionario concesionario;
     private HashMap<String, Coche> coches;
     private HashMap<String, Mecanico> mecanicos;
-    private ArrayList<Reparacion> reparaciones;
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
-    public ScannerCoche() throws InvalidException {
-        this.concesionario = new Concesionario();
+    public ScannerCoche(Concesionario concesionario){
+        this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
         this.mecanicos = concesionario.getMecanicos();
     }
@@ -47,9 +47,10 @@ public class ScannerCoche {
             float precioVenta = agregarCoche.nextFloat();
             Coche coche = new Coche(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta);
             concesionario.agregarCoche(coche);
+            System.out.println("El coche se ha añadido al concesionario correctamente");
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaCoches();
+            menu(concesionario);
         }
     }
 
@@ -61,10 +62,11 @@ public class ScannerCoche {
             HashMap<String, Coche> coches = concesionario.getCoches();
             if (coches.containsKey(matricula)) {
                 concesionario.removeCoche(matricula);
+                System.out.println("El coche se ha eliminado correctamente");
             } else throw new NotFoundException("El coche no está dado de alta en el concesionario");
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaCoches();
+            menu(concesionario);
         }
     }
 
@@ -94,7 +96,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El coche no se encuentra en el concesionario");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            consolaCoches();
+            menu(concesionario);
         }
     }
 
@@ -117,11 +119,10 @@ public class ScannerCoche {
                 float nuevoPrecioCompra = scanner.nextFloat();
                 coche.setPrecioCompra(nuevoPrecioCompra);
                 System.out.println("Los datos han sido modificados correctamente");
-                System.out.println();
             } else throw new NotFoundException("El coche no está disponible en el concesionario");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            consolaCoches();
+            menu(concesionario);
         }
     }
 
@@ -150,7 +151,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El mecánico no está dado de alta en el concesionario");
         } catch (NotFoundException n) {
             System.out.println(n.getMessage());
-            consolaCoches();
+            menu(concesionario);
         }
     } //COMPROBADO
 
@@ -159,12 +160,16 @@ public class ScannerCoche {
             Scanner coches = new Scanner(System.in);
             int opcion = 0;
             while (opcion != 6) {
+                System.out.println("**********************");
+                System.out.println("*** MENÚ VEHÍCULOS ***");
+                System.out.println("**********************");
                 System.out.println("1-AGREGAR COCHE");
                 System.out.println("2-MODIFICAR COCHE");
                 System.out.println("3-CONSULTAR DATOS DE UN COCHE");
                 System.out.println("4-REPARACIONES DE UN COCHE");
                 System.out.println("5-ELIMINAR UN COCHE");
                 System.out.println("6-VOLVER AL MENÚ PRINCIPAL");
+                System.out.print("Elija una de las opciones: ");
                 opcion = coches.nextInt();
                 if (opcion < 1 || opcion > 6) throw new InvalidException("Debe introducir una de las opciones disponibles");
                 if (opcion == 1) agregarCoche();
@@ -172,11 +177,11 @@ public class ScannerCoche {
                 if (opcion == 3) imprimirCoche();
                 if (opcion == 4) listarReparacionesOrdenadas();
                 if (opcion == 5) removeCoche();
-                if (opcion == 6) menu();
+                if (opcion == 6) menu(concesionario);
             }
         } catch (InvalidException e){
             System.out.println(e.getMessage());
-            consolaCoches();
+            menu(concesionario);
         }
     }
 }

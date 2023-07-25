@@ -1,10 +1,15 @@
 package Scanners;
+
 import Clases.*;
 import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
+import javax.swing.*;
 import java.util.*;
+
+
+import static Concesionario.Proyecto.menu;
 
 public class ScannerReparacion {
     private Concesionario concesionario;
@@ -12,11 +17,12 @@ public class ScannerReparacion {
     private HashMap<String, Mecanico> mecanicos;
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
-    public ScannerReparacion() throws InvalidException {
-        this.concesionario = new Concesionario();
+    public ScannerReparacion(Concesionario concesionario) throws InvalidException {
+        this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
         this.mecanicos = concesionario.getMecanicos();
     }
+
     public void agregarReparacion() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -38,12 +44,14 @@ public class ScannerReparacion {
                 scanner.nextLine();
                 String fecha = scanner.nextLine();
                 Reparacion reparacion = new Reparacion(tipo, fecha, false);
+                coche.setEstado(EstadoCoche.EN_REPARACION);
                 coche.agregarCocheAReparar(reparacion);
+                System.out.println("** Reparación añadida **");
 
             } else throw new NotFoundException("El coche no está en el stock del concesionario ");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            consolaTaller();
+            menu(concesionario);
         }
     }
 
@@ -61,23 +69,27 @@ public class ScannerReparacion {
             } else throw new NotFoundException("El coche introducido no está en el stock del concesionario");
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
-            consolaTaller();
+            menu(concesionario);
         }
     }
-    public void consolaTaller(){
-        try{
-        Scanner taller = new Scanner(System.in);
-        System.out.println("1-AGREGAR UNA REPARACIÓN");
-        System.out.println("2-CONSULTAR REPARACIONES");
-        System.out.println("3-MENÚ PRINCIPAL");
-        System.out.print("Elige entre una de las opciones: ");
-        int opcion = taller.nextInt();
-        if(opcion <1 || opcion >3) throw new InvalidException("Debe elegir entre una de las opciones posibles");
-        if(opcion == 1) agregarReparacion();
-        if(opcion == 2) consultarReparacionesDeCoche();
-    } catch (InvalidException e){
+
+    public void consolaTaller() {
+        try {
+            Scanner taller = new Scanner(System.in);
+            System.out.println("**************");
+            System.out.println("*** TALLER ***");
+            System.out.println("**************");
+            System.out.println("1-AGREGAR UNA REPARACIÓN");
+            System.out.println("2-CONSULTAR REPARACIONES");
+            System.out.println("3-MENÚ PRINCIPAL");
+            System.out.print("Elija una de las opciones: ");
+            int opcion = taller.nextInt();
+            if (opcion < 1 || opcion > 3) throw new InvalidException("Debe elegir entre una de las opciones posibles");
+            if (opcion == 1) agregarReparacion();
+            if (opcion == 2) consultarReparacionesDeCoche();
+        } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            consolaTaller();
+            menu(concesionario);
         }
     }
 }

@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9b63e01-22cf-4d13-9510-a6b4a2904151" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Concesionario/Proyecto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Clases/Coche.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Clases/Coche.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Clases/Concesionario.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Clases/Concesionario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Concesionario/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Concesionario/Proyecto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Concesionario/Proyecto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerCliente.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerCoche.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerCoche.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerConcesionario.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerConcesionario.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerDirector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerDirector.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerExpo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerExpo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerMecanico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerMecanico.class" afterDir="false" />
@@ -14,7 +21,18 @@
       <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerReservas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerReservas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerVendedor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerVendedor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerVentas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerVentas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Coche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Coche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Concesionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Concesionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Concesionario/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerCoche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerCoche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerConcesionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerConcesionario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerDirector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerDirector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerExpo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerExpo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerMecanico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerMecanico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerReparacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerReparacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerReservas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerReservas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerVendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerVendedor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerVentas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerVentas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +54,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2Si3ARspqBJb8A7GyHCK1ssnIVH" />
   <component name="ProjectLevelVcsManager">
@@ -69,5 +87,16 @@
       <updated>1689615430276</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Concesionario/Proyecto.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

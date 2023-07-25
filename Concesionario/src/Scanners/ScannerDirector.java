@@ -21,7 +21,7 @@ public class ScannerDirector {
     private ScannerReparacion scannerReparacion;
     private ScannerVentas scannerVentas;
     private ScannerReservas scannerReservas;
-    private ScannerConcesionario scannerConcesionario = new ScannerConcesionario();
+    private ScannerConcesionario scannerConcesionario;
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private Concesionario concesionario;
     private ScannerCliente clientes = new ScannerCliente();

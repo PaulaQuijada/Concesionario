@@ -92,7 +92,7 @@ public class ScannerVentas {
         }
     }
 
-    public void consolaVentas() cd{
+    public void consolaVentas() {
         try {
             Scanner ventas = new Scanner(System.in);
             System.out.println("1-VENDER COCHE DE STOCK");

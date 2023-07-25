@@ -60,7 +60,7 @@ public class ScannerDirector {
             concesionario.agregarDirector(director);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            agregarModificarDirector();
+            consolaDirector();
         }
     } //COMPROBADO
 
@@ -81,6 +81,7 @@ public class ScannerDirector {
             } else throw new NotFoundException("El director no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
+            consolaDirector();
         }
     } //COMPROBADO
 
@@ -109,6 +110,7 @@ public class ScannerDirector {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaDirector();
         }
     }
 
@@ -136,6 +138,7 @@ public class ScannerDirector {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaDirector();
         }
     }
 
@@ -163,6 +166,7 @@ public class ScannerDirector {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaDirector();
         }
     }
 
@@ -186,6 +190,7 @@ public class ScannerDirector {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaDirector();
         }
     }
 
@@ -217,6 +222,7 @@ public class ScannerDirector {
 
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaDirector();
         }
     }
 
@@ -253,6 +259,7 @@ public class ScannerDirector {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaDirector();
         }
     }
 }

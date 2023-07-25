@@ -20,6 +20,7 @@ public class ScannerConcesionario {
     private HashMap<String, String> ventas;
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
+    private ScannerDirector scannerDirector = new ScannerDirector();
 
     public ScannerConcesionario() throws InvalidException {
         this.concesionario = new Concesionario();
@@ -40,6 +41,7 @@ public class ScannerConcesionario {
             } else throw new NotFoundException("El coche no ha sido encontrado en el registro de ventas");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
+            scannerDirector.informes();
         }
     } //COMPROBADO
 
@@ -55,6 +57,7 @@ public class ScannerConcesionario {
             } else throw new NotFoundException("El vendedor no está registrado en el concesionario");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
+            scannerDirector.informes();
         }
     } //COMPROBADO
 

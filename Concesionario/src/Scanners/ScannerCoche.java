@@ -49,12 +49,11 @@ public class ScannerCoche {
             concesionario.agregarCoche(coche);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-
+            consolaCoches();
         }
     }
 
     public void removeCoche() {
-
         try {
             Scanner removeCoche = new Scanner(System.in);
             System.out.print("Introduce la matrícula del coche a eliminar: ");
@@ -65,7 +64,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El coche no está dado de alta en el concesionario");
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
-
+            consolaCoches();
         }
     }
 
@@ -93,10 +92,9 @@ public class ScannerCoche {
                     System.out.println("Reparaciones:" + reparacion.toString());
                 }
             } else throw new NotFoundException("El coche no se encuentra en el concesionario");
-        } catch (InvalidException e) {
+        } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-        } catch (NotFoundException notFound) {
-            System.out.println(notFound.getMessage());
+            consolaCoches();
         }
     }
 
@@ -123,6 +121,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El coche no está disponible en el concesionario");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
+            consolaCoches();
         }
     }
 
@@ -151,6 +150,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El mecánico no está dado de alta en el concesionario");
         } catch (NotFoundException n) {
             System.out.println(n.getMessage());
+            consolaCoches();
         }
     } //COMPROBADO
 

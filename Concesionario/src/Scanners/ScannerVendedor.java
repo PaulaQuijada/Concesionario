@@ -58,7 +58,7 @@ public class ScannerVendedor {
             concesionario.agregarVendedor(vendedor);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            agregarVendedor();
+            consolaVendedor();
         }
     }
 
@@ -74,6 +74,7 @@ public class ScannerVendedor {
             } else throw new NotFoundException("El vendedor no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
+            consolaVendedor();
         }
     }
 
@@ -103,6 +104,7 @@ public class ScannerVendedor {
             } else throw new NotFoundException("El vendedor no está dado de alta");
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
+            consolaVendedor();
         }
     }
 
@@ -123,6 +125,7 @@ public class ScannerVendedor {
             } else throw new NotFoundException("Este vendedor no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
+            consolaVendedor();
         }
     }
 
@@ -145,6 +148,7 @@ public class ScannerVendedor {
 
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
+            consolaVendedor();
         }
     }
     public void consolaVendedor() {

@@ -64,7 +64,7 @@ public class ScannerCliente {
             concesionario.agregarCliente(new Cliente(nombre, apellido, edad, direccion, dni, telefono));
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            agregarCliente();
+            consolaClientes();
         }
     } //COMPROBADO
 
@@ -86,7 +86,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está registrado en el concesionario");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            removeCliente();
+            consolaClientes();
         }
     } //COMPROBADO
 
@@ -110,7 +110,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("Este cliente no está dado de alta");
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            imprimirDatosCliente();
+            consolaClientes();
         }
     } //COMPROBADO
 
@@ -142,6 +142,7 @@ public class ScannerCliente {
 
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
+            consolaClientes();
         }
     }
 
@@ -178,6 +179,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
+            consolaClientes();
         }
     }
 
@@ -202,6 +204,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
+            consolaClientes();
         }
     }
 

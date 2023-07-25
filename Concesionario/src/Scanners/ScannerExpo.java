@@ -54,7 +54,7 @@ public class ScannerExpo {
             return exposicion;
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            agregarExposicion();
+            consolaExposiciones();
         }
         return null;
     } //COMPROBADO
@@ -74,7 +74,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("La exposición indicada no existe en el concesionario");
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
-            removeExposicion();
+            consolaExposiciones();
         }
     } //COMPROBADO
 
@@ -92,6 +92,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("El número de exposición introducido no existe");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
+            consolaExposiciones();
         }
     } //COMPROBADO
 
@@ -113,6 +114,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("El número de exposición introducido no existe");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
+            consolaExposiciones();
         }
     } //COMPROBADO
 
@@ -139,6 +141,7 @@ public class ScannerExpo {
 
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
+            consolaExposiciones();
         }
     } //COMPROBADO
 
@@ -175,6 +178,7 @@ public class ScannerExpo {
 
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
+            consolaExposiciones();
         }
     } //COMPROBADO
 
@@ -202,6 +206,7 @@ public class ScannerExpo {
             } else throw new InvalidException("No existe la exposición introducida");
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaExposiciones();
         }
     } //COMPROBADO
 
@@ -246,6 +251,7 @@ public class ScannerExpo {
             }
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
+            consolaExposiciones();
         }
     } //COMPROBADO
 
@@ -278,6 +284,7 @@ public class ScannerExpo {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaExposiciones();
         }
     }
 }

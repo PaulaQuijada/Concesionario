@@ -51,10 +51,9 @@ public class ScannerVentas {
                     } else throw new NotFoundException("El vendedor no está dado de alta");
                 } else throw new NotFoundException("El cliente no está dado de alta");
             } else throw new NotFoundException("El coche no está disponible en el stock del concesionario.");
-        } catch (NotFoundException notFound) {
+        } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
-        } catch (InvalidException e) {
-            System.out.println(e.getMessage());
+            consolaVentas();
         }
     }
 
@@ -89,10 +88,11 @@ public class ScannerVentas {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
+            consolaVentas();
         }
     }
 
-    public void consolaVentas() {
+    public void consolaVentas() cd{
         try {
             Scanner ventas = new Scanner(System.in);
             System.out.println("1-VENDER COCHE DE STOCK");
@@ -106,6 +106,7 @@ public class ScannerVentas {
             if (opcion == 3) menu();
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            consolaVentas();
         }
     }
 }

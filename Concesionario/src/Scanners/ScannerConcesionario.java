@@ -1,4 +1,5 @@
 package Scanners;
+
 import Clases.Cliente;
 import Clases.Coche;
 import Clases.Concesionario;
@@ -20,39 +21,39 @@ public class ScannerConcesionario {
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
-    public ScannerConcesionario(Concesionario concesionario) {
-        this.concesionario = concesionario;
-        this.clientes  = concesionario.getClientes();
+    public ScannerConcesionario() throws InvalidException {
+        this.concesionario = new Concesionario();
+        this.clientes = concesionario.getClientes();
         this.vendedores = concesionario.getVendedores();
         this.ventas = concesionario.getVentas();
     }
 
     public void queCliente() {
-        Scanner scanner = new Scanner(System.in);
-       try{ System.out.print("Introduce la matrícula del coche a consultar: ");
-        String matricula = scanner.nextLine();
-        comprobarMatricula.comprobacion(matricula);
-        if (ventas.containsKey(matricula)) {
-            String nombreCliente = ventas.get(matricula);
-            System.out.println("El coche ha sido comprado o reservado por " + nombreCliente);
-            }
-        else throw new NotFoundException("El coche no ha sido encontrado en el registro de ventas");
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Introduce la matrícula del coche a consultar: ");
+            String matricula = scanner.nextLine();
+            comprobarMatricula.comprobacion(matricula);
+            if (ventas.containsKey(matricula)) {
+                String nombreCliente = ventas.get(matricula);
+                System.out.println("El coche ha sido comprado o reservado por " + nombreCliente);
+            } else throw new NotFoundException("El coche no ha sido encontrado en el registro de ventas");
+        } catch (NotFoundException | InvalidException e) {
+            System.out.println(e.getMessage());
         }
-       catch (NotFoundException | InvalidException e) {
-           System.out.println(e.getMessage());
-       }
     } //COMPROBADO
-    public void queCoches(){
-        Scanner scanner = new Scanner(System.in);
-        try {System.out.print("Introduce el dni del vendedor para consultar sus coches vendidos: ");
-        String dni = scanner.nextLine();
+
+    public void queCoches() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Introduce el dni del vendedor para consultar sus coches vendidos: ");
+            String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
-        if (vendedores.containsKey(dni)) {
-            VendedorAComision vendedor = vendedores.get(dni);
-            vendedor.imprimirCochesVendidos();
-        } else throw new NotFoundException("El vendedor no está registrado en el concesionario");
-    }
-        catch (NotFoundException | InvalidException e){
+            if (vendedores.containsKey(dni)) {
+                VendedorAComision vendedor = vendedores.get(dni);
+                vendedor.imprimirCochesVendidos();
+            } else throw new NotFoundException("El vendedor no está registrado en el concesionario");
+        } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
         }
     } //COMPROBADO

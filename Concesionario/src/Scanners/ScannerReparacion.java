@@ -12,14 +12,14 @@ public class ScannerReparacion {
     private HashMap<String, Mecanico> mecanicos;
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
-    public ScannerReparacion(Concesionario concesionario) {
-        this.concesionario = concesionario;
+    public ScannerReparacion() throws InvalidException {
+        this.concesionario = new Concesionario();
         this.coches = concesionario.getCoches();
         this.mecanicos = concesionario.getMecanicos();
     }
     public void agregarReparacion() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             concesionario.imprimirStock();
             System.out.print("Introduce la matrícula del coche que tiene que ser reparado: ");
             String matricula = scanner.nextLine();
@@ -47,8 +47,8 @@ public class ScannerReparacion {
     }
 
     public void consultarReparacionesDeCoche() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.print("Introduce la matrícula del coche a consultar reparaciones: ");
             String matricula = scanner.nextLine();
             comprobarMatricula.comprobacion(matricula);
@@ -61,13 +61,20 @@ public class ScannerReparacion {
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
         }
-    } //CAMBIAR MÉTODO PARA COCHES YA REPARADOS
+    }
     public void consolaTaller(){
+        try{
         Scanner taller = new Scanner(System.in);
         System.out.println("1-AGREGAR UNA REPARACIÓN");
         System.out.println("2-CONSULTAR REPARACIONES");
+        System.out.println("3-MENÚ PRINCIPAL");
+        System.out.print("Elige entre una de las opciones: ");
         int opcion = taller.nextInt();
+        if(opcion <1 || opcion >3) throw new InvalidException("Debe elegir entre una de las opciones posibles");
         if(opcion == 1) agregarReparacion();
         if(opcion == 2) consultarReparacionesDeCoche();
+    } catch (InvalidException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

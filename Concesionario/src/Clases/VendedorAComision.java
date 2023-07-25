@@ -12,11 +12,6 @@ public class VendedorAComision extends Persona {
         super(nombre, apellido, direccion, DNI, telefono);
         cochesVendidos = new ArrayList<>();
     }
-
-    public float getSueldo() {
-        return sueldo;
-    }
-
     public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
@@ -49,7 +44,7 @@ public class VendedorAComision extends Persona {
                 System.out.println("Matrícula: " + coche.getMatricula());
                 System.out.println("Precio de compra: " + coche.getPrecioCompra());
                 System.out.println("Precio de venta: " + coche.getPrecioVenta());
-                System.out.println();
+                System.out.println("----------------------------------------------------");
             }
         }
         else System.out.println("Este vendedor no ha vendido ningún coche");

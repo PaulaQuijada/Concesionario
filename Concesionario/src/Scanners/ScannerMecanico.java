@@ -23,8 +23,8 @@ public class ScannerMecanico {
     private ComprobarTlf comprobarTlf = new ComprobarTlf();
 
 
-    public ScannerMecanico(Concesionario concesionario) {
-        this.concesionario = concesionario;
+    public ScannerMecanico() throws InvalidException {
+        this.concesionario = new Concesionario();
         this.coches = concesionario.getCoches();
         this.mecanicos = concesionario.getMecanicos();
     }
@@ -58,6 +58,46 @@ public class ScannerMecanico {
             agregarMecanico();
         }
     } //COMPROBADO
+    public void imprimirDatosMecanico() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Introduce el dni del mecánico: ");
+            String dni = scanner.nextLine();
+            comprobarDNI.comprobacion(dni);
+            if (mecanicos.containsKey(dni)) {
+                Mecanico mecanico = mecanicos.get(dni);
+                System.out.println("Datos del mecanico: ");
+                System.out.println("Nombre: " + mecanico.getNombre());
+                System.out.println("Dirección: " + mecanico.getDireccion());
+                System.out.println("DNI: " + mecanico.getDNI());
+                System.out.println("Teléfono: " + mecanico.getTelefono());
+                System.out.println("------------------------");
+            } else throw new NotFoundException("Este mecánico no está dado de alta");
+        } catch (NotFoundException | InvalidException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void modificarMecanico() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Introduce el dni del mecánico a modificar datos: ");
+            String dni = scanner.nextLine();
+            comprobarDNI.comprobacion(dni);
+            if (mecanicos.containsKey(dni)) {
+                Mecanico mecanico = mecanicos.get(dni);
+                System.out.println("Introduzca los nuevos datos para el mecánico con DNI " + mecanico.getDNI() + ": ");
+                System.out.println("Dirección: ");
+                String direccion = scanner.nextLine();
+                mecanico.setDireccion(direccion);
+                System.out.println("Teléfono: ");
+                int telefono = scanner.nextInt();
+                mecanico.setTelefono(telefono);
+            } else throw new NotFoundException("El mecánico no está dado de alta");
+
+        } catch (NotFoundException | InvalidException n) {
+            System.out.println(n.getMessage());
+        }
+    }
 
     public void removeMecanico() {
         Scanner scanner = new Scanner(System.in);
@@ -75,8 +115,8 @@ public class ScannerMecanico {
     }
 
     public void repararCoche() {
-        Scanner reparar = new Scanner(System.in);
         try {
+            Scanner reparar = new Scanner(System.in);
             concesionario.imprimirMecanicos();
             System.out.println("Introduce el dni del mecánico que quieras que arregle tu vehículo: ");
             String dni = reparar.nextLine();
@@ -106,13 +146,16 @@ public class ScannerMecanico {
     } //COMPROBADO
 
     public void consolaMecanico(){
-        Scanner scanner = new Scanner(System.in);
+       try{ Scanner scanner = new Scanner(System.in);
         System.out.println("1-CONSULTAR COCHES A REPARAR");
         System.out.println("2-REPARAR COCHE");
+        System.out.println("3-MENÚ PRINCIPAL");
+        System.out.print("Introduce la opción elegida: ");
         int opcion = scanner.nextInt();
+        if(opcion <1 || opcion >3) throw new InvalidException("Elige entre una de las opciones");
         if(opcion == 1) concesionario.consultarCochesAReparar();
         if(opcion == 2) repararCoche();
-
-
+    } catch (InvalidException e) {
+           System.out.println(e.getMessage());}
     }
 }

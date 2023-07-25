@@ -13,37 +13,48 @@ import Excepciones.NotFoundException;
 
 import java.util.Scanner;
 
+import static Concesionario.Main.menu;
+
 public class ScannerDirector {
+    private ScannerCoche scannerCoche;
+    private ScannerExpo scannerExpo;
+    private ScannerReparacion scannerReparacion;
+    private ScannerVentas scannerVentas;
+    private ScannerReservas scannerReservas;
+    private ScannerConcesionario scannerConcesionario = new ScannerConcesionario();
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private Concesionario concesionario;
-    private ScannerCliente clientes = new ScannerCliente(concesionario);
+    private ScannerCliente clientes = new ScannerCliente();
+    private ScannerVendedor vendedores = new ScannerVendedor();
+    private ScannerMecanico mecanicos = new ScannerMecanico();
 
-    public ScannerDirector(Concesionario concesionario) {
-        this.concesionario = concesionario;
+    public ScannerDirector() throws InvalidException {
+        this.concesionario = new Concesionario();
     }
 
     public void agregarModificarDirector() { //PARA AGREGAR UN DIRECTOR NUEVO O MODIFICAR SUS DATOS
-        Scanner añadirDirector = new Scanner(System.in);
-        try { DirectorComercial director = new DirectorComercial();
+        Scanner agregarDirector = new Scanner(System.in);
+        try {
+            DirectorComercial director = new DirectorComercial();
             System.out.println("Introduzca los datos para agregar o modificar al director: ");
             System.out.print("Nombre: ");
-            String nombre = añadirDirector.nextLine();
+            String nombre = agregarDirector.nextLine();
             director.setNombre(nombre);
 
             System.out.print("Apellido: ");
-            String apellido = añadirDirector.nextLine();
+            String apellido = agregarDirector.nextLine();
             director.setApellido(apellido);
 
             System.out.print("Dirección: ");
-            String direccion = añadirDirector.nextLine();
+            String direccion = agregarDirector.nextLine();
             director.setDireccion(direccion);
 
             System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
-            String dni = añadirDirector.nextLine();
+            String dni = agregarDirector.nextLine();
             director.setDNI(dni);
 
             System.out.print("Número de teléfono: ");
-            int telefono = añadirDirector.nextInt();
+            int telefono = agregarDirector.nextInt();
             director.setTelefono(telefono);
 
             concesionario.agregarDirector(director);
@@ -52,6 +63,7 @@ public class ScannerDirector {
             agregarModificarDirector();
         }
     } //COMPROBADO
+
     public void imprimirDatosDirector() {
         Scanner scanner = new Scanner(System.in);
         try {
@@ -72,33 +84,175 @@ public class ScannerDirector {
         }
     } //COMPROBADO
 
-    public void consolaDirector(){
-    Scanner director = new Scanner(System.in);
-        System.out.println("1-AÑADIR/MODIFICAR DIRECTOR");
-        System.out.println("2-IMPRIMIR DATOS DEL DIRECTOR");
-        System.out.println("3-CLIENTES");
-        System.out.println("4-VENDEDORES");
-        System.out.println("5-MECÁNICOS");
-        System.out.println("6-VEHÍCULOS");
-        System.out.println("7-EXPOSICIONES");
-        System.out.println("8-VENTAS/RESERVAS");
-        System.out.println("9-TALLER");
-        System.out.println("10-INFORMES");
-        System.out.println("-MENU PRINCIPAL");
-        int opcion = director.nextInt();
-        if(opcion == 1) agregarModificarDirector();
-        if(opcion == 2) imprimirDatosDirector();
-        if(opcion == 3) {
-            System.out.println("1-DAR DE ALTA CLIENTE");
-            System.out.println("2-MODIFICAR CLIENTE");
-            System.out.println("3-CONSULTAR DATOS CLIENTE");
-            System.out.println(4);
-            System.out.println("-DAR DE BAJA CLIENTE");
-            if(opcion == 1) clientes.agregarCliente();
-            if(opcion == 2) clientes.modificarCliente();
-            if(opcion == 3) clientes.imprimirDatosCliente();
-            if(opcion == 4) clientes.removeCliente();
-        }
 
+    public void consultarClientes() {
+        try {
+            Scanner consulta = new Scanner(System.in);
+            int opcion = 0;
+            while (opcion != 6) {
+                System.out.println("1-DAR DE ALTA CLIENTE");
+                System.out.println("2-MODIFICAR CLIENTE");
+                System.out.println("3-CONSULTAR DATOS CLIENTE");
+                System.out.println("4-DAR DE BAJA CLIENTE");
+                System.out.println("5-VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("5-VOLVER AL MENÚ PRINCIPAL");
+                System.out.print("Elija entre una de las opciones");
+                opcion = consulta.nextInt();
+                if (opcion < 1 || opcion > 6)
+                    throw new InvalidException("Debe elegir entre una de las opciones disponibles");
+                if (opcion == 1) clientes.agregarCliente();
+                if (opcion == 2) clientes.modificarCliente();
+                if (opcion == 3) clientes.imprimirDatosCliente();
+                if (opcion == 4) clientes.removeCliente();
+                if (opcion == 5) consolaDirector();
+                if (opcion == 6) menu();
+            }
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void consultarVendedores() {
+        try {
+            Scanner consulta = new Scanner(System.in);
+            int opcion = 0;
+            while (opcion != 6) {
+                System.out.println("1-DAR DE ALTA VENDEDOR");
+                System.out.println("2-MODIFICAR VENDEDOR");
+                System.out.println("3-CONSULTAR DATOS VENDEDOR");
+                System.out.println("4-DAR DE BAJA VENDEDOR");
+                System.out.println("5-VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("5-VOLVER AL MENÚ PRINCIPAL");
+                System.out.print("Elija entre una de las opciones");
+                opcion = consulta.nextInt();
+                if (opcion < 1 || opcion > 6)
+                    throw new InvalidException("Debe elegir entre una de las opciones disponibles");
+                if (opcion == 1) vendedores.agregarVendedor();
+                if (opcion == 2) vendedores.modificarVendedor();
+                if (opcion == 3) vendedores.imprimirDatosVendedor();
+                if (opcion == 4) vendedores.removeVendedor();
+                if (opcion == 5) consolaDirector();
+                if (opcion == 6) menu();
+            }
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void consultarMecanicos() {
+        try {
+            Scanner consulta = new Scanner(System.in);
+            int opcion = 0;
+            while (opcion != 6) {
+                System.out.println("1-DAR DE ALTA MECÁNICO");
+                System.out.println("2-MODIFICAR MECÁNICO");
+                System.out.println("3-CONSULTAR DATOS MECÁNICO");
+                System.out.println("4-DAR DE BAJA MECÁNICO");
+                System.out.println("5-VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("5-VOLVER AL MENÚ PRINCIPAL");
+                System.out.print("Elija entre una de las opciones");
+                opcion = consulta.nextInt();
+                if (opcion < 1 || opcion > 6)
+                    throw new InvalidException("Debe elegir entre una de las opciones disponibles");
+                if (opcion == 1) mecanicos.agregarMecanico();
+                if (opcion == 2) mecanicos.modificarMecanico();
+                if (opcion == 3) mecanicos.imprimirDatosMecanico();
+                if (opcion == 4) mecanicos.removeMecanico();
+                if (opcion == 5) consolaDirector();
+                if (opcion == 6) menu();
+            }
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void gestionVentasReservas() {
+        try {
+            Scanner gestion = new Scanner(System.in);
+            int opcion = 0;
+            while (opcion != 4) {
+                System.out.println("1-VENTAS");
+                System.out.println("2-RESERVAS");
+                System.out.println("3-VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("4-VOLVER AL MENÚ PRINCIPAL");
+                System.out.print("Elija entre una de las opciones");
+                opcion = gestion.nextInt();
+                if (opcion < 1 || opcion > 4)
+                    throw new InvalidException("Debe elegir entre una de las opciones disponibles");
+                if (opcion == 1) scannerVentas.consolaVentas();
+                if (opcion == 2) scannerReservas.consolaReservas();
+                if (opcion == 3) consolaDirector();
+                if (opcion == 4) menu();
+            }
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void informes() {
+        try {
+            Scanner consultas = new Scanner(System.in);
+            int opcion = 0;
+            while (opcion != 8) {
+                System.out.println("1-COCHES EN VENTA");
+                System.out.println("2-COCHES RESERVADOS");
+                System.out.println("3-COCHES EN REPARACIÓN");
+                System.out.println("4-COCHES VENDIDOS POR UN VENDEDOR");
+                System.out.println("5-CLIENTES CON COCHES RESERVADOS");
+                System.out.println("6-CLIENTES QUE HAN COMPRADO UN COCHE");
+                System.out.println("7-VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("8-VOLVER AL MENÚ PRINCIPAL");
+                System.out.print("Elija entre una de las opciones: ");
+                opcion = consultas.nextInt();
+                if (opcion < 1 || opcion >8) throw new InvalidException("Debe elegir entre una de las opciones disponibles");
+                if(opcion == 1) concesionario.imprimirStock();
+                if(opcion == 2) concesionario.imprimirCochesReservados();
+                if(opcion == 3) concesionario.consultarCochesAReparar();
+                if(opcion == 4) scannerConcesionario.queCoches();
+                if(opcion == 5) scannerConcesionario.queCliente();
+                if(opcion == 6) concesionario.imprimirClienteConReservas();
+                if(opcion == 7) consolaDirector();
+                if(opcion == 8) menu();
+            }
+
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void consolaDirector() {
+        try {
+            Scanner director = new Scanner(System.in);
+            int opcion = 0;
+            while (opcion != 11) {
+                System.out.println("1-AÑADIR/MODIFICAR DIRECTOR");
+                System.out.println("2-IMPRIMIR DATOS DEL DIRECTOR");
+                System.out.println("3-CLIENTES");
+                System.out.println("4-VENDEDORES");
+                System.out.println("5-MECÁNICOS");
+                System.out.println("6-VEHÍCULOS");
+                System.out.println("7-EXPOSICIONES");
+                System.out.println("8-VENTAS/RESERVAS");
+                System.out.println("9-TALLER");
+                System.out.println("10-INFORMES");
+                System.out.println("11-MENU PRINCIPAL");
+                opcion = director.nextInt();
+                if (opcion < 1 || opcion > 11)
+                    throw new InvalidException("Debe elegir entre una de las opciones disponibles");
+                if (opcion == 1) agregarModificarDirector();
+                if (opcion == 2) imprimirDatosDirector();
+                if (opcion == 3) consultarClientes();
+                if (opcion == 4) consultarVendedores();
+                if (opcion == 4) consultarMecanicos();
+                if (opcion == 6) scannerCoche.consolaCoches();
+                if (opcion == 7) scannerExpo.consolaExposiciones();
+                if (opcion == 8) gestionVentasReservas();
+                if (opcion == 9) scannerReparacion.consolaTaller();
+                if (opcion == 10) informes();
+                if (opcion == 11) menu();
+            }
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

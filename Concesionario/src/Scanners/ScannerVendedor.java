@@ -25,14 +25,14 @@ public class ScannerVendedor {
     private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarTlf comprobarTlf = new ComprobarTlf();
-    public ScannerVendedor(Concesionario concesionario) {
-        this.concesionario = concesionario;
+    public ScannerVendedor() throws InvalidException {
+        this.concesionario = new Concesionario();
         this.vendedores = concesionario.getVendedores();
     }
 
     public void agregarVendedor() {
-        Scanner añadirVendedor = new Scanner(System.in);
         try {
+            Scanner añadirVendedor = new Scanner(System.in);
             System.out.println("Introduzca los datos del vendedor: ");
             System.out.print("Nombre: ");
             String nombre = añadirVendedor.nextLine();
@@ -63,8 +63,8 @@ public class ScannerVendedor {
     }
 
     public void removeVendedor() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.print("Introduce el DNI del vendedor a dar de baja: ");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
@@ -78,8 +78,8 @@ public class ScannerVendedor {
     }
 
     public void imprimirCochesVendidos() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Introduce el dni del vendedor: ");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
@@ -106,9 +106,9 @@ public class ScannerVendedor {
         }
     }
 
-    public void imprimirDatosVendedor() { // imprime los datos del vendedor
-        Scanner scanner = new Scanner(System.in);
+    public void imprimirDatosVendedor() {
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Introduce el dni del vendedor: ");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
@@ -127,14 +127,14 @@ public class ScannerVendedor {
     }
 
     public void modificarVendedor() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Introduce el dni del vendedor a modificar datos: ");
             String dni = scanner.nextLine();
             comprobarDNI.comprobacion(dni);
             if (vendedores.containsKey(dni)) {
                 VendedorAComision vendedor = vendedores.get(dni);
-                System.out.println("Introduzca los nuevos datos para el cliente con DNI " + vendedor.getDNI() + ": ");
+                System.out.println("Introduzca los nuevos datos para el vendedor con DNI " + vendedor.getDNI() + ": ");
                 System.out.println("Dirección: ");
                 String nuevaDireccion = scanner.nextLine();
                 vendedor.setDireccion(nuevaDireccion);
@@ -147,13 +147,9 @@ public class ScannerVendedor {
             System.out.println(n.getMessage());
         }
     }
-    public void listadoPorTotalVendido(){
-
-    }
-
     public void consolaVendedor() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             int opcion = 0;
             while (opcion != 4) {
                 System.out.println("1-VENDER COCHE");
@@ -164,7 +160,7 @@ public class ScannerVendedor {
                 System.out.println("6-MENU PRINCIPAL");
                 System.out.print("Elige una opción:");
                 opcion = scanner.nextInt();
-                if (opcion < 1 || opcion > 6) throw new InvalidException("Introduce una de las opciones");
+                if (opcion < 1 || opcion > 6) throw new InvalidException("Debe introducir una de las opciones disponibles");
                 if (opcion == 1) scannerVentas.venderCocheStock();
                 if (opcion == 2) scannerReservas.reservarCoche();
                 if (opcion == 3) concesionario.imprimirClientes();

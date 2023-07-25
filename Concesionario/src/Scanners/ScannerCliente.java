@@ -1,4 +1,5 @@
 package Scanners;
+
 import Clases.Cliente;
 import Clases.Coche;
 import Clases.Concesionario;
@@ -20,48 +21,47 @@ import static Concesionario.Main.menu;
 public class ScannerCliente {
     private Concesionario concesionario;
     private HashMap<String, Cliente> clientes;
-    private ScannerReservas scannerReservas;
     private ComprobarNombre comprobarNombre = new ComprobarNombre();
     private ComprobarEdad comprobarEdad = new ComprobarEdad();
     private ComprobarDireccion comprobarDireccion = new ComprobarDireccion();
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarTlf comprobarTlf = new ComprobarTlf();
 
-    public ScannerCliente(Concesionario concesionario) {
-        this.concesionario = concesionario;
+    public ScannerCliente() throws InvalidException {
+        this.concesionario = new Concesionario();
         this.clientes = concesionario.getClientes();
     }
 
     public void agregarCliente() {
-        Scanner añadirCliente = new Scanner(System.in);
         try {
+            Scanner cliente = new Scanner(System.in);
             System.out.println("Introduzca los datos del cliente: ");
             System.out.print("Nombre: ");
-            String nombre = añadirCliente.nextLine();
+            String nombre = cliente.nextLine();
             comprobarNombre.comprobacion(nombre);
 
             System.out.print("Apellido: ");
-            String apellido = añadirCliente.nextLine();
+            String apellido = cliente.nextLine();
             comprobarNombre.comprobacion(apellido);
 
             System.out.print("Edad: ");
-            int edad = añadirCliente.nextInt();
+            int edad = cliente.nextInt();
             comprobarEdad.comprobacion(edad);
 
             System.out.print("Dirección: ");
-            añadirCliente.nextLine();
-            String direccion = añadirCliente.nextLine();
+            cliente.nextLine();
+            String direccion = cliente.nextLine();
             comprobarDireccion.comprobacion(direccion);
 
             System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
-            String dni = añadirCliente.nextLine();
+            String dni = cliente.nextLine();
             comprobarDNI.comprobacion(dni);
 
             System.out.print("Número de teléfono: ");
-            int telefono = añadirCliente.nextInt();
+            int telefono = cliente.nextInt();
             comprobarTlf.comprobacion(telefono);
 
-            concesionario.agregarCliente(new Cliente(nombre,apellido,edad,direccion,dni,telefono));
+            concesionario.agregarCliente(new Cliente(nombre, apellido, edad, direccion, dni, telefono));
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
             agregarCliente();
@@ -69,8 +69,9 @@ public class ScannerCliente {
     } //COMPROBADO
 
     public void removeCliente() {
-        Scanner removeCliente = new Scanner(System.in);
+
         try {
+            Scanner removeCliente = new Scanner(System.in);
             concesionario.imprimirClientes();
             System.out.print("Introduce el DNI del cliente a dar de baja: ");
             String dni = removeCliente.nextLine();
@@ -80,18 +81,18 @@ public class ScannerCliente {
                 if (cliente.getCochesComprados().isEmpty() && cliente.getCochesReservados().isEmpty()) {
                     concesionario.removeCliente(dni);
                     System.out.println("El cliente se ha eliminado correctamente");
-                } else throw new InvalidException("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
+                } else
+                    throw new InvalidException("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
             } else throw new NotFoundException("El cliente no está registrado en el concesionario");
-        }
-        catch (InvalidException | NotFoundException e) {
+        } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
             removeCliente();
         }
     } //COMPROBADO
 
     public void imprimirDatosCliente() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             concesionario.imprimirClientes();
             System.out.print("Introduce el dni para imprimir los datos del cliente:");
             String dni = scanner.nextLine();
@@ -114,8 +115,8 @@ public class ScannerCliente {
     } //COMPROBADO
 
     public void scannerCochesComprados() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             concesionario.imprimirClientes();
             System.out.print("Introduce el dni del cliente:");
             String dni = scanner.nextLine();
@@ -143,9 +144,10 @@ public class ScannerCliente {
             System.out.println(e.getMessage());
         }
     }
+
     public void scannerCochesReservados() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             concesionario.imprimirClientes();
             System.out.print("Introduce el dni del cliente:");
             String dni = scanner.nextLine();
@@ -165,21 +167,23 @@ public class ScannerCliente {
                         System.out.println("Matrícula: " + coche.getMatricula());
                         System.out.println("Precio de compra: " + coche.getPrecioCompra());
                         System.out.println("Precio de venta: " + coche.getPrecioVenta());
-                        if (reparaciones.size() == 0) throw new InvalidException("Este coche no tiene reparaciones pendientes");
+                        if (reparaciones.size() == 0)
+                            throw new InvalidException("Este coche no tiene reparaciones pendientes");
                         else for (Reparacion reparacion : reparaciones) {
                             System.out.println("Reparaciones:" + reparacion.toString());
                         }
                         System.out.println();
                     }
                 }
-            }else throw new NotFoundException("El cliente no está dado de alta");
+            } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
+
     public void modificarCliente() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
             concesionario.imprimirClientes();
             System.out.print("Introduce el dni del cliente a modificar datos:");
             String dni = scanner.nextLine();
@@ -188,35 +192,36 @@ public class ScannerCliente {
                 Cliente cliente = clientes.get(dni);
                 System.out.println("Introduzca los nuevos datos para el cliente con DNI " + cliente.getDNI() + ": ");
                 System.out.print("Dirección: ");
-                String nuevaDireccion = scanner.nextLine();
-                comprobarDireccion.comprobacion(nuevaDireccion);
-                cliente.setDireccion(nuevaDireccion);
+                String direccion = scanner.nextLine();
+                comprobarDireccion.comprobacion(direccion);
+                cliente.setDireccion(direccion);
                 System.out.print("Teléfono: ");
-                int nuevoTeléfono = scanner.nextInt();
-                comprobarTlf.comprobacion(nuevoTeléfono);
-                cliente.setTelefono(nuevoTeléfono);
-            }
-            else throw new NotFoundException("El cliente no está dado de alta");
+                int telefono = scanner.nextInt();
+                comprobarTlf.comprobacion(telefono);
+                cliente.setTelefono(telefono);
+            } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
         }
     }
 
     public void consolaClientes() {
-        Scanner consola = new Scanner(System.in);
         try {
+            Scanner consola = new Scanner(System.in);
             int opcion = 0;
-            while (opcion != 4) {
+            while (opcion != 5) {
                 System.out.println("1-CONSULTAR COCHES EN STOCK");
                 System.out.println("2-CONSULTA EXPOSICIONES");
-                System.out.println("3-CONSULTAR COCHES RESERVADOS");
-                System.out.println("4-MENU PRINCIPAL");
+                System.out.println("3-CONSULTAR COCHES COMPRADOS");
+                System.out.println("4-CONSULTAR COCHES RESERVADOS");
+                System.out.println("5-MENU PRINCIPAL");
                 opcion = consola.nextInt();
                 if (opcion < 1 || opcion > 4) throw new InvalidException("Introduce una de las opciones");
                 if (opcion == 1) concesionario.imprimirStock();
                 if (opcion == 2) concesionario.imprimirExposiciones();
                 if (opcion == 3) scannerCochesReservados();
-                if(opcion == 4) menu();
+                if (opcion == 4) scannerCochesComprados();
+                if (opcion == 5) menu();
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());

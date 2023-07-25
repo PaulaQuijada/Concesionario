@@ -22,16 +22,16 @@ class Proyecto {
 
     public Proyecto() throws InvalidException {
         this.concesionario = new Concesionario();
-        this.SCli = new ScannerCliente(this.concesionario);
-        this.SCo = new ScannerCoche(this.concesionario);
-        this.SVend = new ScannerVendedor(this.concesionario);
-        this.SDir = new ScannerDirector(this.concesionario);
-        this.SMec = new ScannerMecanico(this.concesionario);
-        this.SExpo = new ScannerExpo(this.concesionario);
-        this.SRep = new ScannerReparacion(this.concesionario);
-        this.SVentas = new ScannerVentas(this.concesionario);
-        this.SRes = new ScannerReservas(this.concesionario);
-        this.SConce = new ScannerConcesionario(this.concesionario);
+        this.SCli = new ScannerCliente();
+        this.SCo = new ScannerCoche();
+        this.SVend = new ScannerVendedor();
+        this.SDir = new ScannerDirector();
+        this.SMec = new ScannerMecanico();
+        this.SExpo = new ScannerExpo();
+        this.SRep = new ScannerReparacion();
+        this.SVentas = new ScannerVentas();
+        this.SRes = new ScannerReservas();
+        this.SConce = new ScannerConcesionario();
     }
 
     public ScannerCliente getSCli() {
@@ -78,41 +78,44 @@ class Proyecto {
         return concesionario;
     }
 }
-    public class Main {
-        public static void menu() {
+
+public class Main {
+    public static void menu() {
+        try {
+            Proyecto proyecto = new Proyecto();
+            ScannerCliente clientes = proyecto.getSCli();
+            ScannerVendedor vendedores = proyecto.getSVend();
+            ScannerMecanico mecanicos = proyecto.getSMec();
+            ScannerDirector director = proyecto.getSDir();
             Scanner consola = new Scanner(System.in);
             int num = 0;
-            while (num != 4) {
-                System.out.println("Bienvenido a Concesionario");
-                System.out.println("Elija una de estas opciones: ");
-                System.out.println("Para entrar como cliente pulsa 1");
-                System.out.println("Para entrar como vendedor pulsa 2");
-                System.out.println("Para entrar como director pulsa 3");
-                System.out.println("Para salir del menú pulsa 4");
-                int numero = consola.nextInt();
-               /* if (numero == 1) */
+            while (num != 5) {
+                System.out.println("********************************");
+                System.out.println("** Bienvenido a Concesionario **");
+                System.out.println("********************************");
+                System.out.println("*** MENÚ PRINCIPAL ***");
+                System.out.println("1- MENÚ DEL CLIENTE");
+                System.out.println("2- MENÚ DEL VENDEDOR");
+                System.out.println("3- MENÚ DEL MECÁNICO");
+                System.out.println("4- MENÚ DEL DIRECTOR");
+                System.out.println("5- SALIR");
+                System.out.print("Elija una de estas opciones: ");
+                num = consola.nextInt();
+                if (num == 1) clientes.consolaClientes();
+                if (num == 2) vendedores.consolaVendedor();
+                if (num == 3) mecanicos.consolaMecanico();
+                if (num == 4) director.consolaDirector();
 
 
             }
-        }
-        public static void main(String[] args) {
-          try{
-              Proyecto proyecto = new Proyecto();
-              ScannerVentas ventas = proyecto.getSVentas();
-              ScannerCoche coches = proyecto.getSCo();
-              ScannerCliente clientes = proyecto.getSCli();
-              ScannerVendedor vendedores = proyecto.getSVend();
-              ScannerMecanico mecanicos = proyecto.getSMec();
-              ScannerReparacion reparaciones = proyecto.getSRep();
-              ScannerExpo exposiciones = proyecto.getSExpo();
-              ScannerConcesionario concesionario = proyecto.getSConce();
-              ScannerDirector director = proyecto.getSDir();
-
-
-
-          }
-          catch (InvalidException e){
-              System.out.println(e.getMessage());
-          }
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
         }
     }
+
+    public static void main(String[] args) {
+           menu();
+
+
+    }
+}

@@ -237,8 +237,8 @@ public class ScannerDirector {
                 if (opcion == 2) concesionario.imprimirCochesReservados();
                 if (opcion == 3) concesionario.consultarCochesAReparar();
                 if (opcion == 4) scannerConcesionario.queCoches();
-                if (opcion == 5) scannerConcesionario.queCliente();
-                if (opcion == 6) concesionario.imprimirClienteConReservas();
+                if (opcion == 5) concesionario.imprimirClienteConReservas();
+                if (opcion == 6) scannerConcesionario.queCliente();
                 if (opcion == 7) consolaDirector();
                 if (opcion == 8) menu(concesionario);
             }

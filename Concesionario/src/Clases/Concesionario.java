@@ -282,19 +282,33 @@ public class Concesionario {
             }
         }
     }
-    public void listadoPorTotalVendido(){
+    public ArrayList<VendedorAComision> listadoPorTotalVendido() {
         ArrayList<VendedorAComision> sueldos = new ArrayList<>();
-        if(vendedores.isEmpty()) System.out.println("No existen vendedores en el concesionario");
-        else {System.out.println("*** LISTA DE VENDEDORES ***");
-        for(VendedorAComision vendedor : vendedores.values()){
-           sueldos.add(vendedor);
-        }
-        Collections.sort(sueldos, Comparator.comparing(VendedorAComision::sueldoAComision).reversed());
+
+        if (vendedores.isEmpty()) {
+            System.out.println("No existen vendedores en el concesionario");
+        } else {
+            System.out.println("*** LISTA DE VENDEDORES ***");
+            for (VendedorAComision vendedor : vendedores.values()) {
+                sueldos.add(vendedor);
+            }
+
+            // Ordenar la lista de vendedores por volumen total de ventas realizadas (de mayor a menor)
+            Collections.sort(sueldos, Comparator.comparing(VendedorAComision::getVolumenVentas).reversed());
+
             for (VendedorAComision vendedor : sueldos) {
-                System.out.println("Nombre: " + vendedor.getNombre() + vendedor.getApellido());
-                System.out.println("Sueldo: " + vendedor.sueldoAComision());
+                System.out.println("Nombre: " + vendedor.getNombre() + " " + vendedor.getApellido());
+                System.out.println("Dirección: " + vendedor.getDireccion());
+                System.out.println("DNI: " + vendedor.getDNI());
+                System.out.println("Teléfono: " + vendedor.getTelefono());
+                System.out.println("Ha vendido: " + vendedor.getNumeroVentas() + " unidades");
+                System.out.println("Cantidad total vendida en €: " + vendedor.getVolumenVentas());
+                System.out.println("El sueldo es de: " + vendedor.sueldoAComision());
+                System.out.println("------------------------");
             }
         }
+
+        return sueldos; // Devolver la lista ordenada de vendedores
     }
     public void imprimirMecanicos(){
         if (mecanicos.isEmpty()) {

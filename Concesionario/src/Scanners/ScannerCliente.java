@@ -84,8 +84,7 @@ public class ScannerCliente {
                 if (cliente.getCochesComprados().isEmpty() && cliente.getCochesReservados().isEmpty()) {
                     concesionario.removeCliente(dni);
                     System.out.println("El cliente se ha eliminado correctamente");
-                } else
-                    throw new InvalidException("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
+                } else throw new InvalidException("El cliente no se puede eliminar ya que tiene coches reservados y/o comprados");
             } else throw new NotFoundException("El cliente no está registrado en el concesionario");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());

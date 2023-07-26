@@ -33,27 +33,28 @@ public class ScannerMecanico {
     }
 
     public void agregarMecanico() {
-        Scanner añadirMecanico = new Scanner(System.in);
+        Scanner agregarMecanico = new Scanner(System.in);
         try {
             System.out.println("Introduzca los datos del mecánico: ");
             System.out.print("Nombre: ");
-            String nombre = añadirMecanico.nextLine();
+            String nombre = agregarMecanico.nextLine();
             comprobarNombre.comprobacion(nombre);
 
             System.out.println("Apellido: ");
-            String apellido = añadirMecanico.nextLine();
+            String apellido = agregarMecanico.nextLine();
             comprobarNombre.comprobacion(apellido);
 
             System.out.print("Dirección: ");
-            String direccion = añadirMecanico.nextLine();
+            String direccion = agregarMecanico.nextLine();
             comprobarDireccion.comprobacion(direccion);
 
             System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
-            String dni = añadirMecanico.nextLine();
+            String dni = agregarMecanico.nextLine();
+            if(!concesionario.validarDni(dni)) throw new InvalidException("El dni introducido no puede estar repetido");
             comprobarDNI.comprobacion(dni);
 
             System.out.print("Teléfono: ");
-            int telefono = añadirMecanico.nextInt();
+            int telefono = agregarMecanico.nextInt();
             comprobarTlf.comprobacion(telefono);
             Mecanico mecanico = new Mecanico(nombre, apellido, direccion, dni, telefono);
             concesionario.agregarMecanico(mecanico);
@@ -61,7 +62,7 @@ public class ScannerMecanico {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void imprimirDatosMecanico() {
         try {
@@ -152,7 +153,7 @@ public class ScannerMecanico {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void consolaMecanico() {
         try {

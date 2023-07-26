@@ -52,6 +52,7 @@ public class ScannerVendedor {
 
             System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
             String dni = agregarVendedor.nextLine();
+            if(!concesionario.validarDni(dni)) throw new InvalidException("El dni introducido no puede estar repetido");
             comprobarDNI.comprobacion(dni);
 
             System.out.print("Teléfono: ");

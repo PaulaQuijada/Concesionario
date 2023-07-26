@@ -35,7 +35,7 @@ public class Proyecto {
                 if (num == 1) clientes.consolaClientes();
                 if (num == 2) vendedores.consolaVendedor();
                 if (num == 3) mecanicos.consolaMecanico();
-                if (num == 4) director.consolaDirector();
+                if (num == 4) director.director();
 
             }
         } catch (InvalidException e) {

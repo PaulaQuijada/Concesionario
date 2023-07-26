@@ -6,7 +6,7 @@ import Comprobaciones.String.ComprobarDNI;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
-import java.sql.SQLOutput;
+
 import java.util.Scanner;
 
 
@@ -69,7 +69,7 @@ public class ScannerDirector {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void imprimirDatosDirector() {
         Scanner scanner = new Scanner(System.in);
@@ -90,7 +90,7 @@ public class ScannerDirector {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
 
     public void consultarClientes() {
@@ -217,7 +217,7 @@ public class ScannerDirector {
         try {
             Scanner consultas = new Scanner(System.in);
             int opcion = 0;
-            while (opcion != 8) {
+            while (opcion != 9) {
                 System.out.println("****************");
                 System.out.println("*** INFORMES ***");
                 System.out.println("****************");
@@ -227,11 +227,12 @@ public class ScannerDirector {
                 System.out.println("4-COCHES VENDIDOS POR UN VENDEDOR");
                 System.out.println("5-CLIENTES CON COCHES RESERVADOS");
                 System.out.println("6-CLIENTES QUE HAN COMPRADO UN COCHE");
-                System.out.println("7-VOLVER AL MENÚ DEL DIRECTOR");
-                System.out.println("8-VOLVER AL MENÚ PRINCIPAL");
+                System.out.println("7-LISTADO POR TOTAL VENDIDO");
+                System.out.println("8-VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("9-VOLVER AL MENÚ PRINCIPAL");
                 System.out.print("Elija una de las opciones: ");
                 opcion = consultas.nextInt();
-                if (opcion < 1 || opcion > 8)
+                if (opcion < 1 || opcion > 9)
                     throw new InvalidException("Debe elegir entre una de las opciones disponibles");
                 if (opcion == 1) concesionario.imprimirStock();
                 if (opcion == 2) concesionario.imprimirCochesReservados();
@@ -239,10 +240,39 @@ public class ScannerDirector {
                 if (opcion == 4) scannerConcesionario.queCoches();
                 if (opcion == 5) concesionario.imprimirClienteConReservas();
                 if (opcion == 6) scannerConcesionario.queCliente();
-                if (opcion == 7) consolaDirector();
-                if (opcion == 8) menu(concesionario);
+                if (opcion == 7) concesionario.listadoPorTotalVendido();
+                if (opcion == 8) consolaDirector();
+                if (opcion == 9) menu(concesionario);
             }
 
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
+            menu(concesionario);
+        }
+    }
+    public void director() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            if (concesionario.getDirector() == null) {
+                System.out.println("No existe un director a cargo del concesionario");
+                System.out.println("Elige una de estas opciones: ");
+                System.out.println("1-AGREGAR DIRECTOR");
+                System.out.println("2-MENÚ PRINCIPAL");
+                int opcion = scanner.nextInt();
+                if (opcion < 1 || opcion > 2) throw new InvalidException("Debe introducir una de las opciones");
+                if (opcion == 1) agregarModificarDirector();
+                if (opcion == 2) menu(concesionario);
+            } else {
+                System.out.println("Introduce el dni del director");
+                String dni = scanner.nextLine();
+                concesionario.validarDni(dni);
+                comprobarDNI.comprobacion(dni);
+                if(concesionario.getDirector().getDNI().equals(dni)) consolaDirector();
+                else {
+                    System.out.println("** ERROR **");
+                    throw new InvalidException("El dni introducido no pertenece al director");
+                }
+            }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
             menu(concesionario);
@@ -257,7 +287,7 @@ public class ScannerDirector {
                 System.out.println("*************************");
                 System.out.println("*** MENÚ DEL DIRECTOR ***");
                 System.out.println("*************************");
-                System.out.println("1-AÑADIR/MODIFICAR DIRECTOR");
+                System.out.println("1-MODIFICAR DIRECTOR");
                 System.out.println("2-IMPRIMIR DATOS DEL DIRECTOR");
                 System.out.println("3-CLIENTES");
                 System.out.println("4-VENDEDORES");

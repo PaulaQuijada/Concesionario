@@ -2,7 +2,12 @@ package Scanners;
 import java.util.*;
 
 import Clases.*;
+import Comprobaciones.Float.ComprobarPrecioCompra;
+import Comprobaciones.Float.ComprobarPrecioVenta;
+import Comprobaciones.String.ComprobarColor;
+import Comprobaciones.String.ComprobarMarca;
 import Comprobaciones.String.ComprobarMatricula;
+import Comprobaciones.String.ComprobarModelo;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
@@ -14,6 +19,11 @@ public class ScannerCoche {
     private HashMap<String, Coche> coches;
     private HashMap<String, Mecanico> mecanicos;
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
+    private ComprobarMarca comprobarMarca = new ComprobarMarca();
+    private ComprobarModelo comprobarModelo = new ComprobarModelo();
+    private ComprobarColor comprobarColor = new ComprobarColor();
+    private ComprobarPrecioCompra comprobarPrecioCompra = new ComprobarPrecioCompra();
+    private ComprobarPrecioVenta comprobarPrecioVenta = new ComprobarPrecioVenta();
 
     public ScannerCoche(Concesionario concesionario){
         this.concesionario = concesionario;
@@ -32,19 +42,35 @@ public class ScannerCoche {
             if (num == 2) tipo = TipoCoche.INDUSTRIAL;
             if (num == 3) tipo = TipoCoche.TODOTERRENO;
             System.out.println("Introduzca los datos del coche a añadir: ");
+
             System.out.print("Marca: ");
             String marca = agregarCoche.nextLine();
+            comprobarMarca.comprobacion(marca);
+
             System.out.print("Modelo: ");
             String modelo = agregarCoche.nextLine();
+            comprobarModelo.comprobacion(modelo);
+
             System.out.print("Color: ");
             String color = agregarCoche.nextLine();
+            comprobarColor.comprobacion(color);
+
             EstadoCoche estado = EstadoCoche.EN_VENTA;
+
             System.out.print("Matrícula: ");
             String matricula = agregarCoche.nextLine();
+            if(!concesionario.validarMatricula(matricula)) throw new InvalidException ("La matrícula no puede estar repetida");
+            comprobarMatricula.comprobacion(matricula);
+
             System.out.print("Precio de compra: ");
             float precioCompra = agregarCoche.nextFloat();
+            comprobarPrecioCompra.comprobacion(precioCompra);
+
             System.out.print("Precio de venta: ");
             float precioVenta = agregarCoche.nextFloat();
+            comprobarPrecioVenta.comprobacion(precioVenta);
+            comprobarPrecioVenta.compararPrecios(precioVenta,precioCompra);
+
             Coche coche = new Coche(tipo, marca, modelo, color, estado, matricula, precioCompra, precioVenta);
             concesionario.agregarCoche(coche);
             System.out.println("El coche se ha añadido al concesionario correctamente");
@@ -153,7 +179,7 @@ public class ScannerCoche {
             System.out.println(n.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void consolaCoches() {
         try {

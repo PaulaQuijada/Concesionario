@@ -58,6 +58,7 @@ public class ScannerCliente {
 
             System.out.print("DNI (Introducir 8 dígitos y una letra en mayúscula) : ");
             String dni = cliente.nextLine();
+            if(!concesionario.validarDni(dni)) throw new InvalidException("El dni introducido no puede estar repetido");
             comprobarDNI.comprobacion(dni);
 
             System.out.print("Número de teléfono: ");
@@ -69,7 +70,7 @@ public class ScannerCliente {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void removeCliente() {
 
@@ -90,7 +91,7 @@ public class ScannerCliente {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void imprimirDatosCliente() {
         try {
@@ -114,7 +115,7 @@ public class ScannerCliente {
             System.out.println(n.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void scannerCochesComprados() {
         try {

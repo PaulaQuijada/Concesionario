@@ -23,14 +23,11 @@ public class ScannerConcesionario {
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
-
     public ScannerConcesionario(Concesionario concesionario) throws InvalidException {
         this.concesionario = concesionario;
         this.clientes = concesionario.getClientes();
         this.vendedores = concesionario.getVendedores();
         this.ventas = concesionario.getVentas();
-
-
     }
 
     public void queCliente() {
@@ -47,7 +44,7 @@ public class ScannerConcesionario {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void queCoches() {
         try {
@@ -63,6 +60,6 @@ public class ScannerConcesionario {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
 }

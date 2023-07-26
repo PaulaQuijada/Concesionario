@@ -6,18 +6,32 @@ import java.util.ArrayList;
 
 public class VendedorAComision extends Persona {
     private int sueldo;
+    private double volumenVentas;
+    private int numeroVentas;
     private ArrayList<Coche> cochesVendidos;
 
     public VendedorAComision(String nombre, String apellido, String direccion, String DNI, int telefono) throws InvalidException {
         super(nombre, apellido, direccion, DNI, telefono);
         cochesVendidos = new ArrayList<>();
     }
-    public void setSueldo(int sueldo) {
-        this.sueldo = sueldo;
-    }
 
     public ArrayList<Coche> getCochesVendidos() {
         return cochesVendidos;
+    }
+
+    public int getSueldo() {
+        return (int) getVolumenVentas() + sueldoAComision();
+    }
+
+    public double getVolumenVentas() {
+        for (Coche coche : getCochesVendidos()) {
+            volumenVentas += coche.getPrecioVenta();
+        }
+        return volumenVentas;
+    }
+
+    public int getNumeroVentas() {
+        return getCochesVendidos().size();
     }
 
     public void setCochesVendidos(ArrayList<Coche> cochesVendidos) {
@@ -25,13 +39,10 @@ public class VendedorAComision extends Persona {
     }
 
     public void imprimirDatosVendedor(){
-        System.out.println("Nombre del vendedor: " + getNombre());
-        System.out.println("Dirección del vendedor: " + getDireccion());
-        System.out.println("DNI del vendedor: " + getDNI());
-        System.out.println("Teléfono del vendedor: " + getTelefono());
-        System.out.println("Ha vendido " + cochesVendidos.size() + " coches");
-        System.out.println("Teléfono del vendedor: " + getTelefono());
-        System.out.println("El sueldo es de: " + sueldoAComision());
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Dirección: " + getDireccion());
+        System.out.println("DNI del: " + getDNI());
+        System.out.println("Teléfono: " + getTelefono());
         System.out.println("------------------------");
     }
     public void imprimirCochesVendidos(){
@@ -53,7 +64,7 @@ public class VendedorAComision extends Persona {
         cochesVendidos.add(coche);
     }
     public int sueldoAComision(){
-        return cochesVendidos.size() * 200;
+        return getNumeroVentas() * 200;
     }
 
 }

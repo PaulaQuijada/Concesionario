@@ -25,7 +25,7 @@ public class ScannerVentas {
 
     }
 
-    //COMPROBADO
+
     public void venderCocheStock() {
         try {
             Scanner venta = new Scanner(System.in);

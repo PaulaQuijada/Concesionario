@@ -39,6 +39,7 @@ public class ScannerExpo {
             int numExpo = expo.nextInt();
             comprobarNumExpo.comprobacion(numExpo);
 
+
             System.out.print("Teléfono: ");
             int telefono = expo.nextInt();
             comprobarTlf.comprobacion(telefono);
@@ -56,7 +57,7 @@ public class ScannerExpo {
             menu(concesionario);
         }
         return null;
-    } //COMPROBADO
+    }
 
     public void removeExposicion() {
         try {
@@ -75,7 +76,7 @@ public class ScannerExpo {
             System.out.println(notFound.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void imprimirDatosExposicion() {
         try {
@@ -93,7 +94,7 @@ public class ScannerExpo {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void imprimirCochesExpo() {
         try {
@@ -115,7 +116,7 @@ public class ScannerExpo {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void modificarExpo() {
         try {
@@ -142,7 +143,7 @@ public class ScannerExpo {
             System.out.println(n.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void agregarCocheAExpo() {
         try {
@@ -181,7 +182,7 @@ public class ScannerExpo {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void removeCocheExpo() {
         try {
@@ -211,7 +212,7 @@ public class ScannerExpo {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void cambiarCocheDeExposicion() {
         try {
@@ -257,7 +258,7 @@ public class ScannerExpo {
             System.out.println(e.getMessage());
             menu(concesionario);
         }
-    } //COMPROBADO
+    }
 
     public void consolaExposiciones() {
         try {

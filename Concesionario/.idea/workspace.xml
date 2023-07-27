@@ -6,40 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="b9b63e01-22cf-4d13-9510-a6b4a2904151" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Clases/Concesionario.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Clases/Concesionario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Clases/DirectorComercial.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Clases/DirectorComercial.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Clases/Persona.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Clases/Persona.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Clases/VendedorAComision.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Clases/VendedorAComision.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Comprobaciones/Int/ComprobarNumExpo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Comprobaciones/Int/ComprobarNumExpo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Comprobaciones/String/ComprobarDNI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Comprobaciones/String/ComprobarDNI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Comprobaciones/String/ComprobarDireccion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Comprobaciones/String/ComprobarDireccion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Concesionario/Proyecto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Concesionario/Proyecto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerCliente.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerCoche.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerCoche.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerDirector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerDirector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerMecanico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerMecanico.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerVendedor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Concesionario/Scanners/ScannerVendedor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Coche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Coche.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Clases/Concesionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Concesionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/DirectorComercial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/DirectorComercial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Clases/Mecanico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Mecanico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Clases/VendedorAComision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/VendedorAComision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comprobaciones/Float/ComprobarPrecioVenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comprobaciones/Float/ComprobarPrecioVenta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comprobaciones/Int/ComprobarNumExpo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comprobaciones/Int/ComprobarNumExpo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarColor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarDNI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarDNI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarDireccion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarDireccion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarEstado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarMarca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarMarca.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarMatricula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarMatricula.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Concesionario/Proyecto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Concesionario/Proyecto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerCoche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerCoche.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerConcesionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerConcesionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerDirector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerDirector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerExpo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerExpo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerMecanico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerMecanico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerReservas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerReservas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerVendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerVendedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerVentas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerVentas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,16 +70,5 @@
       <updated>1689615430276</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Concesionario/Proyecto.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

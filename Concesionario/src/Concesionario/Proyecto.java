@@ -32,14 +32,17 @@ public class Proyecto {
                 System.out.println("5- SALIR");
                 System.out.print("Elija una de estas opciones: ");
                 num = consola.nextInt();
+                if(num <1 || num >5) throw new InvalidException("Debe introducir una de las opciones disponibles");
                 if (num == 1) clientes.consolaClientes();
                 if (num == 2) vendedores.consolaVendedor();
                 if (num == 3) mecanicos.consolaMecanico();
                 if (num == 4) director.director();
+                if (num == 5) System.out.println("Saliendo del programa...");
 
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
+            menu(concesionario);
         }
     }
 

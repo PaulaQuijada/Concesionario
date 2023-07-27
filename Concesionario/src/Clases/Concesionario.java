@@ -12,7 +12,6 @@ public class Concesionario {
     private HashMap<String, VendedorAComision> vendedores;
     private HashMap<String, Mecanico> mecanicos;
     private HashMap<String, Coche> coches;
-    private HashMap<String, Coche> reservas;
     private HashMap<String, String> ventas;
     private DirectorComercial director;
     private HashMap<Integer, Exposicion> exposiciones;
@@ -25,23 +24,14 @@ public class Concesionario {
         this.ventas = new HashMap<>();
         exposiciones = new HashMap<>();
 
-
     }
 
     public HashMap<String, Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(HashMap<String, Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
     public HashMap<String, VendedorAComision> getVendedores() {
         return vendedores;
-    }
-
-    public void setVendedores(HashMap<String, VendedorAComision> vendedores) {
-        this.vendedores = vendedores;
     }
 
     public HashMap<String, Coche> getCoches() {
@@ -60,16 +50,8 @@ public class Concesionario {
         return exposiciones;
     }
 
-    public void setExposiciones(HashMap<Integer, Exposicion> exposiciones) {
-        this.exposiciones = exposiciones;
-    }
-
     public DirectorComercial getDirector() {
         return director;
-    }
-
-    public void setDirector(DirectorComercial director) {
-        this.director = director;
     }
 
     public void agregarDirector(DirectorComercial director) {
@@ -78,22 +60,6 @@ public class Concesionario {
 
     public HashMap<String, Mecanico> getMecanicos() {
         return mecanicos;
-    }
-
-    public void setMecanicos(HashMap<String, Mecanico> mecanicos) {
-        this.mecanicos = mecanicos;
-    }
-
-    public void setVentas(HashMap<String, String> ventas) {
-        this.ventas = ventas;
-    }
-
-    public HashMap<String, Coche> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(HashMap<String, Coche> reservas) {
-        this.reservas = reservas;
     }
 
     public void agregarCliente(Cliente cliente) {
@@ -128,31 +94,15 @@ public class Concesionario {
         coches.remove(matricula);
     }
 
-    public void agregarReserva(Coche coche) {
-        reservas.put(coche.getMatricula(), coche);
-    }
-
-    public void removeReserva(String matricula) {
-        reservas.remove(matricula);
-    }
-
     public void registrarVenta(String matriculaCoche, String nombreCliente) {
         ventas.put(matriculaCoche, nombreCliente);
     }
+
     public void agregarExposicion(Exposicion exposicion) {
         exposiciones.put(exposicion.getNumExposicion(), exposicion);
     }
 
-    public void removeExposicion(int numExpo) {
-        exposiciones.remove(numExpo);
-    }
-
-
-    public String queCliente(String cliente) {
-        return ventas.get(cliente);
-    }
-
-    public void imprimirStock() throws InvalidException {
+    public void imprimirStock() {
         if (coches.isEmpty()) {
             System.out.println("No hay coches en stock");
         } else {
@@ -168,6 +118,19 @@ public class Concesionario {
                 System.out.println("Precio de venta: " + stock.getPrecioVenta());
                 System.out.println();
             }
+        }
+    }
+
+    public void imprimirCoches() {
+        if (coches.isEmpty()) {
+            System.out.println("No hay coches en stock");
+        } else {
+            System.out.println("Coches en venta: ");
+            for (Coche stock : coches.values()) {
+                System.out.println(stock.getTipo() + " " + stock.getMarca() + " " + stock.getModelo() + " " + stock.getMatricula());
+                System.out.println();
+            }
+            System.out.println("--------------------------------------");
         }
     }
 
@@ -223,7 +186,6 @@ public class Concesionario {
         }
     }
 
-
     public void imprimirExposiciones() {
         if (exposiciones.isEmpty()) {
             System.out.println("No hay exposiciones disponibles");
@@ -237,27 +199,13 @@ public class Concesionario {
         }
     }
 
-    public void imprimirVentas() {
-        if (ventas.isEmpty()) {
-            System.out.println("No hay coches en stock");
-        } else {
-            for (String nombre : ventas.values()) {
-                System.out.println(nombre);
-            }
-        }
-    }
-
     public void imprimirClientes() {
         if (clientes.isEmpty()) {
             System.out.println("No hay clientes disponibles");
         } else {
             System.out.println("*** LISTA DE CLIENTES ***");
             for (Cliente cliente : clientes.values()) {
-                System.out.println("Nombre: " + cliente.getNombre());
-                System.out.println("Apellido: " + cliente.getApellido());
-                System.out.println("Dirección: " + cliente.getDireccion());
-                System.out.println("DNI: " + cliente.getDNI());
-                System.out.println("Teléfono: " + cliente.getTelefono());
+                System.out.println(cliente.getNombre() + " " + cliente.getApellido() + " " + cliente.getDNI());
                 System.out.println("------------------------");
             }
         }
@@ -269,8 +217,7 @@ public class Concesionario {
         } else {
             System.out.println("*** LISTA DE VENDEDORES ***");
             for (VendedorAComision vendedor : vendedores.values()) {
-                System.out.println("Nombre: " + vendedor.getNombre());
-                System.out.println("DNI: " + vendedor.getDNI());
+                System.out.println(vendedor.getNombre() + " " + vendedor.getApellido() + " " + vendedor.getDNI());
                 System.out.println("------------------------");
             }
         }
@@ -329,14 +276,44 @@ public class Concesionario {
             }
         }
     }
+
     public boolean validarDni(String dni) {
-        if(vendedores.containsKey(dni) || clientes.containsKey(dni) || mecanicos.containsKey(dni) || director.getDNI().equals(dni)) return false;
+        if (vendedores.containsKey(dni) || clientes.containsKey(dni) || mecanicos.containsKey(dni) || director.getDNI().equals(dni))
+            return false;
         else return true;
 
     }
+
     public boolean validarMatricula(String matricula) {
-        if(coches.containsKey(matricula)) return false;
+        if (coches.containsKey(matricula)) return false;
         else return true;
     }
+
+    public boolean validarTelefono(int telefono) {
+        if(!clientes.isEmpty()) {
+            for (Cliente cliente : clientes.values()) {
+                if (cliente.getTelefono() == telefono) return false;
+            }
+        }
+        if(!vendedores.isEmpty()) {
+            for (VendedorAComision vendedor : vendedores.values()) {
+                if (vendedor.getTelefono() == telefono) return false;
+            }
+        }
+        if(!mecanicos.isEmpty()) {
+            for (Mecanico mecanico : mecanicos.values()) {
+                if (mecanico.getTelefono() == telefono) return false;
+            }
+        }
+        if(!exposiciones.isEmpty()) {
+            for (Exposicion exposicion : exposiciones.values()) {
+                if (exposicion.getTelefono() == telefono) return false;
+            }
+        }
+        if(director == null) return true;
+        if (director.getTelefono() == telefono) return false;
+        return true;
+    }
+
 }
 

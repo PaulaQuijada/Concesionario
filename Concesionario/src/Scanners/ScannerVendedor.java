@@ -57,6 +57,7 @@ public class ScannerVendedor {
 
             System.out.print("Teléfono: ");
             int telefono = agregarVendedor.nextInt();
+            if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
             comprobarTlf.comprobacion(telefono);
 
             VendedorAComision vendedor = new VendedorAComision(nombre, apellido, direccion, dni, telefono);
@@ -87,36 +88,6 @@ public class ScannerVendedor {
         }
     }
 
-    public void imprimirCochesVendidos() {
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Introduce el dni del vendedor: ");
-            String dni = scanner.nextLine();
-            comprobarDNI.comprobacion(dni);
-            if (vendedores.containsKey(dni)) {
-                VendedorAComision vendedor = vendedores.get(dni);
-                ArrayList<Coche> coches = vendedor.getCochesVendidos();
-                if (coches.isEmpty()) {
-                    throw new InvalidException("No existen coches vendidos");
-                } else {
-                    System.out.println("Coches vendidos: ");
-                    for (Coche coche : coches) {
-                        System.out.println("Marca: " + coche.getMarca());
-                        System.out.println("Modelo: " + coche.getModelo());
-                        System.out.println("Color: " + coche.getColor());
-                        System.out.println("Matrícula: " + coche.getMatricula());
-                        System.out.println("Precio de compra: " + coche.getPrecioCompra());
-                        System.out.println("Precio de venta: " + coche.getPrecioVenta());
-                        System.out.println();
-                    }
-                }
-            } else throw new NotFoundException("El vendedor no está dado de alta");
-        } catch (NotFoundException | InvalidException notFound) {
-            System.out.println(notFound.getMessage());
-            menu(concesionario);
-        }
-    }
-
     public void imprimirDatosVendedor() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -127,6 +98,7 @@ public class ScannerVendedor {
                 VendedorAComision vendedor = vendedores.get(dni);
                 System.out.println("Datos del vendedor: ");
                 System.out.println("Nombre: " + vendedor.getNombre());
+                System.out.println("Apellido: " + vendedor.getApellido());
                 System.out.println("Dirección: " + vendedor.getDireccion());
                 System.out.println("DNI: " + vendedor.getDNI());
                 System.out.println("Teléfono: " + vendedor.getTelefono());
@@ -148,11 +120,12 @@ public class ScannerVendedor {
                 VendedorAComision vendedor = vendedores.get(dni);
                 System.out.println("Introduzca los nuevos datos para el vendedor con DNI " + vendedor.getDNI() + ": ");
                 System.out.println("Dirección: ");
-                String nuevaDireccion = scanner.nextLine();
-                vendedor.setDireccion(nuevaDireccion);
+                String direccion = scanner.nextLine();
+                vendedor.setDireccion(direccion);
                 System.out.println("Teléfono: ");
-                int nuevoTeléfono = scanner.nextInt();
-                vendedor.setTelefono(nuevoTeléfono);
+                int telefono = scanner.nextInt();
+                if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
+                vendedor.setTelefono(telefono);
             } else throw new NotFoundException("El vendedor no está dado de alta");
 
         } catch (NotFoundException | InvalidException n) {
@@ -168,8 +141,8 @@ public class ScannerVendedor {
                 System.out.println("************************");
                 System.out.println("*** MENÚ VENDEDORES ***");
                 System.out.println("************************");
-                System.out.println("1-VENDER COCHE");
-                System.out.println("2-RESERVAR COCHE");
+                System.out.println("1-VENTAS");
+                System.out.println("2-RESERVAS");
                 System.out.println("3-CONSULTAR DATOS DE CLIENTES");
                 System.out.println("4-CONSULTAR DATOS DE COCHES");
                 System.out.println("5-CONSULTAR DATOS DE EXPOSICIONES");
@@ -178,7 +151,7 @@ public class ScannerVendedor {
                 opcion = scanner.nextInt();
                 if (opcion < 1 || opcion > 6) throw new InvalidException("Debe introducir una de las opciones disponibles");
                 if (opcion == 1) scannerVentas.consolaVentas();
-                if (opcion == 2) scannerReservas.reservarCoche();
+                if (opcion == 2) scannerReservas.consolaReservas();
                 if (opcion == 3) concesionario.imprimirClientes();
                 if (opcion == 4) concesionario.imprimirStock();
                 if (opcion == 5) concesionario.imprimirExposiciones();

@@ -43,7 +43,7 @@ public class ScannerDirector {
         Scanner agregarDirector = new Scanner(System.in);
         try {
             DirectorComercial director = new DirectorComercial();
-            System.out.println("Introduzca los datos para agregar o modificar al director: ");
+            System.out.println("Introduzca los datos del director para modificarlos: ");
             System.out.print("Nombre: ");
             String nombre = agregarDirector.nextLine();
             director.setNombre(nombre);
@@ -62,6 +62,7 @@ public class ScannerDirector {
 
             System.out.print("Número de teléfono: ");
             int telefono = agregarDirector.nextInt();
+            if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
             director.setTelefono(telefono);
 
             concesionario.agregarDirector(director);
@@ -101,12 +102,12 @@ public class ScannerDirector {
                 System.out.println("****************");
                 System.out.println("*** CLIENTES ***");
                 System.out.println("****************");
-                System.out.println("1-DAR DE ALTA CLIENTE");
-                System.out.println("2-MODIFICAR CLIENTE");
-                System.out.println("3-CONSULTAR DATOS CLIENTE");
-                System.out.println("4-DAR DE BAJA CLIENTE");
-                System.out.println("5-VOLVER AL MENÚ DEL DIRECTOR");
-                System.out.println("6-VOLVER AL MENÚ PRINCIPAL");
+                System.out.println("1- DAR DE ALTA CLIENTE");
+                System.out.println("2- MODIFICAR CLIENTE");
+                System.out.println("3- CONSULTAR DATOS CLIENTE");
+                System.out.println("4- DAR DE BAJA CLIENTE");
+                System.out.println("5- VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("6- VOLVER AL MENÚ PRINCIPAL");
                 System.out.print("Elija una de las opciones: ");
                 opcion = consulta.nextInt();
                 if (opcion < 1 || opcion > 6)
@@ -132,12 +133,12 @@ public class ScannerDirector {
                 System.out.println("******************");
                 System.out.println("*** VENDEDORES ***");
                 System.out.println("******************");
-                System.out.println("1-DAR DE ALTA VENDEDOR");
-                System.out.println("2-MODIFICAR VENDEDOR");
-                System.out.println("3-CONSULTAR DATOS VENDEDOR");
-                System.out.println("4-DAR DE BAJA VENDEDOR");
-                System.out.println("5-VOLVER AL MENÚ DEL DIRECTOR");
-                System.out.println("6-VOLVER AL MENÚ PRINCIPAL");
+                System.out.println("1- DAR DE ALTA VENDEDOR");
+                System.out.println("2- MODIFICAR VENDEDOR");
+                System.out.println("3- CONSULTAR DATOS VENDEDOR");
+                System.out.println("4- DAR DE BAJA VENDEDOR");
+                System.out.println("5- VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("6- VOLVER AL MENÚ PRINCIPAL");
                 System.out.print("Elija una de las opciones: ");
                 opcion = consulta.nextInt();
                 if (opcion < 1 || opcion > 6)
@@ -163,12 +164,12 @@ public class ScannerDirector {
                 System.out.println("*****************");
                 System.out.println("*** MECÁNICOS ***");
                 System.out.println("*****************");
-                System.out.println("1-DAR DE ALTA MECÁNICO");
-                System.out.println("2-MODIFICAR MECÁNICO");
-                System.out.println("3-CONSULTAR DATOS MECÁNICO");
-                System.out.println("4-DAR DE BAJA MECÁNICO");
-                System.out.println("5-VOLVER AL MENÚ DEL DIRECTOR");
-                System.out.println("6-VOLVER AL MENÚ PRINCIPAL");
+                System.out.println("1- DAR DE ALTA MECÁNICO");
+                System.out.println("2- MODIFICAR MECÁNICO");
+                System.out.println("3- CONSULTAR DATOS MECÁNICO");
+                System.out.println("4- DAR DE BAJA MECÁNICO");
+                System.out.println("5- VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("6- VOLVER AL MENÚ PRINCIPAL");
                 System.out.print("Elija una de las opciones: ");
                 opcion = consulta.nextInt();
                 if (opcion < 1 || opcion > 6)
@@ -185,7 +186,6 @@ public class ScannerDirector {
             menu(concesionario);
         }
     }
-
     public void gestionVentasReservas() {
         try {
             Scanner gestion = new Scanner(System.in);
@@ -221,15 +221,15 @@ public class ScannerDirector {
                 System.out.println("****************");
                 System.out.println("*** INFORMES ***");
                 System.out.println("****************");
-                System.out.println("1-COCHES EN VENTA");
-                System.out.println("2-COCHES RESERVADOS");
-                System.out.println("3-COCHES EN REPARACIÓN");
-                System.out.println("4-COCHES VENDIDOS POR UN VENDEDOR");
-                System.out.println("5-CLIENTES CON COCHES RESERVADOS");
-                System.out.println("6-CLIENTES QUE HAN COMPRADO UN COCHE");
-                System.out.println("7-LISTADO POR TOTAL VENDIDO");
-                System.out.println("8-VOLVER AL MENÚ DEL DIRECTOR");
-                System.out.println("9-VOLVER AL MENÚ PRINCIPAL");
+                System.out.println("1- COCHES EN VENTA");
+                System.out.println("2- COCHES RESERVADOS");
+                System.out.println("3- COCHES EN REPARACIÓN");
+                System.out.println("4- COCHES VENDIDOS POR UN VENDEDOR");
+                System.out.println("5- CLIENTES CON COCHES RESERVADOS");
+                System.out.println("6- CLIENTES QUE HAN COMPRADO UN COCHE");
+                System.out.println("7- LISTADO POR TOTAL VENDIDO");
+                System.out.println("8- VOLVER AL MENÚ DEL DIRECTOR");
+                System.out.println("9- VOLVER AL MENÚ PRINCIPAL");
                 System.out.print("Elija una de las opciones: ");
                 opcion = consultas.nextInt();
                 if (opcion < 1 || opcion > 9)
@@ -256,14 +256,14 @@ public class ScannerDirector {
             if (concesionario.getDirector() == null) {
                 System.out.println("No existe un director a cargo del concesionario");
                 System.out.println("Elige una de estas opciones: ");
-                System.out.println("1-AGREGAR DIRECTOR");
-                System.out.println("2-MENÚ PRINCIPAL");
+                System.out.println("1- AGREGAR DIRECTOR");
+                System.out.println("2- MENÚ PRINCIPAL");
                 int opcion = scanner.nextInt();
                 if (opcion < 1 || opcion > 2) throw new InvalidException("Debe introducir una de las opciones");
                 if (opcion == 1) agregarModificarDirector();
                 if (opcion == 2) menu(concesionario);
             } else {
-                System.out.println("Introduce el dni del director");
+                System.out.println("Introduce el dni del director: ");
                 String dni = scanner.nextLine();
                 concesionario.validarDni(dni);
                 comprobarDNI.comprobacion(dni);
@@ -287,17 +287,17 @@ public class ScannerDirector {
                 System.out.println("*************************");
                 System.out.println("*** MENÚ DEL DIRECTOR ***");
                 System.out.println("*************************");
-                System.out.println("1-MODIFICAR DIRECTOR");
-                System.out.println("2-IMPRIMIR DATOS DEL DIRECTOR");
-                System.out.println("3-CLIENTES");
-                System.out.println("4-VENDEDORES");
-                System.out.println("5-MECÁNICOS");
-                System.out.println("6-VEHÍCULOS");
-                System.out.println("7-EXPOSICIONES");
-                System.out.println("8-VENTAS/RESERVAS");
-                System.out.println("9-TALLER");
-                System.out.println("10-INFORMES");
-                System.out.println("11-MENU PRINCIPAL");
+                System.out.println("1- MODIFICAR DIRECTOR");
+                System.out.println("2- IMPRIMIR DATOS DEL DIRECTOR");
+                System.out.println("3- CLIENTES");
+                System.out.println("4- VENDEDORES");
+                System.out.println("5- MECÁNICOS");
+                System.out.println("6- VEHÍCULOS");
+                System.out.println("7- EXPOSICIONES");
+                System.out.println("8- VENTAS/RESERVAS");
+                System.out.println("9- TALLER");
+                System.out.println("10- INFORMES");
+                System.out.println("11- MENU PRINCIPAL");
                 System.out.print("Elija una de las opciones: ");
                 opcion = director.nextInt();
                 if (opcion < 1 || opcion > 11)

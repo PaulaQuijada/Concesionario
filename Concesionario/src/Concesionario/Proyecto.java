@@ -37,7 +37,10 @@ public class Proyecto {
                 if (num == 2) vendedores.consolaVendedor();
                 if (num == 3) mecanicos.consolaMecanico();
                 if (num == 4) director.director();
-                if (num == 5) System.out.println("Saliendo del programa...");
+                if (num == 5) {
+                    System.out.println("Saliendo del programa...");
+                    System.out.println("Gracias por visitar nuestro concesionario");
+                }
 
             }
         } catch (InvalidException e) {

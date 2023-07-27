@@ -6,17 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="b9b63e01-22cf-4d13-9510-a6b4a2904151" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Coche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Coche.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Clases/Concesionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Concesionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/Mecanico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/Mecanico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Clases/VendedorAComision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Clases/VendedorAComision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarMatricula.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Comprobaciones/String/ComprobarMatricula.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Concesionario/Proyecto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Concesionario/Proyecto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerCoche.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerCoche.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerDirector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerDirector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerExpo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerExpo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerMecanico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerMecanico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerReparacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerReparacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerReservas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerReservas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerVendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerVendedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scanners/ScannerVentas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scanners/ScannerVentas.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

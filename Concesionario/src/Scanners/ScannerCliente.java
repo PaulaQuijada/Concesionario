@@ -63,6 +63,7 @@ public class ScannerCliente {
 
             System.out.print("Número de teléfono: ");
             int telefono = cliente.nextInt();
+            if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
             comprobarTlf.comprobacion(telefono);
 
             concesionario.agregarCliente(new Cliente(nombre, apellido, edad, direccion, dni, telefono));
@@ -196,14 +197,18 @@ public class ScannerCliente {
             if (clientes.containsKey(dni)) {
                 Cliente cliente = clientes.get(dni);
                 System.out.println("Introduzca los nuevos datos para el cliente con DNI " + cliente.getDNI() + ": ");
+
                 System.out.print("Dirección: ");
                 String direccion = scanner.nextLine();
                 comprobarDireccion.comprobacion(direccion);
                 cliente.setDireccion(direccion);
+
                 System.out.print("Teléfono: ");
                 int telefono = scanner.nextInt();
+                if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
                 comprobarTlf.comprobacion(telefono);
                 cliente.setTelefono(telefono);
+
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
@@ -219,11 +224,11 @@ public class ScannerCliente {
                 System.out.println("*********************");
                 System.out.println("*** MENÚ CLIENTES ***");
                 System.out.println("*********************");
-                System.out.println("1-CONSULTAR COCHES EN STOCK");
-                System.out.println("2-CONSULTA EXPOSICIONES");
-                System.out.println("3-CONSULTAR COCHES COMPRADOS");
-                System.out.println("4-CONSULTAR COCHES RESERVADOS");
-                System.out.println("5-MENU PRINCIPAL");
+                System.out.println("1- CONSULTAR COCHES EN STOCK");
+                System.out.println("2- CONSULTA EXPOSICIONES");
+                System.out.println("3- CONSULTAR COCHES COMPRADOS");
+                System.out.println("4- CONSULTAR COCHES RESERVADOS");
+                System.out.println("5- MENU PRINCIPAL");
                 System.out.print("Elija una de las opciones: ");
                 opcion = consola.nextInt();
                 if (opcion < 1 || opcion > 5){
@@ -234,7 +239,7 @@ public class ScannerCliente {
                 if (opcion == 2) concesionario.imprimirExposiciones();
                 if (opcion == 3) scannerCochesComprados();
                 if (opcion == 4) scannerCochesReservados();
-                if (opcion == 5)  menu(concesionario);
+                if (opcion == 5) menu(concesionario);
 
             }
         } catch (InvalidException e) {

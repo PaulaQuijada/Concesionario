@@ -26,7 +26,7 @@ public class ScannerReparacion {
     public void agregarReparacion() {
         try {
             Scanner scanner = new Scanner(System.in);
-            concesionario.imprimirStock();
+            concesionario.imprimirCoches();
             System.out.print("Introduce la matrícula del coche que tiene que ser reparado: ");
             String matricula = scanner.nextLine();
             comprobarMatricula.comprobacion(matricula);
@@ -58,6 +58,7 @@ public class ScannerReparacion {
     public void consultarReparacionesDeCoche() {
         try {
             Scanner scanner = new Scanner(System.in);
+            concesionario.imprimirCoches();
             System.out.print("Introduce la matrícula del coche a consultar reparaciones: ");
             String matricula = scanner.nextLine();
             comprobarMatricula.comprobacion(matricula);

@@ -83,6 +83,7 @@ public class ScannerCoche {
     public void removeCoche() {
         try {
             Scanner removeCoche = new Scanner(System.in);
+            concesionario.imprimirCoches();
             System.out.print("Introduce la matrícula del coche a eliminar: ");
             String matricula = removeCoche.nextLine();
             HashMap<String, Coche> coches = concesionario.getCoches();
@@ -96,9 +97,10 @@ public class ScannerCoche {
         }
     }
 
-    public void imprimirCoche() {
+    public void imprimirDatosCoche() {
         try {
             Scanner scanner = new Scanner(System.in);
+            concesionario.imprimirCoches();
             System.out.print("Introduce la matricula del coche: ");
             String matricula = scanner.nextLine();
             comprobarMatricula.comprobacion(matricula);
@@ -127,8 +129,9 @@ public class ScannerCoche {
     }
 
     public void modificarCoche() {
-        Scanner scanner = new Scanner(System.in);
         try {
+            Scanner scanner = new Scanner(System.in);
+            concesionario.imprimirCoches();
             System.out.print("Introduce la matrícula del coche para modificar sus datos: ");
             String matricula = scanner.nextLine();
             comprobarMatricula.comprobacion(matricula);
@@ -200,7 +203,7 @@ public class ScannerCoche {
                 if (opcion < 1 || opcion > 6) throw new InvalidException("Debe introducir una de las opciones disponibles");
                 if (opcion == 1) agregarCoche();
                 if (opcion == 2) modificarCoche();
-                if (opcion == 3) imprimirCoche();
+                if (opcion == 3) imprimirDatosCoche();
                 if (opcion == 4) listarReparacionesOrdenadas();
                 if (opcion == 5) removeCoche();
                 if (opcion == 6) menu(concesionario);

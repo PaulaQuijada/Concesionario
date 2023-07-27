@@ -35,10 +35,12 @@ public class ScannerVentas {
                 Coche coche = coches.get(matricula);
                 if (coche.getEstado() == EstadoCoche.EN_REPARACION)
                     throw new InvalidException("El coche tiene reparaciones pendientes, por lo tanto no se puede vender");
+                concesionario.imprimirClientes();
                 System.out.print("Introduce el dni del cliente comprador: ");
                 String dni = venta.nextLine();
                 if (clientes.containsKey(dni)) {
                     Cliente cliente = clientes.get(dni);
+                    concesionario.imprimirVendedores();
                     System.out.print("Introduce el dni del vendedor:");
                     dni = venta.nextLine();
                     if (vendedores.containsKey(dni)) {
@@ -65,6 +67,7 @@ public class ScannerVentas {
             String dni = venta.nextLine();
             if (clientes.containsKey(dni)) {
                 Cliente cliente = clientes.get(dni);
+                concesionario.imprimirVendedores();
                 System.out.print("Introduce el dni del vendedor:");
                 dni = venta.nextLine();
                 if (vendedores.containsKey(dni)) {

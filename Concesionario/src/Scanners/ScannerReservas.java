@@ -40,24 +40,24 @@ public class ScannerReservas {
                     if (coche.getMatricula().equals(matricula)) {
                         if (coche.getEstado() == EstadoCoche.EN_EXPOSICION) {
                             System.out.print("Introduce el dni del cliente:");
-                            reserva.nextLine();
                             String dni = reserva.nextLine();
                             comprobarDNI.comprobacion(dni);
                             if (clientes.containsKey(dni)) {
                                 Cliente cliente = clientes.get(dni);
                                 coche.setEstado(EstadoCoche.RESERVADO);
                                 cliente.agregarCocheReservado(coche);
-                                System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido reservado por el cliente: " + cliente.getNombre() + " " + cliente.getApellido());
+                               throw new InvalidException("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido reservado por el cliente: " + cliente.getNombre() + " " + cliente.getApellido());
                             } else throw new NotFoundException("El cliente no está dado de alta");
-                        } else throw new InvalidException("El coche ya ha sido reservado por otro cliente");
+                        } else {
+                            throw new InvalidException("El coche ya ha sido reservado por otro cliente");}
+
                     }
-                    break;
                 }
             }
 
             if (coches.containsKey(matricula)) {
                 Coche coche = coches.get(matricula);
-                if (coche.getEstado().equals(EstadoCoche.EN_VENTA)) {
+                if (coche.getEstado().equals(EstadoCoche.EN_EXPOSICION)) {
                     System.out.print("Introduce el dni del cliente:");
                     String dni = reserva.nextLine();
                     comprobarDNI.comprobacion(dni);
@@ -95,6 +95,7 @@ public class ScannerReservas {
                         concesionario.agregarCoche(coche);
                         cliente.removeCocheReservado(coche);
                         conteo = 0;
+                        System.out.println("Se ha cancelado la reserva");
                     }
                     if (conteo == reservas.size())
                         throw new NotFoundException("El coche no está en la lista de reservas del cliente");

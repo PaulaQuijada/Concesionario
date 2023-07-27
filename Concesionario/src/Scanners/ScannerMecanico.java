@@ -55,7 +55,9 @@ public class ScannerMecanico {
 
             System.out.print("Teléfono: ");
             int telefono = agregarMecanico.nextInt();
+            if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
             comprobarTlf.comprobacion(telefono);
+
             Mecanico mecanico = new Mecanico(nombre, apellido, direccion, dni, telefono);
             concesionario.agregarMecanico(mecanico);
         } catch (InvalidException e) {
@@ -74,6 +76,7 @@ public class ScannerMecanico {
                 Mecanico mecanico = mecanicos.get(dni);
                 System.out.println("Datos del mecanico: ");
                 System.out.println("Nombre: " + mecanico.getNombre());
+                System.out.println("Apellido: " + mecanico.getApellido());
                 System.out.println("Dirección: " + mecanico.getDireccion());
                 System.out.println("DNI: " + mecanico.getDNI());
                 System.out.println("Teléfono: " + mecanico.getTelefono());
@@ -94,11 +97,14 @@ public class ScannerMecanico {
             if (mecanicos.containsKey(dni)) {
                 Mecanico mecanico = mecanicos.get(dni);
                 System.out.println("Introduzca los nuevos datos para el mecánico con DNI " + mecanico.getDNI() + ": ");
+
                 System.out.println("Dirección: ");
                 String direccion = scanner.nextLine();
                 mecanico.setDireccion(direccion);
+
                 System.out.println("Teléfono: ");
                 int telefono = scanner.nextInt();
+                if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
                 mecanico.setTelefono(telefono);
             } else throw new NotFoundException("El mecánico no está dado de alta");
 

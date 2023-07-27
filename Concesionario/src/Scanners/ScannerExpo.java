@@ -42,6 +42,7 @@ public class ScannerExpo {
 
             System.out.print("Teléfono: ");
             int telefono = expo.nextInt();
+            if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
             comprobarTlf.comprobacion(telefono);
 
             System.out.print("Dirección: ");

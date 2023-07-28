@@ -19,7 +19,7 @@ public class ScannerReservas {
     private ComprobarDNI comprobarDNI = new ComprobarDNI();
     private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
 
-    public ScannerReservas(Concesionario concesionario) throws InvalidException {
+    public ScannerReservas(Concesionario concesionario) {
         this.concesionario = concesionario;
         this.coches = concesionario.getCoches();
         this.clientes = concesionario.getClientes();

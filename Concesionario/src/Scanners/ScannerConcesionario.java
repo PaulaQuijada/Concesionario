@@ -30,6 +30,23 @@ public class ScannerConcesionario {
         this.ventas = concesionario.getVentas();
     }
 
+    public Concesionario getConcesionario() {
+        return concesionario;
+    }
+
+    public void setConcesionario(Concesionario concesionario) {
+        this.concesionario = concesionario;
+    }
+
+    public HashMap<String, Coche> getCoches() {
+        return coches;
+    }
+
+    public void setCoches(HashMap<String, Coche> coches) {
+        this.coches = coches;
+    }
+
+
     public void queCliente() {
         try {
             Scanner scanner = new Scanner(System.in);

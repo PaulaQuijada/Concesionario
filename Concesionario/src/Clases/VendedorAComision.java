@@ -13,13 +13,14 @@ public class VendedorAComision extends Persona {
     public VendedorAComision(String nombre, String apellido, String direccion, String DNI, int telefono) throws InvalidException {
         super(nombre, apellido, direccion, DNI, telefono);
         cochesVendidos = new ArrayList<>();
+       
     }
 
     public ArrayList<Coche> getCochesVendidos() {
         return cochesVendidos;
     }
 
-    public int getSueldo() throws InvalidException {
+    public int getSueldo() {
         return (int) getVolumenVentas() + sueldoAComision();
     }
 
@@ -38,13 +39,7 @@ public class VendedorAComision extends Persona {
         this.cochesVendidos = cochesVendidos;
     }
 
-    public void imprimirDatosVendedor(){
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Dirección: " + getDireccion());
-        System.out.println("DNI del: " + getDNI());
-        System.out.println("Teléfono: " + getTelefono());
-        System.out.println("------------------------");
-    }
+
     public void imprimirCochesVendidos() throws InvalidException {
         if(!cochesVendidos.isEmpty()){
             System.out.println("Coches vendidos: ");

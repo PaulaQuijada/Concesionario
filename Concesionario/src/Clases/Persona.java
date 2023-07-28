@@ -35,7 +35,7 @@ public abstract class Persona {
         this.telefono = telefono;
     }
 
-    public Persona() throws InvalidException {
+    public Persona(){
 
     }
 

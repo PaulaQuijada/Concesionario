@@ -9,10 +9,10 @@ public class ComprobarDireccion extends ComprobacionString{
     private static boolean containsNonNumeric(String input) {
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c)) {
-                return true; // Se encontró un carácter no numérico, retornamos true
+                return true;
             }
         }
-        return false; // No se encontraron caracteres no numéricos, retornamos false
+        return false;
     }
     @Override
     public void comprobacion(String direccion) throws InvalidException {

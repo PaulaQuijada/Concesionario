@@ -1,6 +1,5 @@
 package Scanners;
 
-import Clases.Coche;
 import Clases.VendedorAComision;
 import Clases.Concesionario;
 import Comprobaciones.Int.ComprobarTlf;
@@ -10,7 +9,6 @@ import Comprobaciones.String.ComprobarNombre;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 

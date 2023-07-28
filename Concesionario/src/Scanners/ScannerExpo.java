@@ -126,7 +126,7 @@ public class ScannerExpo {
             int numExpo = expo.nextInt();
             if (exposiciones.containsKey(numExpo)) {
                 Exposicion exposicion = exposiciones.get(numExpo);
-                System.out.println("Introduce los nuevos datos de la exposicion número " + exposicion.getNumExposicion() + ": ");
+                System.out.println("Introduce los nuevos datos de la exposicion número " + " " + exposicion.getNumExposicion() + ": ");
                 System.out.print("Teléfono: ");
                 int telefono = expo.nextInt();
                 exposicion.setTelefono(telefono);
@@ -140,8 +140,8 @@ public class ScannerExpo {
                 System.out.println("Los datos han sido modificados correctamente");
             } else throw new NotFoundException("El número de exposición introducido no existe");
 
-        } catch (NotFoundException | InvalidException n) {
-            System.out.println(n.getMessage());
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
             menu(concesionario);
         }
     }

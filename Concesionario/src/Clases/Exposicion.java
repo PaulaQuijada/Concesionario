@@ -31,12 +31,15 @@ public class Exposicion {
         return numExposicion;
     }
 
+    public void setNumExposicion(int numExposicion) {
+        this.numExposicion = numExposicion;
+    }
+
     public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) throws InvalidException{
-        comprobarTlf.comprobacion(telefono);
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -44,14 +47,14 @@ public class Exposicion {
         return direccion;
     }
 
-    public void setDireccion(String direccion) throws InvalidException{
-        comprobarDireccion.comprobacion(direccion);
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
     public ArrayList<Coche> getCoches() {
         return coches;
     }
+
 
     public void setCoches(ArrayList<Coche> coches) {
         this.coches = coches;

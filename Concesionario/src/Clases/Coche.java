@@ -5,9 +5,6 @@ import Comprobaciones.String.*;
 import Excepciones.InvalidException;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 public class Coche {
     private TipoCoche tipo;
     private String marca;

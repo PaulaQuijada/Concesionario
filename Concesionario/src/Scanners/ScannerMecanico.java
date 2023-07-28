@@ -164,7 +164,6 @@ public class ScannerMecanico {
             }
         }
 
-
     public void consolaMecanico() {
         try {
             Scanner scanner = new Scanner(System.in);

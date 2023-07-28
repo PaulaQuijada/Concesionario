@@ -17,7 +17,7 @@ public class ScannerVentas {
     private HashMap<String, Coche> coches;
     private ScannerVendedor scannerVendedor;
 
-    public ScannerVentas(Concesionario concesionario) throws InvalidException {
+    public ScannerVentas(Concesionario concesionario) {
         this.concesionario = concesionario;
         this.clientes = concesionario.getClientes();
         this.vendedores = concesionario.getVendedores();

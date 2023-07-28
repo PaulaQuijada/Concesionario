@@ -93,7 +93,6 @@ public class ScannerDirector {
         }
     }
 
-
     public void consultarClientes() {
         try {
             Scanner consulta = new Scanner(System.in);

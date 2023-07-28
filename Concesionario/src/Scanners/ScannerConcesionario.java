@@ -59,7 +59,7 @@ public class ScannerConcesionario {
             } else throw new NotFoundException("El coche no ha sido encontrado en el registro de ventas");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -75,7 +75,7 @@ public class ScannerConcesionario {
             } else throw new NotFoundException("El vendedor no está registrado en el concesionario");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 

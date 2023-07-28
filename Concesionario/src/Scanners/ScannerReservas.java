@@ -71,7 +71,7 @@ public class ScannerReservas {
             } else throw new NotFoundException("El coche no está disponible en el stock del concesionario.");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -104,7 +104,7 @@ public class ScannerReservas {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -126,7 +126,7 @@ public class ScannerReservas {
             if (opcion == 3) menu(concesionario);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 }

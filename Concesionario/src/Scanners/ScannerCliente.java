@@ -61,7 +61,7 @@ public class ScannerCliente {
             if(!concesionario.validarDni(dni)) throw new InvalidException("El dni introducido no puede estar repetido");
             comprobarDNI.comprobacion(dni);
 
-            System.out.print("Número de teléfono: ");
+            System.out.print("Teléfono: ");
             int telefono = cliente.nextInt();
             if(!concesionario.validarTelefono(telefono)) throw new InvalidException("El teléfono introducido no puede estar repetido");
             comprobarTlf.comprobacion(telefono);
@@ -69,7 +69,7 @@ public class ScannerCliente {
             concesionario.agregarCliente(new Cliente(nombre, apellido, edad, direccion, dni, telefono));
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -90,7 +90,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está registrado en el concesionario");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -114,7 +114,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("Este cliente no está dado de alta");
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -146,7 +146,7 @@ public class ScannerCliente {
 
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -183,7 +183,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -212,7 +212,7 @@ public class ScannerCliente {
             } else throw new NotFoundException("El cliente no está dado de alta");
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -244,7 +244,7 @@ public class ScannerCliente {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 }

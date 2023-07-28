@@ -50,7 +50,7 @@ public class ScannerReparacion {
             } else throw new NotFoundException("El coche no está en el stock del concesionario ");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -69,7 +69,7 @@ public class ScannerReparacion {
             } else throw new NotFoundException("El coche introducido no está en el stock del concesionario");
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -89,7 +89,7 @@ public class ScannerReparacion {
             if (opcion == 2) consultarReparacionesDeCoche();
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 }

@@ -76,7 +76,7 @@ public class ScannerCoche {
             System.out.println("El coche se ha añadido al concesionario correctamente");
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -93,7 +93,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El coche no está dado de alta en el concesionario");
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -124,7 +124,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El coche no se encuentra en el concesionario");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -151,7 +151,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El coche no está disponible en el concesionario");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -180,7 +180,7 @@ public class ScannerCoche {
             } else throw new NotFoundException("El mecánico no está dado de alta en el concesionario");
         } catch (NotFoundException n) {
             System.out.println(n.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -210,7 +210,7 @@ public class ScannerCoche {
             }
         } catch (InvalidException e){
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 }

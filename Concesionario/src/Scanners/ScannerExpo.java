@@ -37,6 +37,7 @@ public class ScannerExpo {
             System.out.println("Introduce los datos para crear una exposición: ");
             System.out.print("Número de exposición: ");
             int numExpo = expo.nextInt();
+            if(!concesionario.validarNumExpo(numExpo)) throw new InvalidException("El número de exposición introducido ya existe");
             comprobarNumExpo.comprobacion(numExpo);
 
 
@@ -55,7 +56,7 @@ public class ScannerExpo {
             return exposicion;
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
         return null;
     }
@@ -75,7 +76,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("La exposición indicada no existe en el concesionario");
         } catch (NotFoundException | InvalidException notFound) {
             System.out.println(notFound.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -93,7 +94,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("El número de exposición introducido no existe");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -115,7 +116,7 @@ public class ScannerExpo {
             } else throw new NotFoundException("El número de exposición introducido no existe");
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -142,7 +143,7 @@ public class ScannerExpo {
 
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -181,7 +182,7 @@ public class ScannerExpo {
 
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -211,7 +212,7 @@ public class ScannerExpo {
             } else throw new InvalidException("No existe la exposición introducida");
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -257,7 +258,7 @@ public class ScannerExpo {
             }
         } catch (InvalidException | NotFoundException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -269,7 +270,7 @@ public class ScannerExpo {
                 System.out.println("********************");
                 System.out.println("*** EXPOSICIONES ***");
                 System.out.println("********************");
-                System.out.println("1-DAR DE ALTA A UNA EXPOSICIÓN");
+                System.out.println("1- DAR DE ALTA A UNA EXPOSICIÓN");
                 System.out.println("2- MODIFICAR UNA EXPOSICIÓN");
                 System.out.println("3- AGREGAR VEHÍCULO A UNA EXPOSICIÓN");
                 System.out.println("4- ELIMINAR COCHE DE EXPOSICIÓN");
@@ -293,7 +294,7 @@ public class ScannerExpo {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 }

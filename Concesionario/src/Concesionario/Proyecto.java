@@ -45,7 +45,7 @@ public class Proyecto {
             }
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 

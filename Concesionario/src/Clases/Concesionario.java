@@ -314,6 +314,15 @@ public class Concesionario {
         if (director.getTelefono() == telefono) return false;
         return true;
     }
+    public boolean validarNumExpo(int numExpo){
+        if(!exposiciones.isEmpty()){
+            for (Exposicion exposicion : exposiciones.values()){
+                if (exposicion.getNumExposicion() == numExpo) return false;
+
+            }
+        }
+        return true;
+    }
 
 }
 

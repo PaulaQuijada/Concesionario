@@ -62,7 +62,7 @@ public class ScannerMecanico {
             concesionario.agregarMecanico(mecanico);
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -84,7 +84,7 @@ public class ScannerMecanico {
             } else throw new NotFoundException("Este mecánico no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -110,7 +110,7 @@ public class ScannerMecanico {
 
         } catch (NotFoundException | InvalidException n) {
             System.out.println(n.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -129,7 +129,7 @@ public class ScannerMecanico {
             } else throw new NotFoundException("El mecánico no está dado de alta");
         } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 
@@ -160,7 +160,7 @@ public class ScannerMecanico {
             }else throw new NotFoundException("El mecánico escogido no está dado de alta");
         }catch(InvalidException | NotFoundException e){
                 System.out.println(e.getMessage());
-                menu(concesionario);
+
             }
         }
 
@@ -180,7 +180,7 @@ public class ScannerMecanico {
             if (opcion == 2) repararCoche();
         } catch (InvalidException e) {
             System.out.println(e.getMessage());
-            menu(concesionario);
+
         }
     }
 }

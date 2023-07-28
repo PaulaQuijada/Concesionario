@@ -181,9 +181,10 @@ public class ScannerCliente {
                     }
                 }
             } else throw new NotFoundException("El cliente no está dado de alta");
-        } catch (InvalidException | NotFoundException e) {
+        } catch (InvalidException e) {
             System.out.println(e.getMessage());
-
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 

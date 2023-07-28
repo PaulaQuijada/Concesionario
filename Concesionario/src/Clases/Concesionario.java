@@ -1,6 +1,7 @@
 package Clases;
 
 import Excepciones.InvalidException;
+import Excepciones.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -266,16 +267,23 @@ public class Concesionario {
     }
 
     public void consultarCochesAReparar() {
-        ArrayList<Coche> coches1 = new ArrayList<>();
-        for (Coche coche : coches.values()) {
-            coches1.add(coche);
-        }
-        for (Coche coche : coches1) {
-            if (coche.getEstado() == EstadoCoche.EN_REPARACION) {
-                coche.imprimirReparaciones();
-            }
+        try {
+            ArrayList<Coche> coches1 = new ArrayList<>();
+            if (!coches.isEmpty()) {
+                for (Coche coche : coches.values()) {
+                    if (coche.getEstado() == EstadoCoche.EN_REPARACION) coches1.add(coche);
+                }
+                if (!coches1.isEmpty()) {
+                    for (Coche coche : coches1) {
+                        coche.imprimirReparaciones();
+                    }
+                } else throw new InvalidException("No existen coches en reparación");
+            } else throw new InvalidException("No existen coches en stock");
+        } catch (InvalidException e) {
+            System.out.println(e.getMessage());
         }
     }
+
 
     public boolean validarDni(String dni) {
         if (vendedores.containsKey(dni) || clientes.containsKey(dni) || mecanicos.containsKey(dni) || director.getDNI().equals(dni))
@@ -290,33 +298,34 @@ public class Concesionario {
     }
 
     public boolean validarTelefono(int telefono) {
-        if(!clientes.isEmpty()) {
+        if (!clientes.isEmpty()) {
             for (Cliente cliente : clientes.values()) {
                 if (cliente.getTelefono() == telefono) return false;
             }
         }
-        if(!vendedores.isEmpty()) {
+        if (!vendedores.isEmpty()) {
             for (VendedorAComision vendedor : vendedores.values()) {
                 if (vendedor.getTelefono() == telefono) return false;
             }
         }
-        if(!mecanicos.isEmpty()) {
+        if (!mecanicos.isEmpty()) {
             for (Mecanico mecanico : mecanicos.values()) {
                 if (mecanico.getTelefono() == telefono) return false;
             }
         }
-        if(!exposiciones.isEmpty()) {
+        if (!exposiciones.isEmpty()) {
             for (Exposicion exposicion : exposiciones.values()) {
                 if (exposicion.getTelefono() == telefono) return false;
             }
         }
-        if(director == null) return true;
+        if (director == null) return true;
         if (director.getTelefono() == telefono) return false;
         return true;
     }
-    public boolean validarNumExpo(int numExpo){
-        if(!exposiciones.isEmpty()){
-            for (Exposicion exposicion : exposiciones.values()){
+
+    public boolean validarNumExpo(int numExpo) {
+        if (!exposiciones.isEmpty()) {
+            for (Exposicion exposicion : exposiciones.values()) {
                 if (exposicion.getNumExposicion() == numExpo) return false;
 
             }

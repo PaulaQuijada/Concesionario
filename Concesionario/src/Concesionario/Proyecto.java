@@ -40,6 +40,7 @@ public class Proyecto {
                 if (num == 5) {
                     System.out.println("Saliendo del programa...");
                     System.out.println("Gracias por visitar nuestro concesionario");
+                    System.exit(0);
                 }
 
             }

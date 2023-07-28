@@ -1,6 +1,8 @@
 package Scanners;
 
 import Clases.*;
+import Comprobaciones.String.ComprobarDNI;
+import Comprobaciones.String.ComprobarMatricula;
 import Excepciones.InvalidException;
 import Excepciones.NotFoundException;
 
@@ -16,6 +18,9 @@ public class ScannerVentas {
     private HashMap<String, VendedorAComision> vendedores;
     private HashMap<String, Coche> coches;
     private ScannerVendedor scannerVendedor;
+    private ComprobarMatricula comprobarMatricula = new ComprobarMatricula();
+    private ComprobarDNI comprobarDNI = new ComprobarDNI();
+
 
     public ScannerVentas(Concesionario concesionario) {
         this.concesionario = concesionario;
@@ -31,6 +36,7 @@ public class ScannerVentas {
             Scanner venta = new Scanner(System.in);
             System.out.print("Introduce la matrícula del coche a vender: ");
             String matricula = venta.nextLine();
+            comprobarMatricula.comprobacion(matricula);
             if (coches.containsKey(matricula)) {
                 Coche coche = coches.get(matricula);
                 if (coche.getEstado() == EstadoCoche.EN_REPARACION)
@@ -65,15 +71,18 @@ public class ScannerVentas {
             Scanner venta = new Scanner(System.in);
             System.out.print("Introduce el dni del cliente que ha reservado el coche:");
             String dni = venta.nextLine();
+            comprobarDNI.comprobacion(dni);
             if (clientes.containsKey(dni)) {
                 Cliente cliente = clientes.get(dni);
                 concesionario.imprimirVendedores();
                 System.out.print("Introduce el dni del vendedor:");
                 dni = venta.nextLine();
+                comprobarDNI.comprobacion(dni);
                 if (vendedores.containsKey(dni)) {
                     VendedorAComision vendedor = vendedores.get(dni);
                     System.out.print("Introduce la matrícula del coche a vender: ");
                     String matricula = venta.nextLine();
+                    comprobarMatricula.comprobacion(matricula);
                     ArrayList<Coche> reservas = cliente.getCochesReservados();
                     for (Coche coche : reservas) {
                         if (coche.getMatricula().equals(matricula)) {
@@ -84,13 +93,12 @@ public class ScannerVentas {
                             concesionario.registrarVenta(matricula, cliente.getNombre());
                             System.out.println("El coche " + coche.getMarca() + " " + coche.getModelo() + " con matrícula " + coche.getMatricula() + " ha sido vendido al cliente: " + cliente.getNombre());
                             break;
-                        } else
-                            throw new NotFoundException("El coche introducido no está en la lista de reservas del cliente");
+                        } else throw new NotFoundException("El coche introducido no está en la lista de reservas del cliente");
                     }
 
                 } else throw new NotFoundException("El vendedor no está dado de alta");
             } else throw new NotFoundException("El cliente no está dado de alta");
-        } catch (NotFoundException e) {
+        } catch (NotFoundException | InvalidException e) {
             System.out.println(e.getMessage());
 
         }
